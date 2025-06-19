@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - NutrivIT</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/dashboard.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h1><i class="fas fa-leaf"></i> NutriVit</h1>
+        <p class="subtitle">Management System</p>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" onclick="showSection('dashboard')">
+          <i class="fas fa-chart-pie nav-icon"></i>
+          Dashboard
+        </a>
+        <a href="#" class="nav-item" onclick="showSection('user-management')">
+          <i class="fas fa-users nav-icon"></i>
+          User Management
+        </a>
+        <a href="#" class="nav-item" onclick="showSection('product-management')">
+          <i class="fas fa-boxes nav-icon"></i>
+          Product Management
+        </a>
+        <a href="#" class="nav-item" onclick="showSection('ai-management')">
+          <i class="fas fa-robot nav-icon"></i>
+          Manajerial AI
+        </a>
+        <a href="#" class="nav-item" onclick="showSection('settings')">
+          <i class="fas fa-cog nav-icon"></i>
+          Settings
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-details">
+            <p class="user-name">Manager</p>
+            <p class="user-email">manager@email.com</p>
+          </div>
+        </div>
+        <button class="logout-btn" onclick="handleLogout()">
+          <i class="fas fa-sign-out-alt"></i> Keluar
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="main-header">
+        <div class="header-left">
+          <h2 id="page-title">Dashboard</h2>
+          <p class="page-subtitle">Selamat datang kembali di NutrivIT Management System</p>
+        </div>
+        <div class="header-actions">
+          <div class="notification-bell">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </div>
+          <span class="date">
+            <i class="fas fa-calendar-alt"></i>
+            <span id="current-date"></span>
+          </span>
+        </div>
+      </header>
+
+      <!-- Dashboard Section -->
+      <div id="dashboard" class="content-section active">
+        <div class="welcome-banner">
+          <div class="banner-content">
+            <h3><i class="fas fa-chart-line"></i> Ringkasan Hari Ini</h3>
+            <p>Pantau performa bisnis Anda dalam satu dashboard terintegrasi</p>
+          </div>
+          <div class="banner-icon">
+            <i class="fas fa-analytics"></i>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon users">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Total Users</h3>
+              <p class="stat-number">1,234</p>
+              <span class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> +12% dari bulan lalu
+              </span>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon products">
+              <i class="fas fa-box"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Total Produk</h3>
+              <p class="stat-number">567</p>
+              <span class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> +8% dari bulan lalu
+              </span>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon revenue">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Revenue</h3>
+              <p class="stat-number">Rp 45.2M</p>
+              <span class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> +15% dari bulan lalu
+              </span>
+            </div>
+          </div>
+          
+          
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Management Section -->
+      <div id="user-management" class="content-section">
+        <div class="section-banner">
+          <div class="banner-content">
+            <h3><i class="fas fa-users"></i> Manajemen User</h3>
+            <p>Kelola pengguna sistem dan atur hak akses mereka</p>
+          </div>
+          <button class="btn-primary">
+            <i class="fas fa-user-plus"></i> Tambah User Baru
+          </button>
+        </div>
+
+        <div class="filter-section">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Cari user...">
+          </div>
+          <div class="filter-buttons">
+            <button class="filter-btn active">
+              <i class="fas fa-users"></i> Semua (156)
+            </button>
+            <button class="filter-btn">
+              <i class="fas fa-user-shield"></i> Admin (12)
+            </button>
+            <button class="filter-btn">
+              <i class="fas fa-user"></i> User (144)
+            </button>
+          </div>
+        </div>
+        
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th><i class="fas fa-user"></i> Nama</th>
+                <th><i class="fas fa-envelope"></i> Email</th>
+                <th><i class="fas fa-shield-alt"></i> Role</th>
+                <th><i class="fas fa-calendar"></i> Bergabung</th>
+                <th><i class="fas fa-circle"></i> Status</th>
+                <th><i class="fas fa-cogs"></i> Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="user-cell">
+                    <div class="user-avatar-small">JD</div>
+                    <span>John Doe</span>
+                  </div>
+                </td>
+                <td>john@email.com</td>
+                <td><span class="role-badge user">User</span></td>
+                <td>15 Jan 2024</td>
+                <td><span class="status active"><i class="fas fa-circle"></i> Aktif</span></td>
+                <td>
+                  <button class="btn-small"><i class="fas fa-edit"></i></button>
+                  <button class="btn-small btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="user-cell">
+                    <div class="user-avatar-small">JS</div>
+                    <span>Jane Smith</span>
+                  </div>
+                </td>
+                <td>jane@email.com</td>
+                <td><span class="role-badge admin">Admin</span></td>
+                <td>10 Jan 2024</td>
+                <td><span class="status active"><i class="fas fa-circle"></i> Aktif</span></td>
+                <td>
+                  <button class="btn-small"><i class="fas fa-edit"></i></button>
+                  <button class="btn-small btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Product Management Section -->
+      <div id="product-management" class="content-section">
+        <div class="section-banner">
+          <div class="banner-content">
+            <h3><i class="fas fa-boxes"></i> Manajemen Produk</h3>
+            <p>Kelola katalog produk kesehatan dan suplemen</p>
+          </div>
+          <button class="btn-primary">
+            <i class="fas fa-plus"></i> Tambah Produk Baru
+          </button>
+        </div>
+
+        <div class="product-stats">
+          <div class="product-stat-card">
+            <i class="fas fa-box"></i>
+            <div>
+              <h4>567</h4>
+              <p>Total Produk</p>
+            </div>
+          </div>
+          <div class="product-stat-card">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div>
+              <h4>23</h4>
+              <p>Stok Rendah</p>
+            </div>
+          </div>
+          <div class="product-stat-card">
+            <i class="fas fa-star"></i>
+            <div>
+              <h4>89</h4>
+              <p>Produk Populer</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <i class="fas fa-pills"></i>
+            </div>
+            <div class="product-info">
+              <h4>Vitamin C Plus</h4>
+              <p class="product-category">
+                <i class="fas fa-tag"></i> Vitamin
+              </p>
+              <p class="product-price">Rp 125.000</p>
+              <div class="product-stock">
+                <i class="fas fa-warehouse"></i>
+                <span>Stok: 150</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-small">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button class="btn-small btn-danger">
+                <i class="fas fa-trash"></i> Hapus
+              </button>
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image">
+              <i class="fas fa-capsules"></i>
+            </div>
+            <div class="product-info">
+              <h4>Omega 3 Premium</h4>
+              <p class="product-category">
+                <i class="fas fa-tag"></i> Suplemen
+              </p>
+              <p class="product-price">Rp 200.000</p>
+              <div class="product-stock low-stock">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Stok: 15</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-small">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button class="btn-small btn-danger">
+                <i class="fas fa-trash"></i> Hapus
+              </button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <div class="product-info">
+              <h4>Herbal Immunity</h4>
+              <p class="product-category">
+                <i class="fas fa-tag"></i> Herbal
+              </p>
+              <p class="product-price">Rp 175.000</p>
+              <div class="product-stock">
+                <i class="fas fa-warehouse"></i>
+                <span>Stok: 89</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-small">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button class="btn-small btn-danger">
+                <i class="fas fa-trash"></i> Hapus
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Management Section -->
+      <div id="ai-management" class="content-section">
+        <div class="section-banner">
+          <div class="banner-content">
+            <h3><i class="fas fa-robot"></i> Manajerial AI</h3>
+            <p>Analisis cerdas untuk pengambilan keputusan bisnis</p>
+          </div>
+          <button class="btn-primary">
+            <i class="fas fa-play"></i> Jalankan Analisis
+          </button>
+        </div>
+
+        <div class="ai-status-bar">
+          <div class="ai-status">
+            <i class="fas fa-circle status-online"></i>
+            <span>AI Engine: Online</span>
+          </div>
+          <div class="ai-last-update">
+            <i class="fas fa-clock"></i>
+            <span>Terakhir diperbarui: 2 jam yang lalu</span>
+          </div>
+        </div>
+        
+        <div class="ai-dashboard">
+          <div class="ai-card prediction">
+            <div class="ai-card-header">
+              <i class="fas fa-chart-line"></i>
+              <h4>Prediksi Penjualan</h4>
+            </div>
+            <div class="ai-content">
+              <div class="prediction-result">
+                <span class="prediction-value">+18%</span>
+                <span class="prediction-label">Prediksi bulan depan</span>
+              </div>
+              <div class="confidence-meter">
+                <div class="confidence-bar">
+                  <div class="confidence-fill" style="width: 89%"></div>
+                </div>
+                <span class="confidence-text">Tingkat kepercayaan: 89%</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="ai-card recommendation">
+            <div class="ai-card-header">
+              <i class="fas fa-lightbulb"></i>
+              <h4>Rekomendasi Stok</h4>
+            </div>
+            <div class="ai-content">
+              <div class="recommendation-item">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>5 produk perlu restok dalam 7 hari</span>
+              </div>
+              <div class="recommendation-item">
+                <i class="fas fa-trending-up"></i>
+                <span>Vitamin C demand meningkat 25%</span>
+              </div>
+              <button class="btn-small btn-primary">
+                <i class="fas fa-eye"></i> Lihat Detail
+              </button>
+            </div>
+          </div>
+          
+          <div class="ai-card analysis">
+            <div class="ai-card-header">
+              <i class="fas fa-chart-pie"></i>
+              <h4>Analisis Trend</h4>
+            </div>
+            <div class="ai-content">
+              <div class="trend-item">
+                <div class="trend-icon up">
+                  <i class="fas fa-arrow-up"></i>
+                </div>
+                <div class="trend-info">
+                  <span class="trend-category">Suplemen Vitamin</span>
+                  <span class="trend-percentage">+25%</span>
+                </div>
+              </div>
+              <div class="trend-item">
+                <div class="trend-icon down">
+                  <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="trend-info">
+                  <span class="trend-category">Herbal Traditional</span>
+                  <span class="trend-percentage">-8%</span>
+                </div>
+              </div>
+              <p class="trend-note">Berdasarkan data 3 bulan terakhir</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Section -->
+      <div id="settings" class="content-section">
+        <div class="section-banner">
+          <div class="banner-content">
+            <h3><i class="fas fa-cog"></i> Pengaturan Sistem</h3>
+            <p>Konfigurasi dan personalisasi sistem sesuai kebutuhan</p>
+          </div>
+        </div>
+        
+        <div class="settings-grid">
+          <div class="settings-card">
+            <div class="settings-header">
+              <i class="fas fa-building"></i>
+              <h4>Profil Perusahaan</h4>
+            </div>
+            <form class="settings-form">
+              <div class="form-group">
+                <label><i class="fas fa-tag"></i> Nama Perusahaan</label>
+                <input type="text" value="NutrivIT" />
+              </div>
+              
+              <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" value="info@nutrivit.com" />
+              </div>
+
+              <div class="form-group">
+                <label><i class="fas fa-phone"></i> Telepon</label>
+                <input type="tel" value="+62 21 1234 5678" />
+              </div>
+              
+              <button type="submit" class="btn-primary">
+                <i class="fas fa-save"></i> Simpan Perubahan
+              </button>
+            </form>
+          </div>
+          
+          <div class="settings-card">
+            <div class="settings-header">
+              <i class="fas fa-shield-alt"></i>
+              <h4>Keamanan</h4>
+            </div>
+            <div class="settings-form">
+              <button class="btn-secondary">
+                <i class="fas fa-key"></i> Ubah Password
+              </button>
+              <button class="btn-secondary">
+                <i class="fas fa-mobile-alt"></i> Aktivasi 2FA
+              </button>
+              <button class="btn-secondary">
+                <i class="fas fa-history"></i> Log Aktivitas
+              </button>
+              <button class="btn-secondary">
+                <i class="fas fa-download"></i> Backup Data
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <div class="settings-header">
+              <i class="fas fa-palette"></i>
+              <h4>Tampilan</h4>
+            </div>
+            <div class="settings-form">
+              <div class="form-group">
+                <label><i class="fas fa-moon"></i> Mode Gelap</label>
+                <label class="toggle-switch">
+                  <input type="checkbox">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-bell"></i> Notifikasi</label>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <div class="settings-header">
+              <i class="fas fa-robot"></i>
+              <h4>Konfigurasi AI</h4>
+            </div>
+            <div class="settings-form">
+              <div class="form-group">
+                <label><i class="fas fa-clock"></i> Interval Analisis</label>
+                <select>
+                  <option>Setiap Jam</option>
+                  <option selected>Setiap 6 Jam</option>
+                  <option>Setiap Hari</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-chart-line"></i> Sensitivitas Prediksi</label>
+                <input type="range" min="1" max="10" value="7">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Set current date
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString('id-ID', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    // Navigation functionality
+    function showSection(sectionId) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => section.classList.remove('active'));
+      
+      // Remove active class from all nav items
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => item.classList.remove('active'));
+      
+      // Show selected section
+      document.getElementById(sectionId).classList.add('active');
+      
+      // Add active class to clicked nav item
+      event.target.closest('.nav-item').classList.add('active');
+      
+      // Update page title and subtitle
+      const titles = {
+        'dashboard': {
+          title: 'Dashboard',
+          subtitle: 'Selamat datang kembali di NutrivIT Management System'
+        },
+        'user-management': {
+          title: 'User Management',
+          subtitle: 'Kelola pengguna sistem dan atur hak akses mereka'
+        },
+        'product-management': {
+          title: 'Product Management',
+          subtitle: 'Kelola katalog produk kesehatan dan suplemen'
+        },
+        'ai-management': {
+          title: 'Manajerial AI',
+          subtitle: 'Analisis cerdas untuk pengambilan keputusan bisnis'
+        },
+        'settings': {
+          title: 'Settings',
+          subtitle: 'Konfigurasi dan personalisasi sistem sesuai kebutuhan'
+        }
+      };
+      
+      document.getElementById('page-title').textContent = titles[sectionId].title;
+      document.querySelector('.page-subtitle').textContent = titles[sectionId].subtitle;
+    }
+
+    // Logout functionality
+    function handleLogout() {
+      if (confirm('Apakah Anda yakin ingin keluar?')) {
+        localStorage.removeItem('auth');
+        window.location.href = 'login.html';
+      }
+    }
+
+    // Check authentication
+    if (!localStorage.getItem('auth')) {
+      window.location.href = 'login.html';
+    }
+
+    // Chart bar hover effect
+    document.querySelectorAll('.chart-bar').forEach(bar => {
+      bar.addEventListener('mouseenter', function() {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'chart-tooltip';
+        tooltip.textContent = this.dataset.value;
+        document.body.appendChild(tooltip);
+        
+        const rect = this.getBoundingClientRect();
+        tooltip.style.left = rect.left + rect.width/2 - tooltip.offsetWidth/2 + 'px';
+        tooltip.style.top = rect.top - tooltip.offsetHeight - 5 + 'px';
+      });
+      
+      bar.addEventListener('mouseleave', function() {
+        const tooltip = document.querySelector('.chart-tooltip');
+        if (tooltip) tooltip.remove();
+      });
+    });
+  </script>
+</body>
+</html>
