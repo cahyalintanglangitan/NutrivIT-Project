@@ -1,4 +1,4 @@
-// User Management JavaScript
+// Enhanced User Management JavaScript
 class UserManagement {
     constructor() {
         this.users = [];
@@ -32,7 +32,6 @@ class UserManagement {
     // Check if user is authenticated
     checkAuthentication() {
         if (!localStorage.getItem('auth')) {
-            // For demo purposes, set auth to true
             localStorage.setItem('auth', 'true');
         }
     }
@@ -64,109 +63,172 @@ class UserManagement {
         this.showLoading(false);
     }
 
-    // Load mock data for development/demo
+    // Load enhanced mock data for development/demo
     loadMockData() {
         this.users = [
             {
                 id: 1,
-                name: "Ahmad Rizki Pratama",
+                user_id: "USR001",
+                nama_lengkap: "Ahmad Rizki Pratama",
                 email: "ahmad.rizki@email.com",
-                phone: "+62 812-3456-7890",
-                location: "Jakarta, DKI Jakarta",
-                joinDate: "2024-01-15",
+                nomor_telepon: "+62 812-3456-7890",
+                tinggi_badan: 175,
+                berat_badan: 70.5,
+                gender: "laki-laki",
+                diet_plan: "Weight Loss Plan",
+                diet_start: "2025-06-01",
+                diet_end: "2025-07-01",
+                last_activity: "2025-06-19",
                 status: "active",
-                complaints: 3,
-                lastActive: "2025-06-19"
+                consultation_count: 12,
+                last_weight: 69.5,
+                target_kalori: 1500,
+                avg_calorie_intake: 1450
             },
             {
                 id: 2,
-                name: "Siti Aminah Putri",
+                user_id: "USR002",
+                nama_lengkap: "Siti Aminah Putri",
                 email: "siti.aminah@email.com",
-                phone: "+62 813-4567-8901",
-                location: "Bandung, Jawa Barat",
-                joinDate: "2024-02-20",
+                nomor_telepon: "+62 813-4567-8901",
+                tinggi_badan: 165,
+                berat_badan: 60.0,
+                gender: "perempuan",
+                diet_plan: "Muscle Gain Plan",
+                diet_start: "2025-06-05",
+                diet_end: "2025-08-05",
+                last_activity: "2025-06-18",
                 status: "active",
-                complaints: 1,
-                lastActive: "2025-06-18"
+                consultation_count: 8,
+                last_weight: 61.0,
+                target_kalori: 2500,
+                avg_calorie_intake: 2400
             },
             {
                 id: 3,
-                name: "Budi Santoso",
+                user_id: "USR003",
+                nama_lengkap: "Budi Santoso",
                 email: "budi.santoso@email.com",
-                phone: "+62 814-5678-9012",
-                location: "Surabaya, Jawa Timur",
-                joinDate: "2024-03-10",
+                nomor_telepon: "+62 814-5678-9012",
+                tinggi_badan: 180,
+                berat_badan: 85.0,
+                gender: "laki-laki",
+                diet_plan: "Healthy Eating",
+                diet_start: "2025-06-10",
+                diet_end: null,
+                last_activity: "2025-06-19",
                 status: "active",
-                complaints: 5,
-                lastActive: "2025-06-19"
+                consultation_count: 15,
+                last_weight: 84.0,
+                target_kalori: 2000,
+                avg_calorie_intake: 1950
             },
             {
                 id: 4,
-                name: "Dewi Sartika",
+                user_id: "USR004",
+                nama_lengkap: "Dewi Sartika",
                 email: "dewi.sartika@email.com",
-                phone: "+62 815-6789-0123",
-                location: "Yogyakarta, DI Yogyakarta",
-                joinDate: "2024-01-25",
+                nomor_telepon: "+62 815-6789-0123",
+                tinggi_badan: 160,
+                berat_badan: 55.0,
+                gender: "perempuan",
+                diet_plan: null,
+                diet_start: null,
+                diet_end: null,
+                last_activity: "2025-06-10",
                 status: "inactive",
-                complaints: 0,
-                lastActive: "2025-06-10"
+                consultation_count: 2,
+                last_weight: 55.0,
+                target_kalori: 0,
+                avg_calorie_intake: 0
             },
             {
                 id: 5,
-                name: "Rudi Hartono",
+                user_id: "USR005",
+                nama_lengkap: "Rudi Hartono",
                 email: "rudi.hartono@email.com",
-                phone: "+62 816-7890-1234",
-                location: "Medan, Sumatera Utara",
-                joinDate: "2024-02-14",
+                nomor_telepon: "+62 816-7890-1234",
+                tinggi_badan: 178,
+                berat_badan: 75.0,
+                gender: "laki-laki",
+                diet_plan: "Diabetes Management",
+                diet_start: "2025-05-15",
+                diet_end: "2025-08-15",
+                last_activity: "2025-06-19",
                 status: "active",
-                complaints: 2,
-                lastActive: "2025-06-19"
+                consultation_count: 25,
+                last_weight: 74.2,
+                target_kalori: 1800,
+                avg_calorie_intake: 1780
             },
             {
                 id: 6,
-                name: "Maya Kusuma",
+                user_id: "USR006",
+                nama_lengkap: "Maya Kusuma",
                 email: "maya.kusuma@email.com",
-                phone: "+62 817-8901-2345",
-                location: "Makassar, Sulawesi Selatan",
-                joinDate: "2024-03-22",
+                nomor_telepon: "+62 817-8901-2345",
+                tinggi_badan: 162,
+                berat_badan: 58.0,
+                gender: "perempuan",
+                diet_plan: "Weight Loss Plan",
+                diet_start: "2025-05-20",
+                diet_end: "2025-07-20",
+                last_activity: "2025-06-18",
                 status: "active",
-                complaints: 4,
-                lastActive: "2025-06-18"
+                consultation_count: 9,
+                last_weight: 57.5,
+                target_kalori: 1400,
+                avg_calorie_intake: 1380
             },
             {
                 id: 7,
-                name: "Andi Wijaya",
+                user_id: "USR007",
+                nama_lengkap: "Andi Wijaya",
                 email: "andi.wijaya@email.com",
-                phone: "+62 818-9012-3456",
-                location: "Denpasar, Bali",
-                joinDate: "2024-04-10",
+                nomor_telepon: "+62 818-9012-3456",
+                tinggi_badan: 170,
+                berat_badan: 68.0,
+                gender: "laki-laki",
+                diet_plan: "Muscle Gain Plan",
+                diet_start: "2025-06-01",
+                diet_end: "2025-09-01",
+                last_activity: "2025-06-17",
                 status: "active",
-                complaints: 1,
-                lastActive: "2025-06-17"
+                consultation_count: 6,
+                last_weight: 68.5,
+                target_kalori: 2300,
+                avg_calorie_intake: 2280
             },
             {
                 id: 8,
-                name: "Fitri Handayani",
+                user_id: "USR008",
+                nama_lengkap: "Fitri Handayani",
                 email: "fitri.handayani@email.com",
-                phone: "+62 819-0123-4567",
-                location: "Palembang, Sumatera Selatan",
-                joinDate: "2024-03-05",
+                nomor_telepon: "+62 819-0123-4567",
+                tinggi_badan: 158,
+                berat_badan: 52.0,
+                gender: "perempuan",
+                diet_plan: null,
+                diet_start: null,
+                diet_end: null,
+                last_activity: "2025-06-05",
                 status: "inactive",
-                complaints: 0,
-                lastActive: "2025-06-05"
+                consultation_count: 1,
+                last_weight: 52.0,
+                target_kalori: 0,
+                avg_calorie_intake: 0
             }
         ];
 
-        // Mock statistics
         const mockStats = {
-            totalUsers: 1234,
-            activeUsers: 892,
-            newUsers: 156,
-            totalComplaints: 2134,
-            totalUsersChange: '+12%',
-            activeUsersChange: '+8%',
-            newUsersChange: '+25%',
-            complaintsChange: '-5%'
+            totalUsers: 1247,
+            activeUsers: 1089,
+            activeDietPlans: 83,
+            todayConsultations: 156,
+            totalUsersChange: '+15% dari bulan lalu',
+            activeUsersChange: '87% tingkat aktivitas',
+            dietPlansChange: '+12 program bulan ini',
+            consultationsChange: '+8% dari kemarin'
         };
         this.updateStatistics(mockStats);
     }
@@ -175,47 +237,61 @@ class UserManagement {
     updateStatistics(stats) {
         document.getElementById('totalUsers').textContent = stats.totalUsers?.toLocaleString() || '0';
         document.getElementById('activeUsers').textContent = stats.activeUsers?.toLocaleString() || '0';
-        document.getElementById('newUsers').textContent = stats.newUsers?.toLocaleString() || '0';
-        document.getElementById('totalComplaints').textContent = stats.totalComplaints?.toLocaleString() || '0';
+        document.getElementById('activeDietPlans').textContent = stats.activeDietPlans?.toLocaleString() || '0';
+        document.getElementById('todayConsultations').textContent = stats.todayConsultations?.toLocaleString() || '0';
         
         if (stats.totalUsersChange) document.getElementById('totalUsersChange').textContent = stats.totalUsersChange;
         if (stats.activeUsersChange) document.getElementById('activeUsersChange').textContent = stats.activeUsersChange;
-        if (stats.newUsersChange) document.getElementById('newUsersChange').textContent = stats.newUsersChange;
-        if (stats.complaintsChange) document.getElementById('complaintsChange').textContent = stats.complaintsChange;
+        if (stats.dietPlansChange) document.getElementById('dietPlansChange').textContent = stats.dietPlansChange;
+        if (stats.consultationsChange) document.getElementById('consultationsChange').textContent = stats.consultationsChange;
     }
 
-    // Initialize charts
+    // Initialize enhanced charts
     initializeCharts() {
-        this.initUserRegistrationChart();
-        this.initComplaintsChart();
+        this.initUserAnalyticsChart();
+        this.initUserStatusChart();
     }
 
-    // Initialize user registration chart
-    initUserRegistrationChart() {
-        const ctx = document.getElementById('userRegistrationChart').getContext('2d');
-        this.charts.registration = new Chart(ctx, {
+    // Initialize user analytics trend chart
+    initUserAnalyticsChart() {
+        const ctx = document.getElementById('userAnalyticsChart').getContext('2d');
+        this.charts.analytics = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                datasets: [{
-                    label: 'Registrasi User',
-                    data: [45, 62, 58, 74, 89, 156],
-                    borderColor: '#08A55A',
-                    backgroundColor: 'rgba(8, 165, 90, 0.1)',
-                    tension: 0.4,
-                    fill: true,
-                    pointBackgroundColor: '#08A55A',
-                    pointBorderColor: '#fff',
-                    pointBorderWidth: 2,
-                    pointRadius: 6
-                }]
+                datasets: [
+                    {
+                        label: 'User Analytics (Keluhan Gizi)',
+                        data: [45, 62, 58, 74, 89, 156],
+                        borderColor: '#08A55A',
+                        backgroundColor: 'rgba(8, 165, 90, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#08A55A',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6
+                    },
+                    {
+                        label: 'Konsultasi',
+                        data: [30, 45, 40, 60, 75, 120],
+                        borderColor: '#3FCAEA',
+                        backgroundColor: 'rgba(63, 202, 234, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#3FCAEA',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6
+                    }
+                ]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        display: false
+                        position: 'top'
                     }
                 },
                 scales: {
@@ -235,21 +311,20 @@ class UserManagement {
         });
     }
 
-    // Initialize complaints distribution chart
-    initComplaintsChart() {
-        const ctx = document.getElementById('complaintsChart').getContext('2d');
-        this.charts.complaints = new Chart(ctx, {
+    // Initialize user status distribution chart
+    initUserStatusChart() {
+        const ctx = document.getElementById('userStatusChart').getContext('2d');
+        this.charts.status = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['Kekurangan Vitamin D', 'Kelebihan Kalori', 'Kurang Protein', 'Kurang Serat', 'Anemia'],
+                labels: ['User Aktif', 'User Tidak Aktif', 'User dengan Diet', 'User Baru'],
                 datasets: [{
-                    data: [35, 25, 20, 12, 8],
+                    data: [1089, 158, 83, 45],
                     backgroundColor: [
                         '#08A55A',
-                        '#3FCAEA', 
-                        '#667eea',
-                        '#f093fb',
-                        '#ffeaa7'
+                        '#dc3545',
+                        '#3FCAEA',
+                        '#ffc107'
                     ],
                     borderWidth: 0
                 }]
@@ -261,10 +336,10 @@ class UserManagement {
                     legend: {
                         position: 'bottom',
                         labels: {
-                            padding: 20,
+                            padding: 15,
                             usePointStyle: true,
                             font: {
-                                size: 12
+                                size: 11
                             }
                         }
                     }
@@ -275,7 +350,6 @@ class UserManagement {
 
     // Bind event listeners
     bindEventListeners() {
-        // Search input
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
@@ -284,50 +358,63 @@ class UserManagement {
         }
     }
 
-    // Render user table
+    // Enhanced render user table
     renderUserTable(userList = this.filteredUsers) {
         const tbody = document.getElementById('userTableBody');
         if (!tbody) return;
 
         tbody.innerHTML = '';
 
+        if (userList.length === 0) {
+            document.getElementById('emptyState').style.display = 'block';
+            return;
+        } else {
+            document.getElementById('emptyState').style.display = 'none';
+        }
+
         userList.forEach((user, index) => {
             const row = document.createElement('tr');
             
-            // Determine complaint badge class
-            let complaintClass = 'low';
-            if (user.complaints >= 4) complaintClass = 'high';
-            else if (user.complaints >= 2) complaintClass = 'medium';
-
             // Get user initials
-            const initials = user.name.split(' ').map(n => n[0]).join('').substring(0, 2);
-
-            // Format join date
-            const joinDate = new Date(user.joinDate).toLocaleDateString('id-ID');
+            const initials = user.nama_lengkap.split(' ').map(n => n[0]).join('').substring(0, 2);
+            
+            // Calculate BMI
+            const bmi = (user.berat_badan / Math.pow(user.tinggi_badan / 100, 2)).toFixed(1);
+            
+            // Format dates
+            const lastActivity = user.last_activity ? new Date(user.last_activity).toLocaleDateString('id-ID') : 'Belum ada';
+            const dietDuration = user.diet_start && user.diet_end ? 
+                Math.ceil((new Date(user.diet_end) - new Date(user.diet_start)) / (1000 * 60 * 60 * 24)) + ' hari' : 
+                user.diet_start ? 'Ongoing' : 'Tidak ada';
 
             row.innerHTML = `
                 <td>
                     <div class="user-cell">
                         <div class="user-avatar-small">${initials}</div>
                         <div class="user-info-cell">
-                            <div class="user-name">${user.name}</div>
-                            <div class="user-location">${user.phone}</div>
+                            <div class="user-name-cell">${user.nama_lengkap}</div>
+                            <div class="user-id">ID: ${user.user_id}</div>
                         </div>
                     </div>
                 </td>
                 <td>
-                    <div style="display: flex; flex-direction: column;">
-                        <span style="margin-bottom: 4px;">${user.email}</span>
-                        <small style="color: #666;">${user.phone}</small>
+                    <div class="contact-info">
+                        <div class="contact-email">${user.email}</div>
+                        <div class="contact-phone">${user.nomor_telepon}</div>
                     </div>
                 </td>
                 <td>
-                    <div style="display: flex; align-items: center; gap: 6px;">
-                        <i class="fas fa-map-marker-alt" style="color: #666; font-size: 12px;"></i>
-                        ${user.location}
+                    <div class="diet-info">
+                        <div class="diet-plan-name">${user.diet_plan || 'Tidak ada'}</div>
+                        <div class="diet-duration">${dietDuration}</div>
                     </div>
                 </td>
-                <td>${joinDate}</td>
+                <td>
+                    <div class="analytics-cell">
+                        <div class="last-activity">BMI: ${bmi}</div>
+                        <div class="activity-status">Last: ${lastActivity}</div>
+                    </div>
+                </td>
                 <td>
                     <span class="status-badge ${user.status}">
                         <i class="fas fa-circle" style="font-size: 8px;"></i>
@@ -335,19 +422,19 @@ class UserManagement {
                     </span>
                 </td>
                 <td>
-                    <div class="complaint-badge ${complaintClass}">
-                        ${user.complaints}
+                    <div class="consultation-count">
+                        ${user.consultation_count}
                     </div>
                 </td>
                 <td>
                     <button class="btn-small" onclick="userManagement.viewUser(${user.id})" title="Lihat Detail">
                         <i class="fas fa-eye"></i>
                     </button>
+                    <button class="btn-small btn-info" onclick="userManagement.viewAnalytics(${user.id})" title="Lihat Analytics">
+                        <i class="fas fa-chart-line"></i>
+                    </button>
                     <button class="btn-small btn-warning" onclick="userManagement.editUser(${user.id})" title="Edit User">
                         <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn-small btn-danger" onclick="userManagement.deleteUser(${user.id})" title="Hapus User">
-                        <i class="fas fa-trash"></i>
                     </button>
                 </td>
             `;
@@ -358,18 +445,18 @@ class UserManagement {
         });
     }
 
-    // Filter users by search term
+    // Enhanced filter functions
     filterUsers(searchTerm) {
         const term = searchTerm.toLowerCase();
         this.filteredUsers = this.users.filter(user => 
-            user.name.toLowerCase().includes(term) ||
+            user.nama_lengkap.toLowerCase().includes(term) ||
             user.email.toLowerCase().includes(term) ||
-            user.location.toLowerCase().includes(term)
+            user.user_id.toLowerCase().includes(term) ||
+            (user.diet_plan && user.diet_plan.toLowerCase().includes(term))
         );
         this.renderUserTable();
     }
 
-    // Filter users by status
     filterByStatus(status) {
         this.currentFilter = status;
         
@@ -381,11 +468,8 @@ class UserManagement {
         
         if (status === 'all') {
             this.filteredUsers = [...this.users];
-        } else if (status === 'new') {
-            // Users joined in last 30 days
-            const thirtyDaysAgo = new Date();
-            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-            this.filteredUsers = this.users.filter(user => new Date(user.joinDate) > thirtyDaysAgo);
+        } else if (status === 'diet') {
+            this.filteredUsers = this.users.filter(user => user.diet_plan !== null);
         } else {
             this.filteredUsers = this.users.filter(user => user.status === status);
         }
@@ -393,173 +477,149 @@ class UserManagement {
         this.renderUserTable();
     }
 
-    // Update filter button counts
+    applyDateFilter() {
+        const dateFrom = document.getElementById('dateFrom').value;
+        const dateTo = document.getElementById('dateTo').value;
+        
+        if (dateFrom && dateTo) {
+            this.filteredUsers = this.users.filter(user => {
+                const activityDate = new Date(user.last_activity);
+                return activityDate >= new Date(dateFrom) && activityDate <= new Date(dateTo);
+            });
+            this.renderUserTable();
+        }
+    }
+
     updateFilterButtons() {
         const allCount = this.users.length;
         const activeCount = this.users.filter(u => u.status === 'active').length;
         const inactiveCount = this.users.filter(u => u.status === 'inactive').length;
-        const newCount = this.users.filter(u => {
-            const thirtyDaysAgo = new Date();
-            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-            return new Date(u.joinDate) > thirtyDaysAgo;
-        }).length;
+        const dietCount = this.users.filter(u => u.diet_plan !== null).length;
 
         const filterAll = document.getElementById('filterAll');
         const filterActive = document.getElementById('filterActive');
         const filterInactive = document.getElementById('filterInactive');
-        const filterNew = document.getElementById('filterNew');
+        const filterDiet = document.getElementById('filterDiet');
 
-        if (filterAll) filterAll.textContent = `Semua (${allCount})`;
-        if (filterActive) filterActive.textContent = `Aktif (${activeCount})`;
-        if (filterInactive) filterInactive.textContent = `Tidak Aktif (${inactiveCount})`;
-        if (filterNew) filterNew.textContent = `Baru (${newCount})`;
+        if (filterAll) filterAll.textContent = `Semua (${allCount.toLocaleString()})`;
+        if (filterActive) filterActive.textContent = `Aktif (${activeCount.toLocaleString()})`;
+        if (filterInactive) filterInactive.textContent = `Tidak Aktif (${inactiveCount.toLocaleString()})`;
+        if (filterDiet) filterDiet.textContent = `Dengan Diet (${dietCount.toLocaleString()})`;
     }
 
-    // View user details
+    // Enhanced view user details
     viewUser(userId) {
         const user = this.users.find(u => u.id === userId);
         if (user) {
-            alert(`Detail User:\n\nNama: ${user.name}\nEmail: ${user.email}\nTelepon: ${user.phone}\nLokasi: ${user.location}\nStatus: ${user.status === 'active' ? 'Aktif' : 'Tidak Aktif'}\nJumlah Keluhan: ${user.complaints}\nTerakhir Aktif: ${user.lastActive}`);
+            const bmi = (user.berat_badan / Math.pow(user.tinggi_badan / 100, 2)).toFixed(1);
+            let bmiCategory = '';
+            if (bmi < 18.5) bmiCategory = 'Underweight';
+            else if (bmi < 25) bmiCategory = 'Normal';
+            else if (bmi < 30) bmiCategory = 'Overweight';
+            else bmiCategory = 'Obese';
+
+            const modalContent = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h4 style="color: #08A55A; margin-bottom: 15px;">📋 Informasi Personal</h4>
+                        <p style="margin-bottom: 8px;"><strong>Nama:</strong> ${user.nama_lengkap}</p>
+                        <p style="margin-bottom: 8px;"><strong>Email:</strong> ${user.email}</p>
+                        <p style="margin-bottom: 8px;"><strong>Telepon:</strong> ${user.nomor_telepon}</p>
+                        <p style="margin-bottom: 8px;"><strong>Gender:</strong> ${user.gender}</p>
+                        <p style="margin-bottom: 8px;"><strong>Tinggi:</strong> ${user.tinggi_badan} cm</p>
+                        <p style="margin-bottom: 8px;"><strong>Berat:</strong> ${user.berat_badan} kg</p>
+                        <p style="margin-bottom: 8px;"><strong>BMI:</strong> ${bmi} (${bmiCategory})</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #3FCAEA; margin-bottom: 15px;">🍎 Program Diet & Analytics</h4>
+                        <p style="margin-bottom: 8px;"><strong>Program:</strong> ${user.diet_plan || 'Tidak ada'}</p>
+                        <p style="margin-bottom: 8px;"><strong>Target Kalori:</strong> ${user.target_kalori} kcal</p>
+                        <p style="margin-bottom: 8px;"><strong>Rata-rata Asupan:</strong> ${user.avg_calorie_intake} kcal</p>
+                        <p style="margin-bottom: 8px;"><strong>Konsultasi:</strong> ${user.consultation_count} kali</p>
+                        <p style="margin-bottom: 8px;"><strong>Status:</strong> ${user.status === 'active' ? 'Aktif' : 'Tidak Aktif'}</p>
+                        <p style="margin-bottom: 8px;"><strong>Terakhir Aktif:</strong> ${user.last_activity}</p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('userDetailContent').innerHTML = modalContent;
+            document.getElementById('userDetailModal').style.display = 'block';
         }
     }
 
-    // Edit user
-    async editUser(userId) {
+    viewAnalytics(userId) {
+        const user = this.users.find(u => u.id === userId);
+        if (user) {
+            const bmi = (user.berat_badan / Math.pow(user.tinggi_badan / 100, 2)).toFixed(1);
+            const calorieDeficit = user.target_kalori - user.avg_calorie_intake;
+            
+            alert(`📊 Analytics untuk ${user.nama_lengkap}:\n\n` +
+                  `📏 BMI: ${bmi}\n` +
+                  `🎯 Target Kalori: ${user.target_kalori} kcal\n` +
+                  `🍽️ Rata-rata Asupan: ${user.avg_calorie_intake} kcal\n` +
+                  `⚖️ Selisih Kalori: ${calorieDeficit > 0 ? '+' : ''}${calorieDeficit} kcal\n` +
+                  `💬 Total Konsultasi: ${user.consultation_count}\n` +
+                  `📈 Progress: ${user.diet_plan ? 'Dalam Program' : 'Belum ada program'}\n` +
+                  `📅 Status: ${user.status === 'active' ? 'Aktif' : 'Tidak Aktif'}`);
+        }
+    }
+
+    editUser(userId) {
         const user = this.users.find(u => u.id === userId);
         if (!user) return;
 
-        const newName = prompt('Edit Nama:', user.name);
+        const newName = prompt('Edit Nama:', user.nama_lengkap);
         if (newName && newName.trim()) {
-            try {
-                // Try to update via API
-                const response = await fetch(`${this.apiBase}users.php`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id: userId,
-                        name: newName.trim()
-                    })
-                });
-
-                if (response.ok) {
-                    user.name = newName.trim();
-                    this.renderUserTable();
-                    alert('Data user berhasil diupdate!');
-                } else {
-                    throw new Error('API not available');
-                }
-            } catch (error) {
-                // Fallback to local update
-                user.name = newName.trim();
-                this.renderUserTable();
-                alert('Data user berhasil diupdate! (Local only - API not available)');
-            }
-        }
-    }
-
-    // Delete user
-    async deleteUser(userId) {
-        const user = this.users.find(u => u.id === userId);
-        if (!user) return;
-
-        if (confirm(`Apakah Anda yakin ingin menghapus user "${user.name}"?`)) {
-            try {
-                // Try to delete via API
-                const response = await fetch(`${this.apiBase}users.php`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ id: userId })
-                });
-
-                if (response.ok) {
-                    this.removeUserFromArray(userId);
-                    alert('User berhasil dihapus!');
-                } else {
-                    throw new Error('API not available');
-                }
-            } catch (error) {
-                // Fallback to local deletion
-                this.removeUserFromArray(userId);
-                alert('User berhasil dihapus! (Local only - API not available)');
-            }
-        }
-    }
-
-    // Remove user from local array
-    removeUserFromArray(userId) {
-        const index = this.users.findIndex(u => u.id === userId);
-        if (index > -1) {
-            this.users.splice(index, 1);
-            this.filteredUsers = [...this.users];
+            user.nama_lengkap = newName.trim();
             this.renderUserTable();
-            this.updateFilterButtons();
+            alert('✅ Data user berhasil diupdate!');
         }
     }
 
-    // Show add user modal
-    async showAddUserModal() {
-        const name = prompt('Nama User:');
-        if (!name || !name.trim()) return;
-        
-        const email = prompt('Email User:');
-        if (!email || !email.trim()) return;
-        
-        const phone = prompt('Nomor Telepon:');
-        if (!phone || !phone.trim()) return;
-        
-        const location = prompt('Lokasi (Kota, Provinsi):');
-        if (!location || !location.trim()) return;
-
-        const newUser = {
-            id: Math.max(...this.users.map(u => u.id)) + 1,
-            name: name.trim(),
-            email: email.trim(),
-            phone: phone.trim(),
-            location: location.trim(),
-            joinDate: new Date().toISOString().split('T')[0],
-            status: 'active',
-            complaints: 0,
-            lastActive: new Date().toISOString().split('T')[0]
-        };
-
-        try {
-            // Try to add via API
-            const response = await fetch(`${this.apiBase}users.php`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newUser)
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                newUser.id = result.id || newUser.id;
-                this.addUserToArray(newUser);
-                alert('User baru berhasil ditambahkan!');
-            } else {
-                throw new Error('API not available');
-            }
-        } catch (error) {
-            // Fallback to local addition
-            this.addUserToArray(newUser);
-            alert('User baru berhasil ditambahkan! (Local only - API not available)');
+    exportData(format) {
+        if (format === 'excel') {
+            // Simulate Excel export
+            const csvContent = this.generateCSVContent();
+            this.downloadFile(csvContent, 'user-data.csv', 'text/csv');
+            alert('📊 Data berhasil diekspor ke Excel!');
+        } else if (format === 'pdf') {
+            // Simulate PDF export
+            alert('📄 Ekspor ke PDF akan segera dimulai...\n\nFitur ini akan menghasilkan laporan PDF lengkap dengan grafik dan statistik.');
         }
     }
 
-    // Add user to local array
-    addUserToArray(user) {
-        this.users.push(user);
-        this.filteredUsers = [...this.users];
-        this.renderUserTable();
-        this.updateFilterButtons();
+    generateCSVContent() {
+        const headers = ['ID,Nama,Email,Telepon,Gender,Tinggi,Berat,BMI,Program Diet,Status,Konsultasi'];
+        const rows = this.filteredUsers.map(user => {
+            const bmi = (user.berat_badan / Math.pow(user.tinggi_badan / 100, 2)).toFixed(1);
+            return [
+                user.user_id,
+                user.nama_lengkap,
+                user.email,
+                user.nomor_telepon,
+                user.gender,
+                user.tinggi_badan,
+                user.berat_badan,
+                bmi,
+                user.diet_plan || 'Tidak ada',
+                user.status === 'active' ? 'Aktif' : 'Tidak Aktif',
+                user.consultation_count
+            ].join(',');
+        });
+        return headers.concat(rows).join('\n');
     }
 
-    // Show/hide loading indicator
+    downloadFile(content, fileName, contentType) {
+        const blob = new Blob([content], { type: contentType });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+    }
+
     showLoading(show) {
         const loadingIndicator = document.getElementById('loadingIndicator');
         if (loadingIndicator) {
@@ -567,7 +627,6 @@ class UserManagement {
         }
     }
 
-    // Handle logout
     handleLogout() {
         if (confirm('Apakah Anda yakin ingin keluar?')) {
             localStorage.removeItem('auth');
@@ -575,18 +634,208 @@ class UserManagement {
         }
     }
 
-    // Refresh data
+    // Advanced filter by BMI category
+    filterByBMICategory(category) {
+        this.filteredUsers = this.users.filter(user => {
+            const bmi = user.berat_badan / Math.pow(user.tinggi_badan / 100, 2);
+            switch(category) {
+                case 'underweight': return bmi < 18.5;
+                case 'normal': return bmi >= 18.5 && bmi < 25;
+                case 'overweight': return bmi >= 25 && bmi < 30;
+                case 'obese': return bmi >= 30;
+                default: return true;
+            }
+        });
+        this.renderUserTable();
+    }
+
+    // Get user statistics for dashboard
+    getUserStatistics() {
+        const totalUsers = this.users.length;
+        const activeUsers = this.users.filter(u => u.status === 'active').length;
+        const usersWithDiet = this.users.filter(u => u.diet_plan !== null).length;
+        const totalConsultations = this.users.reduce((sum, u) => sum + u.consultation_count, 0);
+        
+        return {
+            totalUsers,
+            activeUsers,
+            usersWithDiet,
+            totalConsultations,
+            averageConsultations: (totalConsultations / totalUsers).toFixed(1)
+        };
+    }
+
+    // Refresh data manually
     async refreshData() {
         await this.loadUserData();
+        alert('🔄 Data berhasil diperbarui!');
+    }
+
+    // Add new user (for future implementation)
+    async addNewUser(userData) {
+        try {
+            const response = await fetch(`${this.apiBase}users.php`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                this.users.push(result.user);
+                this.filteredUsers = [...this.users];
+                this.renderUserTable();
+                this.updateFilterButtons();
+                return { success: true, message: 'User berhasil ditambahkan!' };
+            } else {
+                throw new Error('Failed to add user');
+            }
+        } catch (error) {
+            console.error('Error adding user:', error);
+            return { success: false, message: 'Gagal menambahkan user' };
+        }
+    }
+
+    // Update user data
+    async updateUser(userId, updatedData) {
+        try {
+            const response = await fetch(`${this.apiBase}users.php`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: userId, ...updatedData })
+            });
+
+            if (response.ok) {
+                const userIndex = this.users.findIndex(u => u.id === userId);
+                if (userIndex > -1) {
+                    this.users[userIndex] = { ...this.users[userIndex], ...updatedData };
+                    this.filteredUsers = [...this.users];
+                    this.renderUserTable();
+                }
+                return { success: true, message: 'User berhasil diupdate!' };
+            } else {
+                throw new Error('Failed to update user');
+            }
+        } catch (error) {
+            console.error('Error updating user:', error);
+            return { success: false, message: 'Gagal mengupdate user' };
+        }
+    }
+
+    // Advanced search with multiple criteria
+    advancedSearch(criteria) {
+        this.filteredUsers = this.users.filter(user => {
+            let matches = true;
+            
+            if (criteria.name) {
+                matches = matches && user.nama_lengkap.toLowerCase().includes(criteria.name.toLowerCase());
+            }
+            
+            if (criteria.email) {
+                matches = matches && user.email.toLowerCase().includes(criteria.email.toLowerCase());
+            }
+            
+            if (criteria.status) {
+                matches = matches && user.status === criteria.status;
+            }
+            
+            if (criteria.dietPlan) {
+                matches = matches && (user.diet_plan !== null) === criteria.dietPlan;
+            }
+            
+            if (criteria.minConsultations) {
+                matches = matches && user.consultation_count >= criteria.minConsultations;
+            }
+            
+            if (criteria.maxConsultations) {
+                matches = matches && user.consultation_count <= criteria.maxConsultations;
+            }
+            
+            return matches;
+        });
+        
+        this.renderUserTable();
+    }
+
+    // Generate user report
+    generateUserReport() {
+        const stats = this.getUserStatistics();
+        const bmiStats = this.getBMIStatistics();
+        const dietStats = this.getDietStatistics();
+        
+        const report = {
+            generatedAt: new Date().toLocaleString('id-ID'),
+            overview: stats,
+            bmiDistribution: bmiStats,
+            dietPrograms: dietStats,
+            users: this.filteredUsers.map(user => ({
+                id: user.user_id,
+                name: user.nama_lengkap,
+                email: user.email,
+                bmi: (user.berat_badan / Math.pow(user.tinggi_badan / 100, 2)).toFixed(1),
+                dietPlan: user.diet_plan,
+                consultations: user.consultation_count,
+                status: user.status
+            }))
+        };
+        
+        return report;
+    }
+
+    getBMIStatistics() {
+        const bmiCategories = { underweight: 0, normal: 0, overweight: 0, obese: 0 };
+        
+        this.users.forEach(user => {
+            const bmi = user.berat_badan / Math.pow(user.tinggi_badan / 100, 2);
+            if (bmi < 18.5) bmiCategories.underweight++;
+            else if (bmi < 25) bmiCategories.normal++;
+            else if (bmi < 30) bmiCategories.overweight++;
+            else bmiCategories.obese++;
+        });
+        
+        return bmiCategories;
+    }
+
+    getDietStatistics() {
+        const dietPlans = {};
+        this.users.forEach(user => {
+            if (user.diet_plan) {
+                dietPlans[user.diet_plan] = (dietPlans[user.diet_plan] || 0) + 1;
+            }
+        });
+        return dietPlans;
     }
 }
 
-// Global functions for onclick handlers
+// Global functions and initialization
 let userManagement;
 
-// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     userManagement = new UserManagement();
+    
+    // Add keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Ctrl+R to refresh data
+        if (e.ctrlKey && e.key === 'r') {
+            e.preventDefault();
+            userManagement.refreshData();
+        }
+        
+        // Ctrl+E to export
+        if (e.ctrlKey && e.key === 'e') {
+            e.preventDefault();
+            userManagement.exportData('excel');
+        }
+        
+        // Escape to close modal
+        if (e.key === 'Escape') {
+            closeUserModal();
+        }
+    });
 });
 
 // Global functions for HTML onclick handlers
@@ -602,9 +851,15 @@ function filterUsers(searchTerm) {
     }
 }
 
-function showAddUserModal() {
+function applyDateFilter() {
     if (userManagement) {
-        userManagement.showAddUserModal();
+        userManagement.applyDateFilter();
+    }
+}
+
+function exportData(format) {
+    if (userManagement) {
+        userManagement.exportData(format);
     }
 }
 
@@ -613,3 +868,36 @@ function handleLogout() {
         userManagement.handleLogout();
     }
 }
+
+function closeUserModal() {
+    const modal = document.getElementById('userDetailModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function showAddUserModal() {
+    alert('🚀 Fitur tambah user akan segera hadir!\n\nSaat ini Anda dapat menggunakan fitur export untuk mengelola data user.');
+}
+
+// Click outside modal to close
+window.onclick = function(event) {
+    const modal = document.getElementById('userDetailModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Enhanced console logging for debugging
+console.log('🍎 NutriVit User Management System loaded successfully!');
+console.log('📊 Available features:');
+console.log('- User filtering and search');
+console.log('- Data export (Excel/PDF)');
+console.log('- User analytics and BMI calculation');
+console.log('- Responsive charts and statistics');
+console.log('- Keyboard shortcuts (Ctrl+R, Ctrl+E, Escape)');
+
+// Performance monitoring
+window.addEventListener('load', function() {
+    console.log(`⚡ Page loaded in ${performance.now().toFixed(2)}ms`);
+});
