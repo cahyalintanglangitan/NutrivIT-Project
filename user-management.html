@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Management - NutrivIT</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.css">
+  <link rel="stylesheet" href="assets/css/user-management.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h1><i class="fas fa-leaf"></i> NutriVit</h1>
+        <p class="subtitle">Management System</p>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item">
+          <i class="fas fa-chart-pie nav-icon"></i>
+          Dashboard
+        </a>
+        <a href="#" class="nav-item active">
+          <i class="fas fa-users nav-icon"></i>
+          User Management
+        </a>
+        <a href="product-management.html" class="nav-item">
+          <i class="fas fa-boxes nav-icon"></i>
+          Product Management
+        </a>
+        <a href="ai-analysis.html" class="nav-item">
+          <i class="fas fa-robot nav-icon"></i>
+          Manajerial AI
+        </a>
+        <a href="settings.html" class="nav-item">
+          <i class="fas fa-cog nav-icon"></i>
+          Settings
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-details">
+            <p class="user-name">Manager</p>
+            <p class="user-email">manager@email.com</p>
+          </div>
+        </div>
+        <button class="logout-btn" onclick="handleLogout()">
+          <i class="fas fa-sign-out-alt"></i> Keluar
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="main-header">
+        <div class="header-left">
+          <h2>User Management</h2>
+          <p class="page-subtitle">Kelola data pengguna dan pantau aktivitas mereka</p>
+        </div>
+        <div class="header-actions">
+          <div class="notification-bell">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">5</span>
+          </div>
+          <span class="date">
+            <i class="fas fa-calendar-alt"></i>
+            <span id="current-date"></span>
+          </span>
+        </div>
+      </header>
+
+      <div class="content-section">
+        <!-- User Banner -->
+        <div class="user-banner">
+          <div class="banner-content">
+            <h3><i class="fas fa-users"></i> Manajemen User</h3>
+            <p>Pantau aktivitas pengguna, keluhan gizi, dan feedback untuk optimalisasi layanan</p>
+          </div>
+          <button class="btn-primary" onclick="showAddUserModal()">
+            <i class="fas fa-user-plus"></i> Tambah User Baru
+          </button>
+        </div>
+
+        <!-- User Statistics -->
+        <div class="user-stats-grid">
+          <div class="user-stat-card">
+            <div class="stat-icon total-users">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Total Users</h3>
+              <p class="stat-number" id="totalUsers">1,234</p>
+              <span class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> <span id="totalUsersChange">+12%</span> dari bulan lalu
+              </span>
+            </div>
+          </div>
+          
+          <div class="user-stat-card">
+            <div class="stat-icon active-users">
+              <i class="fas fa-user-check"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Users Aktif</h3>
+              <p class="stat-number" id="activeUsers">892</p>
+              <span class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> <span id="activeUsersChange">+8%</span> dari minggu lalu
+              </span>
+            </div>
+          </div>
+          
+          <div class="user-stat-card">
+            <div class="stat-icon new-users">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="stat-info">
+              <h3>User Baru</h3>
+              <p class="stat-number" id="newUsers">156</p>
+              <span class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> <span id="newUsersChange">+25%</span> bulan ini
+              </span>
+            </div>
+          </div>
+          
+          <div class="user-stat-card">
+            <div class="stat-icon complaints">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Total Keluhan</h3>
+              <p class="stat-number" id="totalComplaints">2,134</p>
+              <span class="stat-change negative">
+                <i class="fas fa-arrow-down"></i> <span id="complaintsChange">-5%</span> dari bulan lalu
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h4><i class="fas fa-chart-bar"></i> Registrasi User Bulanan</h4>
+            </div>
+            <div class="chart-container">
+              <canvas id="userRegistrationChart"></canvas>
+            </div>
+          </div>
+          
+          <div class="chart-card">
+            <div class="chart-header">
+              <h4><i class="fas fa-chart-pie"></i> Distribusi Keluhan Gizi</h4>
+            </div>
+            <div class="chart-container">
+              <canvas id="complaintsChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Cari user berdasarkan nama atau email..." onkeyup="filterUsers(this.value)">
+          </div>
+          <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterByStatus('all')">
+              <i class="fas fa-users"></i> <span id="filterAll">Semua (1,234)</span>
+            </button>
+            <button class="filter-btn" onclick="filterByStatus('active')">
+              <i class="fas fa-user-check"></i> <span id="filterActive">Aktif (892)</span>
+            </button>
+            <button class="filter-btn" onclick="filterByStatus('inactive')">
+              <i class="fas fa-user-times"></i> <span id="filterInactive">Tidak Aktif (355)</span>
+            </button>
+            <button class="filter-btn" onclick="filterByStatus('new')">
+              <i class="fas fa-user-plus"></i> <span id="filterNew">Baru (156)</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- User Table -->
+        <div class="table-container">
+          <table class="data-table" id="userTable">
+            <thead>
+              <tr>
+                <th><i class="fas fa-user"></i> User</th>
+                <th><i class="fas fa-envelope"></i> Kontak</th>
+                <th><i class="fas fa-map-marker-alt"></i> Lokasi</th>
+                <th><i class="fas fa-calendar"></i> Bergabung</th>
+                <th><i class="fas fa-circle"></i> Status</th>
+                <th><i class="fas fa-exclamation-circle"></i> Keluhan</th>
+                <th><i class="fas fa-cogs"></i> Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+              <!-- Data akan diisi oleh JavaScript dari API -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+          <i class="fas fa-spinner fa-spin"></i> Memuat data...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
+  <script src="assets/js/user-management.js"></script>
+</body>
+</html>
