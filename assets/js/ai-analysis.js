@@ -4,7 +4,7 @@
 const aiResponses = {
   trend: [
     "Berdasarkan analisis data minggu ini, terdapat beberapa tren menarik:\n\n1. **Kekurangan Vitamin D** meningkat 35% di kalangan pekerja WFH\n2. **Protein nabati** menjadi trending dengan peningkatan 42% di usia 25-35\n3. **Konsultasi diet keto** naik 65% bulan ini\n4. **Suplemen imunitas** diprediksi naik 28% bulan depan\n\nRekomendasi: Fokus pada pengembangan produk Vitamin D dan protein plant-based untuk segmen millennials.",
-    "Analisis trend terbaru menunjukkan:\n\n• **Pola konsumsi berubah** - 67% pengguna lebih memilih suplemen natural\n• **Keluhan pencernaan** meningkat 23% pasca pandemi\n• **Minat pada probiotik** naik 156% dalam 3 bulan terakhir\n\nSaran strategis: Pertimbangkan ekspansi ke kategori probiotik dan digestive health."
+    "Analisis trend terbaru menunjukkan:\n\n• **Pola konsumsi berubah** - 67% pengguna lebih memilih Vitamin C 1000mg\n• **Keluhan pencernaan** meningkat 23% \n• **Minat pada Omega-3 Fish Oil** naik 156% dalam 3 bulan terakhir\n\nSaran strategis: Pertimbangkan ekspansi ke kategori suplement dan vitamin."
   ],
   product: [
     "Berdasarkan gap analysis dan trend pasar, berikut rekomendasi produk baru:\n\n**Prioritas Tinggi:**\n1. **Vitamin D3 + K2 Premium** - ROI proyeksi 142%\n2. **Plant Protein Powder** (Pea + Hemp) - Target millennials\n3. **Immune Booster Complex** - Zinc + Vitamin C + Echinacea\n\n**Prioritas Sedang:**\n4. **Keto Support Bundle** - MCT Oil + Electrolytes\n5. **Women's Health Package** - Iron + Folate + B-Complex\n\nAnalisis kompetitor menunjukkan peluang market share 15-20% untuk produk #1 dan #2.",
