@@ -20,7 +20,7 @@ kota_provinsi = [
 ]
 
 users = []
-for i in range(1, 501):
+for i in range(1, 50):
     gender = random.choice(genders)
     nama = fake.name_male() if gender == 'laki-laki' else fake.name_female()
     nama_depan = nama.split()[0].lower().replace("'", "").replace(".", "")
@@ -227,7 +227,7 @@ for i in range(1, 11):
     password = "admin123"  # plaintext sesuai instruksi awal
     admin_users.append([i, username, email, password])
 
-df_admins = pd.DataFrame(admin_users, columns=[
+df_admins = pd.DataFrame(admin_users, columns=[ 
     'admin_id', 'username', 'email', 'password'
 ])
 
