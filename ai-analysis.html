@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Analysis - NutrivIT</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/dashboard.css" />
+  <link rel="stylesheet" href="./assets/css/ai-analysis.css" />
+</head>
+<body>
+    <div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h1><i class="fas fa-leaf"></i> NutriVit</h1>
+        <p class="subtitle">Management System</p>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item">
+          <i class="fas fa-chart-pie nav-icon"></i>
+          Dashboard
+        </a>
+        <a href="user-management.html" class="nav-item">
+          <i class="fas fa-users nav-icon"></i>
+          User Management
+        </a>
+        <a href="product-management.html" class="nav-item">
+          <i class="fas fa-boxes nav-icon"></i>
+          Product Management
+        </a>
+        <a href="ai-analysis.html" class="nav-item active">
+          <i class="fas fa-robot nav-icon"></i>
+          Manajerial AI
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-cog nav-icon"></i>
+          Settings
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-details">
+            <p class="user-name">Manager</p>
+            <p class="user-email">manager@email.com</p>
+          </div>
+        </div>
+        <button class="logout-btn" onclick="handleLogout()">
+          <i class="fas fa-sign-out-alt"></i> Keluar
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="main-header">
+        <div class="header-left">
+          <h2>AI Analysis</h2>
+          <p class="page-subtitle">Analisis cerdas untuk pengambilan keputusan strategis produk kesehatan</p>
+        </div>
+        <div class="header-actions">
+          <div class="notification-bell">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </div>
+          <span class="date">
+            <i class="fas fa-calendar-alt"></i>
+            <span id="current-date"></span>
+          </span>
+        </div>
+      </header>
+
+      <!-- AI Analysis Content -->
+      <div class="content-section active">
+        <!-- AI Status Banner -->
+        <div class="ai-status-banner">
+          <div class="status-info">
+            <div class="status-indicator">
+              <i class="fas fa-circle online"></i>
+              <span>AI Engine Online</span>
+            </div>
+            <div class="last-updated">
+              <i class="fas fa-clock"></i>
+              <span>Terakhir diperbarui: <span id="last-update">2 jam yang lalu</span></span>
+            </div>
+          </div>
+          <div class="ai-logo">
+            <i class="fas fa-brain"></i>
+          </div>
+        </div>
+
+        <!-- Quick Insights Cards -->
+        <div class="insights-grid">
+          <div class="insight-card urgent">
+            <div class="insight-icon">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="insight-content">
+              <h4>Keluhan Tinggi</h4>
+              <p>Kekurangan Vitamin D meningkat 35% minggu ini</p>
+              <span class="insight-action">Pertimbangkan peluncuran suplemen Vitamin D</span>
+            </div>
+          </div>
+
+          <div class="insight-card opportunity">
+            <div class="insight-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="insight-content">
+              <h4>Peluang Produk</h4>
+              <p>Trend protein nabati naik 42% di kalangan pengguna usia 25-35</p>
+              <span class="insight-action">Kembangkan protein powder plant-based</span>
+            </div>
+          </div>
+
+          <div class="insight-card trending">
+            <div class="insight-icon">
+              <i class="fas fa-trending-up"></i>
+            </div>
+            <div class="insight-content">
+              <h4>Trending Sekarang</h4>
+              <p>Konsultasi diet keto naik 65% bulan ini</p>
+              <span class="insight-action">Buat panduan produk keto-friendly</span>
+            </div>
+          </div>
+
+          <div class="insight-card prediction">
+            <div class="insight-icon">
+              <i class="fas fa-crystal-ball"></i>
+            </div>
+            <div class="insight-content">
+              <h4>Prediksi Bulan Depan</h4>
+              <p>Permintaan suplemen imunitas akan naik 28%</p>
+              <span class="insight-action">Siapkan stok Vitamin C dan Zinc</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main AI Chat Interface -->
+        <div class="ai-chat-container">
+          <div class="chat-header">
+            <div class="chat-title">
+              <i class="fas fa-robot"></i>
+              <h3>Konsultasi Strategis AI</h3>
+            </div>
+            <div class="chat-actions">
+              <button class="btn-secondary" onclick="clearChat()">
+                <i class="fas fa-broom"></i> Bersihkan Chat
+              </button>
+              <button class="btn-secondary" onclick="exportChat()">
+                <i class="fas fa-download"></i> Export
+              </button>
+            </div>
+          </div>
+
+          <div class="chat-messages" id="chat-messages">
+            <div class="message ai-message">
+              <div class="message-avatar">
+                <i class="fas fa-robot"></i>
+              </div>
+              <div class="message-content">
+                <div class="message-text">
+                  Halo! Saya AI Assistant NutrivIT. Saya siap membantu Anda menganalisis tren kesehatan dan memberikan rekomendasi strategis untuk pengembangan produk. Apa yang ingin Anda ketahui hari ini?
+                </div>
+                <div class="message-time">
+                  <span id="welcome-time"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-container">
+            <div class="quick-questions">
+              <span class="quick-label">Pertanyaan Cepat:</span>
+              <div class="quick-buttons">
+                <button class="quick-btn" onclick="askQuickQuestion('trend')">
+                  <i class="fas fa-chart-line"></i> Analisis Trend Terkini
+                </button>
+                <button class="quick-btn" onclick="askQuickQuestion('product')">
+                  <i class="fas fa-lightbulb"></i> Rekomendasi Produk Baru
+                </button>
+                <button class="quick-btn" onclick="askQuickQuestion('strategy')">
+                  <i class="fas fa-chess"></i> Strategi Peluncuran
+                </button>
+                <button class="quick-btn" onclick="askQuickQuestion('market')">
+                  <i class="fas fa-target"></i> Analisis Pasar
+                </button>
+              </div>
+            </div>
+
+            <div class="input-box">
+              <textarea 
+                id="user-input" 
+                placeholder="Tanyakan tentang strategi produk, analisis trend, atau rekomendasi pengembangan..."
+                rows="3"
+              ></textarea>
+              <button class="send-btn" onclick="sendMessage()" id="send-btn">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Sources Panel -->
+        <div class="data-sources">
+          <h3><i class="fas fa-database"></i> Sumber Data Analisis</h3>
+          <div class="sources-grid">
+            <div class="source-item">
+              <div class="source-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="source-info">
+                <h4>Data Pengguna</h4>
+                <p>1,234 pengguna aktif</p>
+                <span class="source-status active">Real-time</span>
+              </div>
+            </div>
+
+            <div class="source-item">
+              <div class="source-icon">
+                <i class="fas fa-heartbeat"></i>
+              </div>
+              <div class="source-info">
+                <h4>Keluhan Gizi</h4>
+                <p>892 laporan minggu ini</p>
+                <span class="source-status active">Real-time</span>
+              </div>
+            </div>
+
+            <div class="source-item">
+              <div class="source-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <div class="source-info">
+                <h4>Data Penjualan</h4>
+                <p>567 transaksi</p>
+                <span class="source-status active">Real-time</span>
+              </div>
+            </div>
+
+            <div class="source-item">
+              <div class="source-icon">
+                <i class="fas fa-comments"></i>
+              </div>
+              <div class="source-info">
+                <h4>Konsultasi AI</h4>
+                <p>89 sesi aktif</p>
+                <span class="source-status active">Real-time</span>
+              </div>
+            </div>
+
+            <div class="source-item">
+              <div class="source-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="source-info">
+                <h4>Review Produk</h4>
+                <p>156 review baru</p>
+                <span class="source-status active">Real-time</span>
+              </div>
+            </div>
+
+            <div class="source-item">
+              <div class="source-icon">
+                <i class="fas fa-globe"></i>
+              </div>
+              <div class="source-info">
+                <h4>Trend Global</h4>
+                <p>Market research data</p>
+                <span class="source-status synced">Tersinkron</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Recommendations Panel -->
+        <div class="recommendations-panel">
+          <div class="panel-header">
+            <h3><i class="fas fa-magic"></i> Rekomendasi AI Terbaru</h3>
+            <button class="btn-primary" onclick="generateRecommendations()">
+              <i class="fas fa-sync"></i> Perbarui Rekomendasi
+            </button>
+          </div>
+
+          <div class="recommendations-list" id="recommendations-list">
+            <div class="recommendation-item high-priority">
+              <div class="recommendation-header">
+                <div class="priority-badge high">
+                  <i class="fas fa-exclamation"></i>
+                  Prioritas Tinggi
+                </div>
+                <div class="recommendation-time">2 jam lalu</div>
+              </div>
+              <h4>Peluncuran Suplemen Vitamin D Premium</h4>
+              <p>Berdasarkan analisis 35% peningkatan keluhan kekurangan Vitamin D, terutama di kalangan pekerja WFH. Prediksi ROI: 142% dalam 6 bulan.</p>
+              <div class="recommendation-actions">
+                <button class="action-btn accept" onclick="acceptRecommendation(1)">
+                  <i class="fas fa-check"></i> Terima
+                </button>
+                <button class="action-btn details" onclick="showRecommendationDetails(1)">
+                  <i class="fas fa-info-circle"></i> Detail
+                </button>
+              </div>
+            </div>
+
+            <div class="recommendation-item medium-priority">
+              <div class="recommendation-header">
+                <div class="priority-badge medium">
+                  <i class="fas fa-clock"></i>
+                  Prioritas Sedang
+                </div>
+                <div class="recommendation-time">5 jam lalu</div>
+              </div>
+              <h4>Ekspansi Produk Protein Nabati</h4>
+              <p>Trend protein plant-based naik 42% di segment usia 25-35. Pertimbangkan pengembangan protein powder berbasis kacang-kacangan.</p>
+              <div class="recommendation-actions">
+                <button class="action-btn accept" onclick="acceptRecommendation(2)">
+                  <i class="fas fa-check"></i> Terima
+                </button>
+                <button class="action-btn details" onclick="showRecommendationDetails(2)">
+                  <i class="fas fa-info-circle"></i> Detail
+                </button>
+              </div>
+            </div>
+
+            <div class="recommendation-item low-priority">
+              <div class="recommendation-header">
+                <div class="priority-badge low">
+                  <i class="fas fa-info"></i>
+                  Prioritas Rendah
+                </div>
+                <div class="recommendation-time">1 hari lalu</div>
+              </div>
+              <h4>Optimasi Kemasan Produk Existing</h4>
+              <p>Review packaging menunjukkan 23% pengguna menginginkan kemasan yang lebih eco-friendly. Pertimbangkan migrasi ke kemasan biodegradable.</p>
+              <div class="recommendation-actions">
+                <button class="action-btn accept" onclick="acceptRecommendation(3)">
+                  <i class="fas fa-check"></i> Terima
+                </button>
+                <button class="action-btn details" onclick="showRecommendationDetails(3)">
+                  <i class="fas fa-info-circle"></i> Detail
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./assets/js/ai-analysis.js"></script>
+</body>
+</html>
