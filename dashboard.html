@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard - NutrivIT</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="/assets/css/dashboard.css" />
+  <link rel="stylesheet" href="./assets/css/dashboard.css" />
+  <link rel="stylesheet" href="chart.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
   <div class="dashboard-container">
@@ -17,23 +20,23 @@
       </div>
       
       <nav class="sidebar-nav">
-        <a href="#" class="nav-item active" onclick="showSection('dashboard')">
+        <a href="dashboard.html" class="nav-item">
           <i class="fas fa-chart-pie nav-icon"></i>
           Dashboard
         </a>
-        <a href="user-management.html" class="nav-item" onclick="showSection('user-management')">
+        <a href="user-management.html" class="nav-item">
           <i class="fas fa-users nav-icon"></i>
           User Management
         </a>
-        <a href="#" class="nav-item" onclick="showSection('product-management')">
+        <a href="product-management.html" class="nav-item">
           <i class="fas fa-boxes nav-icon"></i>
           Product Management
         </a>
-        <a href="#" class="nav-item" onclick="showSection('ai-management')">
+        <a href="ai-analysis.html" class="nav-item active">
           <i class="fas fa-robot nav-icon"></i>
           Manajerial AI
         </a>
-        <a href="#" class="nav-item" onclick="showSection('settings')">
+        <a href="#" class="nav-item">
           <i class="fas fa-cog nav-icon"></i>
           Settings
         </a>
@@ -106,7 +109,7 @@
             </div>
             <div class="stat-info">
               <h3>Total Produk</h3>
-              <p class="stat-number">567</p>
+              <p class="stat-number">6</p>
               <span class="stat-change positive">
                 <i class="fas fa-arrow-up"></i> +8% dari bulan lalu
               </span>
@@ -119,18 +122,72 @@
             </div>
             <div class="stat-info">
               <h3>Revenue</h3>
-              <p class="stat-number">Rp 45.2M</p>
+              <p class="stat-number">Rp 684.2M</p>
               <span class="stat-change positive">
-                <i class="fas fa-arrow-up"></i> +15% dari bulan lalu
+                <i class="fas fa-arrow-up"></i> +22% dari bulan lalu
               </span>
-            </div>
-          </div>
-          
-          
-            </div>
+            </div> 
           </div>
         </div>
+
+      <!-- Chart Overview Section -->
+<div class="dashboard">
+  <h1>Overview</h1>
+  <div class="chartContainer">
+    <div class="chartBox"><canvas id="lineChart"></canvas></div>
+    <div class="chartBox"><canvas id="pieChart"></canvas></div>
+    <div class="chartBox"><canvas id="horizontalBarChart"></canvas></div>
+  </div>
+</div>
+
+<!-- Consultations Section -->
+<div class="dashboard">
+  <h1>Consultations</h1>
+
+  <div class="top-cards">
+    <div class="card"><h2>Today's Sessions</h2></div>
+    <div class="card"><h2>Active Users</h2></div>
+  </div>
+
+  <div class="middle-section">
+    <div class="box">
+      <h2>Consultation Types</h2>
+      <canvas id="consultationPieChart"></canvas>
+      <p class="chart-description">
+        Menampilkan pie chart tentang banyaknya user yang melakukan konsultasi dan memilih konsultasi tentang apa.
+      </p>
+    </div>
+
+    <div class="box">
+      <h2>Expert Top Ratings</h2>
+      <p class="chart-description">
+        Menampilkan progress bar kepuasan user terhadap konsultasi dengan expert.
+      </p>
+      <strong>Expert Name</strong>
+      <div class="progress">
+        <div class="progress-bar"></div>
       </div>
+      <div class="rating">4.8</div>
+    </div>
+  </div>
+
+  <div class="feedback">
+    <h2>Recent Feedback</h2>
+    <div class="feedback-placeholder">Belum ada feedback</div>
+  </div>
+</div>
+
+<!-- Weekly Activity Section -->
+<div class="dashboard">
+  <h1>User Activity</h1>
+  <div class="chart-box">
+    <h2>Weekly Activity</h2>
+    <canvas id="weeklyActivityChart"></canvas>
+    <div class="chart-description">
+      Menampilkan bar chart vertical untuk user activity...
+    </div>
+  </div>
+</div>     
 
       <!-- User Management Section -->
       <div id="user-management" class="content-section">
@@ -254,7 +311,7 @@
               <i class="fas fa-pills"></i>
             </div>
             <div class="product-info">
-              <h4>Vitamin C Plus</h4>
+              <h4>Vitamin C 1000mg</h4>
               <p class="product-category">
                 <i class="fas fa-tag"></i> Vitamin
               </p>
@@ -279,11 +336,11 @@
               <i class="fas fa-capsules"></i>
             </div>
             <div class="product-info">
-              <h4>Omega 3 Premium</h4>
+              <h4>Omega-3 Fish Oil</h4>
               <p class="product-category">
                 <i class="fas fa-tag"></i> Suplemen
               </p>
-              <p class="product-price">Rp 200.000</p>
+              <p class="product-price">Rp 180.000</p>
               <div class="product-stock low-stock">
                 <i class="fas fa-exclamation-triangle"></i>
                 <span>Stok: 15</span>
@@ -304,11 +361,11 @@
               <i class="fas fa-leaf"></i>
             </div>
             <div class="product-info">
-              <h4>Herbal Immunity</h4>
+              <h4>Turmeric Extract</h4>
               <p class="product-category">
                 <i class="fas fa-tag"></i> Herbal
               </p>
-              <p class="product-price">Rp 175.000</p>
+              <p class="product-price">Rp 95.000</p>
               <div class="product-stock">
                 <i class="fas fa-warehouse"></i>
                 <span>Stok: 89</span>
@@ -381,7 +438,7 @@
               </div>
               <div class="recommendation-item">
                 <i class="fas fa-trending-up"></i>
-                <span>Vitamin C demand meningkat 25%</span>
+                <span>Vitamin C 1000mg demand meningkat 25%</span>
               </div>
               <button class="btn-small btn-primary">
                 <i class="fas fa-eye"></i> Lihat Detail
@@ -400,7 +457,7 @@
                   <i class="fas fa-arrow-up"></i>
                 </div>
                 <div class="trend-info">
-                  <span class="trend-category">Suplemen Vitamin</span>
+                  <span class="trend-category">Suplemen</span>
                   <span class="trend-percentage">+25%</span>
                 </div>
               </div>
@@ -409,7 +466,7 @@
                   <i class="fas fa-arrow-down"></i>
                 </div>
                 <div class="trend-info">
-                  <span class="trend-category">Herbal Traditional</span>
+                  <span class="trend-category">Herbal</span>
                   <span class="trend-percentage">-8%</span>
                 </div>
               </div>
@@ -609,6 +666,165 @@
         if (tooltip) tooltip.remove();
       });
     });
+
+    
+    new Chart(document.getElementById('lineChart'), {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul'],
+    datasets: [{
+      label: 'Kalori Rata-rata (kkal)',
+      data: [1800, 1900, 1750, 1850, 2000, 1950, 1880],
+      borderColor: '#4caf50',
+      backgroundColor: 'rgba(76, 175, 80, 0.2)',
+      fill: true,
+      tension: 0.4
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      title: { display: true, text: 'Tren Konsumsi Kalori Bulanan' }
+    },
+    scales: {
+      y: { beginAtZero: false, title: { display: true, text: 'Kkal' } }
+    }
+  }
+});
+
+   new Chart(document.getElementById('pieChart'), {
+  type: 'pie',
+  data: {
+    labels: ['Karbohidrat', 'Protein', 'Lemak', 'Vitamin', 'Mineral'],
+    datasets: [{
+      data: [50, 20, 15, 10, 5],
+      backgroundColor: [
+        '#ff9800', '#4caf50', '#f44336', '#03a9f4', '#9c27b0'
+      ]
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      title: { display: true, text: 'Distribusi Nutrisi Harian (%)' }
+    }
+  }
+});
+
+    new Chart(document.getElementById('barChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Zat Besi', 'Vitamin D', 'Kalsium', 'Serat', 'Magnesium'],
+    datasets: [{
+      label: 'Jumlah Kasus',
+      data: [45, 60, 30, 50, 40],
+      backgroundColor: '#f44336'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      title: { display: true, text: 'Kasus Defisiensi Nutrisi' }
+    },
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: 'Jumlah Kasus' } }
+    }
+  }
+});
+
+
+    new Chart(document.getElementById('horizontalBarChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Sayuran', 'Buah-buahan', 'Ikan', 'Produk Olahan Susu', 'Kacang-kacangan'],
+    datasets: [{
+      label: 'Persentase Pengguna (%)',
+      data: [75, 68, 55, 40, 45],
+      backgroundColor: 'rgba(33, 150, 243, 0.7)'
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      title: { display: true, text: 'Preferensi Konsumsi Makanan Sehat' }
+    },
+    scales: {
+      x: { beginAtZero: true, title: { display: true, text: '%' } }
+    }
+  }
+});
+
+
+    new Chart(document.getElementById('consultationPieChart'), {
+  type: 'pie',
+  data: {
+    labels: ['Diet untuk Berat Badan', 'Gizi Anak', 'Penyakit Kronis', 'Nutrisi Olahraga'],
+    datasets: [{
+      data: [35, 25, 20, 20],
+      backgroundColor: [
+        '#8bc34a', '#ffc107', '#e91e63', '#00bcd4'
+      ]
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      title: { display: true, text: 'Topik Konsultasi Terpopuler' },
+      legend: { position: 'bottom' }
+    }
+  }
+});
+
+
+    new Chart(document.getElementById('weeklyActivityChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
+    datasets: [
+      {
+        label: 'Diet Planner',
+        data: [30, 32, 28, 35, 40, 38, 36],
+        backgroundColor: '#4caf50'
+      },
+      {
+        label: 'Konsultasi Gizi',
+        data: [25, 28, 24, 30, 35, 33, 32],
+        backgroundColor: '#2196f3'
+      },
+      {
+        label: 'Toko Produk Sehat',
+        data: [15, 20, 18, 22, 26, 28, 27],
+        backgroundColor: '#ff9800'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Aktivitas Mingguan Berdasarkan Fitur'
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: { display: true, text: 'Jumlah Interaksi' }
+      },
+      x: {
+        title: { display: true, text: 'Hari' }
+      }
+    }
+  }
+});
+
+
   </script>
 </body>
 </html>

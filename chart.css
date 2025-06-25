@@ -1,0 +1,206 @@
+  /* Global Reset */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  /* Layout Container */
+  .dashboard,
+  .section {
+    margin: auto;
+    width: 100%;
+    padding: 20px;
+  }
+
+  /* Chart Section Layout */
+  .chart-section {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .chart-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .chart-section p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+
+  /* Chart Grid Layout */
+  .chartContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  /* Chart Box */
+  .chartBox {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    height: 400px;
+    position: relative;
+    width: 100%;
+  }
+
+  /* Top Cards */
+  .top-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    flex: 1;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .card h2, .card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  /* Middle Content Boxes */
+  .middle-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .box {
+    flex: 1;
+    min-width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .box h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  /* Progress Bar */
+  .progress {
+    width: 100%;
+    background-color: #eee;
+    border-radius: 8px;
+    height: 8px;
+    margin-top: 8px;
+    position: relative;
+  }
+
+  .progress-bar {
+    background-color: #4caf50;
+    height: 100%;
+    border-radius: 8px;
+    width: 96%;
+  }
+
+  .rating {
+    text-align: right;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #333;
+  }
+
+  /* Feedback Box */
+  .feedback {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .feedback h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .feedback-placeholder {
+    color: #888;
+    font-size: 14px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px dashed #ccc;
+    margin-top: 10px;
+  }
+
+  /* Main Activity */
+  .main-activity {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .main-activity-placeholder {
+    height: 300px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 16px;
+  }
+
+  /* Chart Box with Title */
+  .chart-box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .chart-box h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #555;
+  }
+
+  .chart-description {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+  }
+
+  /* Chart Canvas */
+  canvas {
+    width: 100% !important;
+    height: 300px !important;
+    display: block;
+  }

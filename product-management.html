@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Management - NutriVit</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.css">
+  <link rel="stylesheet" href="./assets/css/product-management.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h1><i class="fas fa-leaf"></i> NutriVit</h1>
+        <p class="subtitle">Management System</p>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item">
+          <i class="fas fa-chart-pie nav-icon"></i>
+          Dashboard
+        </a>
+        <a href="user-management.html" class="nav-item">
+          <i class="fas fa-users nav-icon"></i>
+          User Management
+        </a>
+        <a href="product-management.html" class="nav-item">
+          <i class="fas fa-boxes nav-icon"></i>
+          Product Management
+        </a>
+        <a href="ai-analysis.html" class="nav-item active">
+          <i class="fas fa-robot nav-icon"></i>
+          Manajerial AI
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-cog nav-icon"></i>
+          Settings
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-details">
+            <p class="user-name">Manager</p>
+            <p class="user-email">manager@email.com</p>
+          </div>
+        </div>
+        <button class="logout-btn" onclick="handleLogout()">
+          <i class="fas fa-sign-out-alt"></i> Keluar
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="main-header">
+        <div class="header-left">
+          <h2>Product Management</h2>
+          <p class="page-subtitle">Kelola produk kesehatan dan analisis penjualan</p>
+        </div>
+        <div class="header-actions">
+          <div class="notification-bell">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </div>
+          <span class="date">
+            <i class="fas fa-calendar-alt"></i>
+            <span id="current-date"></span>
+          </span>
+        </div>
+      </header>
+
+      <div class="content-section">
+        <!-- Product Banner -->
+        <div class="product-banner">
+          <div class="banner-content">
+            <h3><i class="fas fa-boxes"></i> Manajemen Produk</h3>
+            <p>Kelola inventori produk kesehatan, pantau stok, analisis penjualan, dan optimalisasi katalog produk</p>
+          </div>
+          <div class="banner-actions">
+            <button class="btn-primary" onclick="showAddProductModal()">
+              <i class="fas fa-plus"></i> Add Product
+            </button>
+            <button class="btn-secondary" onclick="refreshProductData()">
+              <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+          </div>
+        </div>
+
+        <!-- Product Statistics -->
+        <div class="product-stats-grid">
+          <div class="product-stat-card">
+            <div class="stat-icon total-products">
+              <i class="fas fa-boxes"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Total Products</h3>
+              <p class="stat-number" id="totalProducts">1,247</p>
+              <span class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> <span id="totalProductsChange">+15% dari bulan lalu</span>
+              </span>
+            </div>
+          </div>
+          
+          <div class="product-stat-card">
+            <div class="stat-icon total-revenue">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Total Revenue</h3>
+              <p class="stat-number" id="totalRevenue">Rp 2.4M</p>
+              <span class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> <span id="revenueChange">+22% tingkat penjualan</span>
+              </span>
+            </div>
+          </div>
+          
+          <div class="product-stat-card">
+            <div class="stat-icon best-seller">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Best Seller</h3>
+              <p class="stat-number" id="bestSeller">Vitamin C 1000mg</p>
+              <span class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> <span id="bestSellerSales">1,245 terjual bulan ini</span>
+              </span>
+            </div>
+          </div>
+          
+          <div class="product-stat-card">
+            <div class="stat-icon low-stock">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Low Stock Items</h3>
+              <p class="stat-number" id="lowStockItems">23</p>
+              <span class="stat-change negative">
+                <i class="fas fa-arrow-down"></i> <span id="lowStockMessage">Perlu restok segera</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enhanced Charts Section -->
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h4><i class="fas fa-chart-bar"></i> Sales Performance</h4>
+            </div>
+            <div class="chart-container">
+              <canvas id="salesPerformanceChart"></canvas>
+            </div>
+          </div>
+          
+          <div class="chart-card">
+            <div class="chart-header">
+              <h4><i class="fas fa-chart-pie"></i> Category Distribution</h4>
+            </div>
+            <div class="chart-container">
+              <canvas id="categoryChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enhanced Filter Section -->
+        <div class="filter-section">
+          <div class="filter-row">
+            <div class="search-filters">
+              <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Cari produk berdasarkan nama, kategori, atau SKU..." onkeyup="filterProducts(this.value)">
+              </div>
+              <div class="category-filter">
+                <select id="categoryFilter" onchange="filterByCategory(this.value)">
+                  <option value="">Semua Kategori</option>
+                  <option value="Suplemen">Suplemen</option>
+                  <option value="Vitamin">Vitamin</option>
+                  <option value="Herbal">Herbal</option>
+                  <option value="Diet">Diet</option>
+                </select>
+              </div>
+            </div>
+            <div class="filter-buttons">
+              <button class="filter-btn active" onclick="filterByStock('all')">
+                <i class="fas fa-boxes"></i> <span id="filterAll">Semua (1,247)</span>
+              </button>
+              <button class="filter-btn" onclick="filterByStock('in-stock')">
+                <i class="fas fa-check-circle"></i> <span id="filterInStock">Tersedia (1,189)</span>
+              </button>
+              <button class="filter-btn" onclick="filterByStock('low-stock')">
+                <i class="fas fa-exclamation-triangle"></i> <span id="filterLowStock">Stok Rendah (35)</span>
+              </button>
+              <button class="filter-btn" onclick="filterByStock('out-of-stock')">
+                <i class="fas fa-times-circle"></i> <span id="filterOutStock">Habis (23)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Enhanced Product Table -->
+        <div class="table-container">
+          <div class="table-header">
+            <div class="table-title">
+              <i class="fas fa-table"></i> Product Catalog
+            </div>
+            <div class="table-actions">
+              <button class="btn-export" onclick="exportData('excel')">
+                <i class="fas fa-file-excel"></i> Excel
+              </button>
+              <button class="btn-export" onclick="exportData('pdf')">
+                <i class="fas fa-file-pdf"></i> PDF
+              </button>
+            </div>
+          </div>
+          
+          <table class="data-table" id="productTable">
+            <thead>
+              <tr>
+                <th><i class="fas fa-image"></i> Produk</th>
+                <th><i class="fas fa-tag"></i> Kategori</th>
+                <th><i class="fas fa-dollar-sign"></i> Harga</th>
+                <th><i class="fas fa-warehouse"></i> Stok</th>
+                <th><i class="fas fa-chart-line"></i> Penjualan</th>
+                <th><i class="fas fa-star"></i> Rating</th>
+                <th><i class="fas fa-toggle-on"></i> Status</th>
+                <th><i class="fas fa-cogs"></i> Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="productTableBody">
+              <!-- Data akan diisi oleh JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+          <i class="fas fa-spinner"></i> Memuat data produk...
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+          <i class="fas fa-boxes"></i>
+          <h3>Tidak ada produk</h3>
+          <p>Data produk akan muncul di sini setelah Anda menambahkan produk baru</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Product Modal -->
+  <div id="productModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="productModalTitle"><i class="fas fa-box"></i> Add New Product</h3>
+        <span class="close" onclick="closeProductModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="productForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="product-name">Product Name *</label>
+              <input type="text" id="product-name" required>
+            </div>
+            <div class="form-group">
+              <label for="product-category">Category *</label>
+              <select id="product-category" required>
+                <option value="">Select Category</option>
+                <option value="Suplemen">Suplemen</option>
+                <option value="Vitamin">Vitamin</option>
+                <option value="Herbal">Herbal</option>
+                <option value="Diet">Diet</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="product-price">Price (Rp) *</label>
+              <input type="number" id="product-price" min="0" required>
+            </div>
+            <div class="form-group">
+              <label for="product-stock">Stock Quantity *</label>
+              <input type="number" id="product-stock" min="0" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="product-description">Description</label>
+            <textarea id="product-description" rows="3"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="product-image">Product Image URL</label>
+            <input type="url" id="product-image" placeholder="https://example.com/image.jpg">
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="btn-secondary" onclick="closeProductModal()">Cancel</button>
+            <button type="button" class="btn-primary" onclick="saveProduct()">
+              <i class="fas fa-save"></i> Save Product
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Detail Modal -->
+  <div id="productDetailModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-info-circle"></i> Product Details</h3>
+        <span class="close" onclick="closeProductDetailModal()">&times;</span>
+      </div>
+      <div class="modal-body" id="productDetailContent">
+        <!-- Detail akan diisi oleh JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
+  <script src="assets/js/product-management.js"></script>
+</body>
+</html>
