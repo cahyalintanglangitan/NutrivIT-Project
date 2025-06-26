@@ -6,6 +6,8 @@
   <title>Product Management - NutriVit</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css"/>
+  <link rel="stylesheet" href="/assets/css/dashboard.css">
+  <script src="assets/js/dashboard.js"></script>
   <style>
     body {
       margin: 0;
@@ -15,39 +17,6 @@
 
     .dashboard-container {
       display: flex;
-    }
-
-    .sidebar {
-      width: 230px;
-      background-color: #1abc9c;
-      color: #fff;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .sidebar-header h1 {
-      font-size: 20px;
-      margin: 0;
-    }
-
-    .subtitle {
-      font-size: 13px;
-      color: #e0f7f3;
-    }
-
-    .sidebar-nav {
-      margin-top: 20px;
-    }
-
-    .nav-item {
-      display: block;
-      margin: 10px 0;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .nav-item:hover {
-      text-decoration: underline;
     }
 
     .main-content {
@@ -149,24 +118,43 @@
 <body>
 <div class="dashboard-container">
   <!-- Sidebar -->
-  <div class="sidebar">
-    <div class="sidebar-header">
-      <h1><i class="fas fa-leaf"></i> NutriVit</h1>
-      <p class="subtitle">Management System</p>
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h1><i class="fas fa-leaf"></i> NutriVit</h1>
+        <p class="subtitle">Management System</p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item">
+          <i class="fas fa-chart-pie nav-icon"></i>
+          Dashboard
+        </a>
+        <a href="user-management.html" class="nav-item">
+          <i class="fas fa-users nav-icon"></i>
+          User Management
+        </a>
+        <a href="product-management.html" class="nav-item active">
+          <i class="fas fa-boxes nav-icon"></i>
+          Product Management
+        </a>
+        <a href="ai-analysis.html" class="nav-item">
+          <i class="fas fa-robot nav-icon"></i>
+          Manajerial AI
+        </a>
+      </nav>
+
+      <div class="sidebar-footer" onclick="handleProfile()" style="cursor: pointer;">
+        <div class="user-info">
+          <div class="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-details">
+            <p class="user-name">Manager</p>
+            <p class="user-email">manager@email.com</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <nav class="sidebar-nav">
-      <a href="dashboard.html" class="nav-item"><i class="fas fa-chart-pie"></i> Dashboard</a>
-      <a href="user-management.html" class="nav-item"><i class="fas fa-users"></i> User Management</a>
-      <a href="product-management.html" class="nav-item"><i class="fas fa-boxes"></i> Product Management</a>
-      <a href="ai-analysis.html" class="nav-item"><i class="fas fa-robot"></i> Managerial AI</a>
-      <a href="#" class="nav-item"><i class="fas fa-cog"></i> Settings</a>
-    </nav>
-    <div style="margin-top: 30px;">
-      <div><strong>Manager</strong></div>
-      <div style="font-size: 13px;">manager@email.com</div>
-      <button style="margin-top: 10px; padding: 5px 10px; background-color: #16a085; border: none; color: #fff; border-radius: 5px;">Keluar</button>
-    </div>
-  </div>
 
   <!-- Main Content -->
   <div class="main-content">
