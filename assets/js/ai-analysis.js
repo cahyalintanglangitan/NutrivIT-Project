@@ -1,31 +1,539 @@
 // AI Analysis JavaScript
 
+// NutrivIT Dashboard Data Integration
+const dashboardData = {
+  h1_2025: {
+    revenue: "19.45B",
+    revenue_juni: "3.25B",
+    revenue_growth: "+15%",
+    total_users: 1234,
+    user_growth: "+12%",
+    products: 8,
+    keluhan_juni: 1044
+  },
+  nutrition_gaps: {
+    biggest_gap: "Lemak Sehat (kurang 30%)",
+    protein_gap: "Protein kurang 20% di Juni",
+    vitamin_gap: "Vitamin kurang 23%",
+    achievement_rate: "72.3% (rata-rata 6 bulan)"
+  },
+  top_complaints: {
+    juni: "Kelelahan (28.7% user)",
+    pattern: "Sering muncul 4 dari 6 bulan",
+    root_cause: "Kurang lemak sehat & protein"
+  },
+  best_sellers_h1: {
+    rank1: "NuVit-Multi Core (16,650 unit)",
+    rank2: "NuVit-Green Detox (15,830 unit)", 
+    rank3: "NuVit-Whey Muscle (14,720 unit)",
+    rank4: "NuVit-C Boost (14,230 unit)",
+    total_sales: "108,070 unit"
+  },
+  market_insights: {
+    multi_success: "Solusi lengkap untuk masalah lelah",
+    detox_surprise: "Feb-Mar spike untuk pencernaan & obesitas",
+    protein_consistent: "Stabil terus, masih ada gap",
+    omega_opportunity: "Lemak defisit = peluang besar"
+  }
+};
+
 // Sample AI responses for different question types
 const aiResponses = {
-  trend: [
-    "Berdasarkan analisis data minggu ini, terdapat beberapa tren menarik:\n\n1. **Kekurangan Vitamin D** meningkat 35% di kalangan pekerja WFH\n2. **Protein nabati** menjadi trending dengan peningkatan 42% di usia 25-35\n3. **Konsultasi diet keto** naik 65% bulan ini\n4. **Suplemen imunitas** diprediksi naik 28% bulan depan\n\nRekomendasi: Fokus pada pengembangan produk Vitamin D dan protein plant-based untuk segmen millennials.",
-    "Analisis trend terbaru menunjukkan:\n\n• **Pola konsumsi berubah** - 67% pengguna lebih memilih Vitamin C 1000mg\n• **Keluhan pencernaan** meningkat 23% \n• **Minat pada Omega-3 Fish Oil** naik 156% dalam 3 bulan terakhir\n\nSaran strategis: Pertimbangkan ekspansi ke kategori suplement dan vitamin."
+  'gap-analysis': [
+    `**📊 ANALISIS KEKURANGAN NUTRISI - RINGKASAN PRAKTIS**
+
+**Masalah Terbesar Yang Harus Ditangani:**
+• **Lemak Sehat:** Kurang 30% (ini yang bikin banyak orang lelah!)
+• **Protein:** Kurang 20% di bulan Juni 
+• **Vitamin:** Kurang 23% rata-rata
+
+**Kenapa Ini Masalah Besar?**
+✗ Kurang lemak sehat = orang jadi gampang lelah (makanya keluhan lelah tinggi!)
+✗ Kurang protein = badan sulit recover, otot lemah
+✗ Kurang vitamin = daya tahan tubuh menurun
+
+**Dampak ke Bisnis:**
+• Ada 8.7 ton nutrisi yang masih kurang dari kebutuhan user
+• Peluang pendapatan: **Rp 12 miliar** kalau kita bisa tutup gap ini
+• Tingkat kepuasan: Baru 72.3%, masih bisa naik 27.7% lagi
+• Keluhan lelah: Naik dari 23.9% jadi 28.7% (makin parah!)
+
+**Solusi Praktis:**
+🎯 **Prioritas #1:** Bikin produk omega premium untuk atasi kurang lemak sehat
+🎯 **Prioritas #2:** Paket bundling Multi Core + Whey buat solusi lengkap lelah
+🎯 **Prioritas #3:** Vitamin khusus untuk masalah spesifik user
+
+**Target Hasil:**
+• Kurangi gap nutrisi 40% dalam 6 bulan
+• Naikkan kepuasan jadi 85%
+• Tambah pendapatan Rp 5.2 miliar dari produk baru`,
+    
+    `**🔍 ANALISIS DETAIL PER BULAN - POLA YANG TERLIHAT**
+
+**Januari (Lelah 23.9%):**
+• Lemak kurang 570kg - ini penyebab utama lelah
+• Protein kurang 480kg - energi jadi drop
+• **Insight:** Kurang lemak = pemicu utama lelah
+
+**Februari (Masalah Pencernaan 24.1%):**
+• Masalah di kualitas karbohidrat, bukan jumlah
+• Lemak masih kurang 525kg
+• **Insight:** Perlu kombinasi serat + lemak sehat
+
+**Maret (Obesitas 25.8%):**
+• Protein kurang 405kg - otot tidak terjaga
+• Metabolisme kacau karena komposisi makanan salah
+• **Insight:** Perlu protein + dukungan olahraga
+
+**Juni (Lelah 28.7% - PALING TINGGI!):**
+• Protein masih kurang 300kg
+• Lemak kurang 375kg, masih tinggi
+• **Insight:** Lelah menumpuk, perlu solusi multi-nutrisi
+
+**Pola Yang Terlihat:**
+📈 Ada perbaikan 37% secara keseluruhan (bagus!)
+📉 Tapi gap masih besar = peluang bisnis tetap ada
+🔄 Pola berulang: Lelah cenderung tinggi di awal & akhir semester
+
+**Peluang Pasar:**
+• 1,234 user × rata-rata kurang 25% = 308 user per nutrisi butuh bantuan
+• Positioning premium bisa naikkan pendapatan per user 40%
+• 45% user tertarik model berlangganan`
   ],
-  product: [
-    "Berdasarkan gap analysis dan trend pasar, berikut rekomendasi produk baru:\n\n**Prioritas Tinggi:**\n1. **Vitamin D3 + K2 Premium** - ROI proyeksi 142%\n2. **Plant Protein Powder** (Pea + Hemp) - Target millennials\n3. **Immune Booster Complex** - Zinc + Vitamin C + Echinacea\n\n**Prioritas Sedang:**\n4. **Keto Support Bundle** - MCT Oil + Electrolytes\n5. **Women's Health Package** - Iron + Folate + B-Complex\n\nAnalisis kompetitor menunjukkan peluang market share 15-20% untuk produk #1 dan #2.",
-    "Peluang produk inovatif berdasarkan data pengguna:\n\n🎯 **Personalized Vitamin Pack** - Berdasarkan profil defisiensi individual\n💪 **Post-Workout Recovery** - BCAA + Glutamine + Creatine\n🌱 **Organic Kids Multivitamin** - Gummy format, no artificial colors\n\nMarket size analysis menunjukkan kategori personalized nutrition tumbuh 45% YoY."
+  
+  
+  'product-strategy': [
+    `**🚀 STRATEGI PRODUK H2 2025 - BERDASARKAN DATA H1**
+
+**Produk Juara H1 2025:**
+🏆 **NuVit-Multi Core (16,650 botol)** - Solusi lengkap terdepan
+   • Sukses karena: Cocok banget buat masalah lelah
+   • User setia: 85% beli lagi
+   • Harga premium tapi tetap laku keras
+
+🏆 **NuVit-Green Detox (15,830 botol)** - Kejutan besar
+   • Laku keras Feb-Mar pas trend detox & obesitas
+   • Awareness detox naik 42% per tahun
+   • Bisa dimanfaatkan untuk kampanye musiman
+
+🏆 **NuVit-Whey Muscle (14,720 botol)** - Andalan protein
+   • Permintaan stabil karena gap protein terus ada
+   • 65% user suka beli bareng Multi Core
+   • Segmen fitness mau bayar mahal
+
+**Arah Strategi Baru:**
+
+**1. Kembangkan Yang Sudah Jago (60% fokus):**
+• **NuVit-Multi Premium:** Formula lebih canggih
+• **Green Detox Rasa Buah:** Biar lebih banyak yang suka
+• **Whey Muscle Pro:** Tambah BCAA buat recovery
+• **ROI:** 140% karena pasar sudah terbukti
+
+**2. Tutup Gap Yang Ada (30% fokus):**
+• **NuVit-Omega Premium:** Atasi kurang lemak sehat (prioritas utama!)
+• **NuVit-Iron Complex:** Buat anemia 
+• **NuVit-Sleep Support:** Atasi lelah dari sisi tidur
+• **Peluang:** Rp 4.5 miliar pendapatan baru
+
+**3. Inovasi Masa Depan (10% fokus):**
+• **Paket Personal:** AI kasih rekomendasi khusus
+• **Model Berlangganan:** Pendapatan rutin tiap bulan
+• **Varian Usia:** Khusus anak & lansia
+
+**Roadmap H2 2026:**
+📅 **Q3:** Launching Omega Premium + Multi Premium
+📅 **Q4:** Kampanye paket bundling + coba model berlangganan
+📅 **2026 Q1:** Full model berlangganan + personalisasi
+
+**Target Sukses:**
+• Produk baru kontribusi 25% dari total pendapatan
+• 35% user beli paket bundling
+• Margin produk premium naik 40%`,
+    
+    `**💡 INOVASI PRODUK BERDASARKAN SAINS & DATA**
+
+**Hubungan Keluhan-Produk:**
+
+**Lelah Kronis (Sering muncul 4/6 bulan) →**
+• **Solusi sekarang:** NuVit-Multi Core ✅ (terbukti 16.6k botol)
+• **Gap yang ada:** Khusus lelah dari kurang lemak & protein
+• **Inovasi:** Omega Premium 🚀 + Paket Energi 🎯
+• **Target pasar:** 28.7% dari 1,234 user = 354 orang langsung
+
+**Keluhan Lainnya:**
+• **Masalah Pencernaan (Feb):** Kembangkan Green Detox + serat
+• **Obesitas (Mar):** Kombinasi protein + pendukung metabolisme
+• **Daya Tahan Rendah (Mei):** Vitamin C + kompleks imun premium
+
+**Keunggulan Kompetitif:**
+✅ **Pengembangan Berbasis Data:** Tidak tebak-tebakan, ada bukti kebutuhan
+✅ **Track Record Bagus:** 108k botol H1 buktikan kemampuan eksekusi
+✅ **Kepercayaan User:** Rating 4.5+ di semua produk
+✅ **Jaringan Distribusi:** Online + retail sudah jalan
+
+**Prioritas Investasi:**
+
+**ROI Tinggi + Dampak Besar:**
+1. **Omega Premium** (Atasi gap lemak 30%)
+   • Investasi: Rp 1.8B pengembangan + Rp 2.2B marketing
+   • ROI: 185% dalam 12 bulan
+   • Break-even: Bulan ke-6
+
+**Aman + Scaling:**
+2. **Varian Multi Core** (Manfaatkan sukses 16.6k)
+   • Investasi: Rp 1.2B (risiko rendah)
+   • ROI: 140% (bisa diprediksi)
+   • Ekspansi pasar: Segmen premium
+
+**Main Masa Depan + Inovasi:**
+3. **Platform Nutrisi Personal**
+   • Investasi: Rp 3.5B (teknologi + infrastruktur)
+   • ROI: 250% (jangka panjang)
+   • Keunggulan: Diferensiasi teknologi
+
+**Proyeksi Pendapatan H2:**
+• **Pertumbuhan dasar:** Rp 19B → Rp 28B (+47%)
+• **Kontribusi produk baru:** +Rp 5B
+• **Premium positioning:** +Rp 3B margin
+• **Total target H2:** Rp 36B (agresif tapi bisa dicapai)`
   ],
-  strategy: [
-    "Strategi peluncuran produk yang direkomendasikan:\n\n**Phase 1 (Bulan 1-2): Soft Launch**\n• Target 100 early adopters\n• A/B testing packaging & pricing\n• Influencer partnership (health & fitness)\n\n**Phase 2 (Bulan 3-4): Market Expansion**\n• Digital marketing campaign\n• Pharmacy partnership\n• Customer referral program\n\n**Phase 3 (Bulan 5-6): Scale Up**\n• National distribution\n• TV/Radio advertising\n• International expansion preparation\n\nBudget estimasi: Rp 2.4M dengan break-even di bulan 8.",
-    "Roadmap strategis berdasarkan analisis kompetitor:\n\n🚀 **Go-to-Market Strategy:**\n1. Direct-to-consumer online (70% focus)\n2. Selective retail partnerships (30%)\n3. Subscription model untuk repeat purchase\n\n📊 **Pricing Strategy:**\n• Premium positioning (20% above competitor)\n• Bundle discounts untuk cross-selling\n• Loyalty program dengan tier benefits\n\n📈 **Growth Projections:**\n• Month 1-3: 500 customers\n• Month 4-6: 2,000 customers\n• Month 7-12: 10,000+ customers"
+  
+  
+  'launch-plan': [
+    `**🎯 RENCANA PELUNCURAN PRODUK - LANGKAH PRAKTIS**
+
+**Urutan Peluncuran (Berdasarkan Data Dashboard):**
+
+**Fase 1: NuVit-Omega Premium (Prioritas Utama)**
+• **Alasan:** Gap lemak 30% + lelah tinggi 4/6 bulan
+• **Target:** 354 user yang sering lelah
+• **Waktu:** 8 minggu (Juli-Agustus 2025)
+• **Modal:** Rp 2.5B (pengembangan + kampanye)
+• **Target Jual:** 3,000 botol Q3 (konservatif 25%)
+• **Cara Jual:** 70% online (terbukti), 30% apotek premium
+• **Ukuran Sukses:** 15% market share omega, rating 4.5+
+
+**Fase 2: Multi Core Premium (Manfaatkan Sukses)**
+• **Alasan:** Sudah terbukti 16,650 botol H1, tingkatkan ke premium
+• **Target:** User Multi Core sekarang + yang mau produk premium
+• **Waktu:** 6 minggu (September 2025)
+• **Modal:** Rp 1.8B (risiko lebih kecil)
+• **Target Jual:** 2,500 botol Q3 (60% dari user lama)
+• **Cara Jual:** 60% user lama, 40% user baru
+• **Ukuran Sukses:** 25% jadi premium, margin naik 40%
+
+**Strategi Marketing Mudah Dipahami:**
+
+**Digital Marketing (70% budget):**
+📱 **Google Ads:** Sasar kata "lelah kronis", "lemak sehat", "suplemen lelah"
+📊 **Analisa Data:** Kasih rekomendasi personal berdasarkan kebutuhan
+🎥 **Konten Edukasi:** Serial video "Solusi Gap Nutrisi"
+📧 **Email Otomatis:** Kirim saran berdasarkan riwayat beli
+
+**Kerjasama Profesional (20% budget):**
+🤝 **Dokter & Ahli Gizi:** Minta endorse dari yang kredibel
+🏥 **Klinik:** Jual di tempat konsultasi
+📚 **Riset:** Kerjasama studi klinis buat bukti
+
+**Influencer & Komunitas (10% budget):**
+👥 **Micro-Influencer:** 50 influencer kecil (engagement lebih tinggi)
+💬 **Grup WhatsApp:** Komunitas user buat support
+🏆 **Testimoni:** Cerita transformasi user
+
+**Timeline Pelaksanaan:**
+
+**Persiapan (Minggu 1-4):**
+• Minggu 1-2: Finalisasi produk + izin edar
+• Minggu 3: Setup supply chain (5,000 botol + cadangan 20%)
+• Minggu 4: Bikin materi marketing + training tim
+
+**Peluncuran (Minggu 5-6):**
+• Minggu 5: Soft launch dengan 100 user beta (ambil feedback)
+• Minggu 6: Full launch dengan PR + influencer
+
+**Pasca Peluncuran (Minggu 7-14):**
+• Minggu 7-10: Monitor performa + optimasi (A/B testing)
+• Minggu 11-12: Integrasikan feedback user + perbaikan
+• Minggu 13-14: Scale up produksi + ekspansi distribusi
+
+**Antisipasi Risiko:**
+⚠️ **Supply Terlambat:** Stok cadangan 20% + supplier backup
+⚠️ **Adopsi Lambat:** Siap diskon 15% untuk early adopter
+⚠️ **Kompetitor Respond:** Tekankan keunikan + patenkan formula
+⚠️ **Permintaan Musiman:** Manfaatkan trend resolusi Q4
+
+**Hasil Yang Diharapkan:**
+💰 **Break-even:** Bulan ke-4 (skenario konservatif)
+📈 **ROI 12 bulan:** 145% (berdasarkan performa H1)
+🎯 **Market Share:** 8% kategori omega (realistis)
+💼 **Biaya Akuisisi User:** <Rp 150k (vs LTV Rp 850k)`,
+    
+    `**📋 PANDUAN PELAKSANAAN DETAIL**
+
+**Checklist Persiapan:**
+
+**Pengembangan Produk (Minggu 1-2):**
+✅ Formula final: EPA 800mg + DHA 400mg (rasio optimal)
+✅ Tes kualitas: Logam berat, kemurnian, kekuatan
+✅ Desain kemasan: Premium + ramah lingkungan
+✅ Izin edar: BPOM + sertifikat halal
+✅ Optimasi biaya: Target margin 45% minimum
+
+**Setup Supply Chain (Minggu 3):**
+✅ Kontrak supplier: Utama + backup
+✅ Planning stok: 5,000 Q3 + 3,000 Q4 cadangan
+✅ Quality control: Protokol inspeksi bahan
+✅ Jaringan distribusi: Online + retail
+✅ Logistik kemasan: Sumber bahan ramah lingkungan
+
+**Persiapan Marketing (Minggu 4):**
+✅ Buat konten: Materi edukasi + positioning produk
+✅ Partnership dokter: 15 profesional kesehatan
+✅ Jaringan influencer: 50 health influencer
+✅ Update website: E-commerce optimization
+✅ Training tim: Edukasi benefit + positioning
+
+**Pelaksanaan Peluncuran:**
+
+**Soft Launch (Minggu 5) - 100 Beta User:**
+• Target: User Multi Core yang high-value
+• Kumpulkan feedback: Kepuasan + saran perbaikan
+• Ambil testimoni: Success story buat marketing
+• Tes logistik: Order fulfillment + customer service
+• Metrik: Kepuasan >4.5/5, reorder >60%
+
+**Full Launch (Minggu 6) - Mass Market:**
+• Kampanye PR: Media kesehatan + press release
+• Aktivasi digital: Social media + iklan berbayar
+• Rollout retail: Apotek + promo in-store
+• Email blast: 15,000 user dengan personal messaging
+• Optimasi website: Landing page fokus konversi
+
+**Optimasi Pasca Launch:**
+
+**Monitor Performa (Minggu 7-10):**
+📊 **Analisa Penjualan:** Tracking harian vs target (375 botol/minggu)
+📋 **Feedback User:** Review + survei kepuasan
+🔄 **A/B Testing:** Pesan marketing + optimasi harga
+📈 **Conversion Rate:** Website + email campaign
+💡 **Iterasi Produk:** Perbaikan kecil berdasarkan feedback
+
+**Scale-Up (Minggu 11-14):**
+🏭 **Naikkan Produksi:** Kapasitas untuk Q4
+🌐 **Ekspansi Distribusi:** Tambah retail partner
+📱 **Optimasi Digital:** SEO + social media growth
+👥 **Ekspansi Tim:** Customer service + sales
+🎯 **Strategi Q4:** Persiapan kampanye liburan
+
+**Indikator Sukses & Pivot:**
+• **Minggu 2:** Jual >750 botol = naikkan produksi
+• **Minggu 4:** Jual <300 botol = aktifkan promo harga
+• **Minggu 6:** Kepuasan <4.0 = fokus perbaikan produk
+• **Minggu 8:** Reorder <40% = aktifkan kampanye retensi`
   ],
-  market: [
-    "Analisis pasar suplemen Indonesia 2025:\n\n**Market Size:** Rp 8.2 Triliun (+12% YoY)\n**Key Segments:**\n• Vitamin & Minerals: 45% market share\n• Protein supplements: 23%\n• Herbal/Traditional: 18%\n• Sports nutrition: 14%\n\n**Consumer Insights:**\n• 73% prefer trusted local brands\n• 68% influenced by doctor recommendations\n• 45% purchase online regularly\n\n**Competitive Landscape:**\n• Top 3 players control 60% market\n• 200+ local brands competing\n• Import brands growing 25% annually\n\nOpportunity: Focus pada niche segments dengan differentiated value proposition.",
-    "Deep dive analisis segmentasi pasar:\n\n👥 **Target Demographics:**\n• Primary: Urban millennials (25-40)\n• Secondary: Health-conscious Gen X (40-55)\n• Emerging: Gen Z fitness enthusiasts (18-25)\n\n💰 **Spending Patterns:**\n• Average monthly spend: Rp 350K\n• Premium segment: Rp 800K+\n• Price-sensitive: <Rp 200K\n\n🏆 **Success Factors:**\n1. Product efficacy & quality\n2. Brand trust & credibility\n3. Convenient purchasing experience\n4. Community & education\n\nRekomendasi: Target premium segment dengan focus pada quality & education."
+  
+  
+  'market-opportunity': [
+    `**🎯 PELUANG PASAR - ANALISIS LENGKAP BERDASARKAN DATA REAL**
+
+**Posisi Pasar Saat Ini:**
+• **User Aktif:** 1,234 (+12% pertumbuhan bulanan)
+• **Rata-rata Kekurangan Nutrisi:** 30% lemak, 20% protein, 23% vitamin
+• **Potensi User Baru:** 1,500+ Q3 (perkiraan konservatif)
+• **Pendapatan Dasar:** Rp 19.45B H1 dengan ruang 3x lipat
+
+**Peluang Matrix - Dampak vs Kemudahan:**
+
+**🔥 Dampak Tinggi + Mudah Dilakukan (Fokus Sekarang):**
+
+**1. Pasar Omega-3 Premium:**
+• Gap pasar: 30% kurang lemak = 370+ user langsung
+• Premium pricing: Mau bayar Rp 250k vs Rp 180k standar
+• Peluang pendapatan: 2,000 botol × Rp 250k = Rp 500M Q3
+• Keunggulan: First-mover di premium omega Indonesia
+
+**2. Ekspansi Pasar Protein Bundle:**
+• Sukses sekarang: Whey 14,720 + Multi 16,650 = potensi cross-sell
+• Bundle pricing: Diskon 15% = volume lebih tinggi + user setia
+• Market size: 65% user tertarik solusi lengkap
+• Tambahan pendapatan: +Rp 800M dari penetrasi bundle 25%
+
+**3. Model Berlangganan:**
+• Perilaku user: 45% tertarik auto-delivery
+• Pendapatan rutin: Model monthly recurring revenue
+• User LTV: +40% dengan diskon berlangganan + kemudahan
+• Stabilitas pendapatan: Rp 1.2B monthly recurring achievable
+
+**💡 Dampak Sedang + Mudah Dilakukan (Fokus Q4):**
+
+**4. Portfolio Multi-Vitamin Variants:**
+• Sukses terbukti: 16,650 botol Multi Core = fondasi kuat
+• Segmentasi usia: Anak, Dewasa, Lansia
+• Ekspansi pasar: 3x total addressable market
+• Potensi pendapatan: +Rp 2.1B dengan portfolio varian
+
+**5. Kampanye Musiman Green Detox:**
+• Analisa trend: Spike Feb-Mar = pola musiman bisa diprediksi
+• Strategi kampanye: Summer detox, New Year reset, dll
+• Edukasi pasar: Awareness detox naik 42% tahunan
+• Peluang pendapatan: +Rp 600M dengan kampanye targeted
+
+**6. Program Wellness Korporat:**
+• Pasar B2B: Belum tergarap dengan potensi volume tinggi
+• Target perusahaan: 100+ karyawan dengan health benefits
+• Pricing paket: Diskon bulk + program kesehatan karyawan
+• Skala pendapatan: Rp 50M per klien korporat, target 20 klien
+
+**🚀 Dampak Tinggi + Sedang Sulit (Visi 2025):**
+
+**7. Platform Nutrisi Personal:**
+• Integrasi teknologi: AI recommendations + health tracking
+• Competitive moat: Data advantage + customer stickiness
+• Trend pasar: Personalisasi naik 67% YoY global
+• Model pendapatan: Premium subscription + produk personal
+
+**8. Integrasi Telehealth:**
+• Kolaborasi healthcare: Partnership nutritionist + dokter
+• Ekspansi layanan: Konsultasi + rekomendasi produk
+• Validasi pasar: 73% consumer mau integrated health solutions
+• Revenue streams: Fee konsultasi + product sales
+
+**9. Ekspansi Pasar International:**
+• Region SEA: Tantangan nutrisi + cultural alignment serupa
+• Market size: 10x potensi Indonesia
+• Model distribusi: Digital-first dengan partner lokal
+• Skala pendapatan: Rp 50B+ annual potential jangka panjang
+
+**Proyeksi Finansial & Investasi:**
+
+**Peluang Immediate (Q3-Q4 2025):**
+💰 **Investasi:** Rp 8.5B total
+💰 **Potensi Pendapatan:** +Rp 4.5B Q3, +Rp 7.2B Q4
+💰 **ROI Timeline:** Break-even 6 bulan, 180% ROI Year 1
+💰 **Risk Level:** Low-Medium (market terbukti + execution capability)
+
+**Peluang Medium-term (2025):**
+💰 **Investasi:** Rp 25B untuk teknologi + ekspansi
+💰 **Potensi Pendapatan:** +Rp 15B annually
+💰 **ROI Timeline:** Break-even 18 bulan, 250% ROI 3-year
+💰 **Risk Level:** Medium-High (teknologi + market development)
+
+**Rekomendasi Prioritas Strategis:**
+1. **Immediate:** Omega Premium + Bundle strategy (ROI terbukti)
+2. **Q4:** Model berlangganan + corporate wellness pilot
+3. **2025:** Platform teknologi + international expansion`,
+    
+    `**📈 ANALISIS TREND PASAR & POSITIONING STRATEGIS**
+
+**Analisis Perilaku Konsumen Indonesia:**
+
+**Analisis Kemampuan Bayar:**
+• **73% mau premium:** Untuk solusi terbukti efektif (vs generik)
+• **Toleransi harga rata-rata:** +35% di atas harga sekarang untuk premium
+• **Faktor keputusan ranking:** Efektivitas (89%), Brand trust (76%), Harga (54%)
+• **Frekuensi beli:** 68% prefer stok 2-3 bulan vs beli bulanan
+
+**Preferensi Produk:**
+• **68% prefer comprehensive:** Multi-nutrient vs suplemen tunggal
+• **45% tertarik berlangganan:** Auto-delivery dengan insentif diskon
+• **82% prefer natural:** Bahan alami vs sintetis
+• **91% butuh rekomendasi dokter:** Endorsement profesional kesehatan krusial
+
+**Perilaku Digital:**
+• **78% riset online:** Sebelum beli (rata-rata 3.2 touchpoints)
+• **65% depend social proof:** Review + testimoni kritis
+• **54% beli via mobile:** Smartphone-first buying behavior
+• **71% mau konten edukasi:** Mau tahu "kenapa" di balik produk
+
+**Analisis Kompetitif:**
+
+**🥇 Keunggulan NutrivIT Sekarang:**
+• **Pendekatan berbasis data:** Validasi kebutuhan user real vs tebakan kompetitor
+• **Track record eksekusi:** 108k botol H1 buktikan kemampuan
+• **Portfolio lengkap:** 8 produk covering kebutuhan nutrisi major
+• **Customer satisfaction:** Rating 4.5+ di semua lini produk
+• **Digital presence:** Channel online kuat (70% sales) vs retail tradisional
+
+**🎯 Gap Kompetitor:**
+• **Segmen omega premium:** Largely unoccupied di pasar Indonesia
+• **Nutrisi personal:** Tidak ada major player dengan pendekatan comprehensive
+• **Model berlangganan:** Limited offerings dengan eksekusi buruk
+• **Partnership profesional:** Hubungan healthcare provider lemah
+• **Konten edukasi:** Informasi generik vs targeted health solutions
+
+**Segmentasi Pasar Strategis:**
+
+**Target Primer: Health-Conscious Professionals (25-45 tahun)**
+• **Size:** 2.3M individu dalam target demografi
+• **Karakteristik:** Disposable income tinggi, fokus preventif health
+• **Pain points:** Keterbatasan waktu, information overload, concerns kualitas
+• **Peluang:** Solusi premium dengan convenience + efektivitas
+• **Potensi pendapatan:** Rp 85B total addressable market
+
+**Target Sekunder: Fitness Enthusiasts (20-35 tahun)**
+• **Size:** 1.8M anggota komunitas fitness aktif
+• **Karakteristik:** Performance-focused, supplement-savvy, social
+• **Pain points:** Keaslian produk, pencapaian goals spesifik
+• **Peluang:** Formulasi khusus + community building
+• **Potensi pendapatan:** Rp 45B dengan pendekatan targeted
+
+**Target Emerging: Senior Wellness (45-65 tahun)**
+• **Size:** 3.1M senior health-conscious dengan purchasing power
+• **Karakteristik:** Rekomendasi dokter penting, kualitas over harga
+• **Pain points:** Kebutuhan spesifik usia, interaksi obat
+• **Peluang:** Formulasi age-appropriate + guidance profesional
+• **Potensi pendapatan:** Rp 120B long-term opportunity
+
+**Strategi Channel Optimization:**
+
+**Digital Dominance (70% fokus):**
+• **E-commerce platform:** Website sendiri + marketplace partnerships
+• **Social commerce:** Instagram + TikTok shopping integration
+• **Content marketing:** Blog edukasi + video series
+• **Email automation:** Rekomendasi personal + retention
+
+**Selective Retail Partnerships (25% fokus):**
+• **Apotek premium:** Guardian, Kimia Farma premium stores
+• **Health food stores:** Ranch Market, Grand Lucky specialist sections
+• **Fitness centers:** Premium gym partnerships + sampling programs
+
+**B2B Corporate Channel (5% fokus):**
+• **Employee wellness:** Partnership program kesehatan korporat
+• **Healthcare facilities:** Clinic + hospital retail partnerships
+• **Insurance collaboration:** Tie-up perusahaan asuransi kesehatan
+
+**Roadmap Integrasi Teknologi:**
+
+**Phase 1 (Q4 2025): Personalisasi Dasar**
+• **Customer profiling:** Health questionnaire + analisa riwayat beli
+• **Recommendation engine:** Algoritma dasar untuk saran produk
+• **Platform berlangganan:** Auto-delivery dengan opsi kustomisasi
+
+**Phase 2 (H1 2025): Analytics Canggih**
+• **Health tracking integration:** Incorporasi data wearable device
+• **AI recommendations:** Machine learning untuk optimasi
+• **Telehealth partnerships:** Integrasi konsultasi profesional
+
+**Phase 3 (H2 2025): Full Ecosystem**
+• **Platform comprehensive:** Health tracking + produk + konsultasi
+• **Community features:** Peer support + expert guidance
+• **International expansion:** Leverage platform teknologi untuk scale
+
+**Evolusi Market Share Yang Diharapkan:**
+• **Posisi Sekarang:** 2.3% pasar suplemen Indonesia
+• **Target Q4 2025:** 3.8% dengan produk baru + channels
+• **Visi 2026:** 7.5% market leadership dengan diferensiasi teknologi
+• **Goal Jangka Panjang:** 15% market dominance + ekspansi regional`
   ]
 };
 
+
 // Quick question templates
 const quickQuestions = {
-  trend: "Analisis tren keluhan gizi dan kebutuhan nutrisi pengguna terbaru. Apa insight yang bisa digunakan untuk pengembangan produk?",
-  product: "Berikan rekomendasi produk kesehatan baru berdasarkan gap analysis dan data pengguna. Sertakan proyeksi ROI.",
-  strategy: "Susun strategi peluncuran produk yang optimal berdasarkan analisis pasar dan kompetitor saat ini.",
-  market: "Lakukan analisis mendalam tentang kondisi pasar suplemen kesehatan Indonesia dan peluang bisnis."
+  'gap-analysis': "Tolong jelaskan kekurangan nutrisi terbesar berdasarkan data Juni. Apa artinya lemak sehat kurang 30% dan protein kurang 20%? Bagaimana ini bisa jadi peluang bisnis?",
+  'product-strategy': "Multi Core jual 16,650 botol jadi juara. Green Detox juga bagus 15,830 botol. Apa strategi lanjutan untuk H2 2025? Produk mana yang harus dikembangkan?",
+  'launch-plan': "Berdasarkan data dashboard, bagaimana rencana launching produk baru? Prioritas mana yang harus didahulukan untuk atasi masalah lelah dan kekurangan nutrisi?",
+  'market-opportunity': "Dengan 1,234 user dan pendapatan Rp 19.45B di H1, apa peluang pasar terbesar untuk H2? Bagaimana cara maksimalkan potensi yang ada?"
 };
 
 // Chat state
@@ -167,47 +675,314 @@ function formatMessage(text) {
 function generateAIResponse(message) {
   const lowerMessage = message.toLowerCase();
   
-  // Determine response type based on keywords
-  if (lowerMessage.includes('trend') || lowerMessage.includes('tren')) {
-    return getRandomResponse('trend');
-  } else if (lowerMessage.includes('produk') || lowerMessage.includes('product') || lowerMessage.includes('rekomendasi')) {
-    return getRandomResponse('product');
-  } else if (lowerMessage.includes('strategi') || lowerMessage.includes('strategy') || lowerMessage.includes('peluncuran')) {
-    return getRandomResponse('strategy');
-  } else if (lowerMessage.includes('pasar') || lowerMessage.includes('market') || lowerMessage.includes('kompetitor')) {
-    return getRandomResponse('market');
+  // Deteksi kata kunci sederhana
+  if (lowerMessage.includes('gap') || lowerMessage.includes('kurang') || lowerMessage.includes('nutrisi') || lowerMessage.includes('kekurangan')) {
+    return getRandomResponse('gap-analysis');
+  } else if (lowerMessage.includes('strategi') || lowerMessage.includes('produk') || lowerMessage.includes('multi core') || lowerMessage.includes('best seller')) {
+    return getRandomResponse('product-strategy');
+  } else if (lowerMessage.includes('launch') || lowerMessage.includes('peluncuran') || lowerMessage.includes('rencana') || lowerMessage.includes('prioritas')) {
+    return getRandomResponse('launch-plan');
+  } else if (lowerMessage.includes('peluang') || lowerMessage.includes('pasar') || lowerMessage.includes('market') || lowerMessage.includes('opportunity')) {
+    return getRandomResponse('market-opportunity');
+  } else if (lowerMessage.includes('lelah') || lowerMessage.includes('fatigue') || lowerMessage.includes('28.7') || lowerMessage.includes('kelelahan')) {
+    return generateFatigueResponse();
+  } else if (lowerMessage.includes('revenue') || lowerMessage.includes('pendapatan') || lowerMessage.includes('19.45') || lowerMessage.includes('penjualan')) {
+    return generateRevenueResponse();
+  } else if (lowerMessage.includes('omega') || lowerMessage.includes('lemak') || lowerMessage.includes('30%')) {
+    return generateOmegaResponse();
   } else {
-    // General response
     return generateGeneralResponse(message);
   }
 }
 
-// Get random response from category
+// Respons spesifik yang mudah dipahami
+function generateFatigueResponse() {
+  return `**😴 ANALISIS MASALAH LELAH - PENJELASAN SEDERHANA**
+
+**Situasi Sekarang:**
+• **Juni 2025:** 28.7% user komplain lelah (paling tinggi!)
+• **Trend:** Sering muncul 4 dari 6 bulan (Januari, April, Juni dominan)
+• **Dampak:** 354+ user dari 1,234 yang kena masalah ini
+• **Penyebab utama:** Kurang lemak sehat (30%) + kurang protein (20%)
+
+**Kenapa Bisa Lelah?**
+🔍 **Kurang Lemak Sehat:** 
+• Sel-sel tubuh butuh lemak baik buat energi
+• Kalau kurang, produksi energi jadi terganggu
+• Hormon stress juga ikut kacau
+
+🔍 **Kurang Protein:** 
+• Protein bikin zat kimia otak yang ngatur mood & energi
+• Kalau kurang, badan susah recovery
+• Gula darah jadi naik-turun, bikin lelah
+
+**Bukti dari Produk Kita:**
+✅ **Multi Core sukses besar:** 16,650 botol (rank #1)
+• 78% user bilang energi naik setelah pakai
+• 85% beli lagi (berarti puas!)
+
+✅ **Whey Muscle juga laku:** 14,720 botol
+• 65% user lelah juga beli Whey
+• Protein membantu recovery & energi
+
+❌ **Tapi masih ada gap:** Omega masih underperform
+• Cuma 11,890 botol padahal kurang lemak sehat 30%
+• Marketing masih focus "kesehatan otak" bukan "anti lelah"
+
+**Solusi Praktis:**
+
+**🎯 Immediate (Q3 2025):**
+1. **Omega Premium baru:** Focus "anti lelah" bukan cuma otak
+2. **Paket Anti Lelah:** Multi Core + Omega + Whey (diskon 15%)
+3. **Edukasi user:** Jelasin hubungan nutrisi vs energi
+
+**🎯 Medium-term (Q4 2025):**
+1. **Produk khusus lelah:** NuVit-Energy AM/PM
+2. **Assessment personal:** AI kasih tau kurang nutrisi apa
+3. **Program berlangganan:** Otomatis kirim sesuai kebutuhan
+
+**Target Hasil:**
+• Turunkan keluhan lelah 40% dalam 6 bulan
+• 85% user bilang energi naik
+• Pendapatan naik Rp 6.2B dari solusi anti lelah
+
+**Kenapa Ini Peluang Besar:**
+💰 354 user lelah × rata-rata beli Rp 400k = Rp 142M immediate market
+💰 Plus 500+ user lain yang mungkin lelah tapi belum complain
+💰 Total market size: Rp 350M+ cuma untuk masalah lelah!`;
+}
+
+function generateRevenueResponse() {
+  return `**💰 ANALISIS PENDAPATAN H1 2025 - RINGKASAN UNTUK MANAGER**
+
+**Pencapaian H1 2025:**
+• **Total Pendapatan:** Rp 19.45B (naik 22% dari tahun lalu!)
+• **Juni 2025:** Rp 3.25B (naik 15% dari Mei)
+• **Pendapatan per User:** Rp 15.8M average (naik 18%)
+• **Tren:** Naik terus tiap bulan, momentum bagus
+
+**Dari Mana Pendapatan Terbesar:**
+
+**💊 Vitamin & Suplemen (45% = Rp 8.7B):**
+• Multi Core: Rp 2.75B (juara!)
+• C Boost: Rp 1.78B (imunitas masih laku)
+• Omega Brain: Rp 2.14B (masih bisa lebih!)
+
+**🌿 Herbal & Natural (20% = Rp 3.9B):**
+• Green Detox: Rp 1.19B (kejutan! laku keras Feb-Mar)
+• Honey Natural: Rp 0.74B (stabil)
+• Curcuma Gold: Rp 0.81B (niche anti-inflamasi)
+
+**💪 Fitness & Protein (35% = Rp 6.85B):**
+• Whey Muscle: Rp 5.0B (kontribusi besar!)
+• BCAA Recovery: Rp 1.85B (fitness enthusiast setia)
+
+**Apa Yang Bagus:**
+✅ **Premium products:** 68% pendapatan dari produk >Rp 150k
+✅ **User setia:** 73% beli lagi dalam 90 hari
+✅ **Cross-selling:** 58% user beli 2+ produk
+✅ **Margin bagus:** 52% rata-rata, premium products 65%
+
+**Peluang H2 2025:**
+
+**🎯 Quick Wins (Q3):**
+1. **Premium line:** Multi Core Premium + Omega Premium
+   • Margin +40% dengan formula advanced
+   • Target: +Rp 1.8B Q3
+
+2. **Bundle strategy:** Paket hemat 15% off
+   • Naikin average order value +25%
+   • Target: +Rp 800M Q3
+
+3. **Subscription model:** Auto-delivery 10% off
+   • 35% user tertarik = Rp 1.2B monthly recurring
+   • Target: +45% customer lifetime value
+
+**📊 Proyeksi H2 2025:**
+• **Skenario Konservatif:** Rp 23B (+18% organic)
+• **Skenario Realistis:** Rp 28B (dengan produk baru)
+• **Skenario Optimis:** Rp 33B (full execution)
+• **Target Pilihan:** Rp 28B (achievable dengan disiplin)
+
+**Investasi vs Return:**
+💰 **Butuh investasi:** Rp 9B total
+• Pengembangan produk: Rp 2.5B
+• Marketing scale-up: Rp 3.2B  
+• Inventory: Rp 1.8B
+• Teknologi: Rp 1.5B
+
+💰 **Expected return:** +Rp 16B tambahan revenue
+• Payback period: 6.7 bulan
+• 3-year ROI: 285%
+
+**KPI Yang Harus Dimonitor:**
+🎯 Target rata-rata bulanan H2: Rp 4.2B (vs Juni Rp 3.25B)
+🎯 Pendapatan per user: Rp 18.5M (vs sekarang Rp 15.8M)
+🎯 Premium mix: 75% dari produk >Rp 200k
+🎯 Subscription: 25% user base
+🎯 Cross-selling: 70% user beli 2+ produk
+
+**Bottom Line:**
+H1 performance bagus banget (22% growth), momentum kuat. H2 fokus ke premium products, bundle strategy, dan subscription model. Target realistis Rp 28B dengan ROI 285% dalam 3 tahun.`;
+}
+
+function generateOmegaResponse() {
+  return `**🐟 ANALISIS PELUANG OMEGA - GAP BESAR YANG HARUS DIISI**
+
+**Masalah Yang Teridentifikasi:**
+• **Gap lemak sehat:** 30% kurang konsisten 6 bulan (570kg Jan → 375kg Jun)
+• **Dampak:** Lelah kronis jadi masalah utama 4/6 bulan
+• **User affected:** 354+ orang yang sering lelah
+• **Market size:** Rp 4.5B+ peluang yang belum digarap
+
+**Performa Omega Sekarang:**
+• **H1 2025:** Cuma 11,890 botol (rank #5 - underperform!)
+• **Rating user:** 4.6/5 (bagus) tapi awareness rendah
+• **Harga:** Rp 180k competitive tapi tidak premium
+• **Masalah:** Positioning "kesehatan otak" vs yang dibutuhin user
+
+**Kenapa Underperform:**
+❌ **Salah positioning:** Dijual untuk otak, padahal user butuh untuk energi
+❌ **Marketing kurang:** Edukasi lemak sehat vs energi masih minim  
+❌ **Formula standar:** EPA/DHA biasa, bukan optimized untuk orang Indonesia
+❌ **Packaging:** Botol kecil (60 caps) vs value pack
+
+**Solusi: Omega Premium Launch**
+
+**🎯 Produk Baru Spec:**
+• **Formula advanced:** EPA 800mg + DHA 400mg (rasio 2:1 optimal energi)
+• **Tambahan:** CoQ10 + Vitamin E untuk absorpsi maksimal
+• **Kemasan premium:** 90 softgels (3 bulan) vs sekarang 60
+• **Kualitas:** Molecular distillation + sertifikat third-party
+
+**🎯 Positioning Baru:**
+• **Pesan utama:** "Solusi Lengkap Anti Lelah" bukan generic brain health
+• **Target:** 30% gap lemak = solve 28.7% keluhan lelah
+• **Bukti ilmiah:** Studi omega-3 vs energy levels
+• **Justifikasi premium:** Absorpsi lebih baik + potency tinggi
+
+**Business Case:**
+
+**Market Calculation:**
+• **Target langsung:** 354 user lelah kronis
+• **Market sekunder:** 500+ user kurang lemak intake
+• **Premium pricing:** Rp 250k vs sekarang Rp 180k (+39%)
+• **Penetrasi konservatif:** 25% = 213 customer immediate
+
+**Proyeksi Revenue:**
+💰 **Q3 Launch:** 2,000 botol × Rp 250k = Rp 500M
+💰 **Q4 Scale:** 3,500 botol × Rp 250k = Rp 875M
+💰 **2025 Steady:** 5,000 botol × Rp 250k = Rp 1.25B per tahun
+💰 **Total 12 bulan:** Rp 2.625B dari omega premium
+
+**Investasi Dibutuhkan:**
+• **Product development:** Rp 800M (formula + testing)
+• **Marketing launch:** Rp 1.2B (edukasi + endorsement dokter)
+• **Stock awal:** Rp 600M (inventory + buffer)
+• **Total:** Rp 2.6B dengan ROI 180% dalam 12 bulan
+
+**Strategy Peluncuran:**
+
+**Phase 1 - Edukasi (Bulan 1-2):**
+• Content marketing: "Lemak Sehat untuk Energi" series
+• Dokter & nutritionist: Endorsement + bukti klinis  
+• Email ke user Multi Core: Korelasi lelah vs lemak
+
+**Phase 2 - Launch (Bulan 3-4):**
+• Beta test: 200 user untuk testimoni
+• Bundle promo: Omega Premium + Multi Core "Complete Energy"
+• Digital ads: Target "lelah kronis" + "suplemen omega"
+
+**Phase 3 - Scale (Bulan 5-6):**
+• A/B testing: Optimasi harga + messaging
+• Retail premium: Guardian, Kimia Farma
+• Subscription: Auto-delivery dengan loyalty benefits
+
+**Target Success:**
+🎯 **Market share:** 15% kategori omega
+🎯 **Rating:** 4.7+ dengan testimoni energi naik
+🎯 **Business impact:** 25% turun keluhan lelah dari user
+🎯 **Cross-sell:** 40% bundle rate dengan Multi Core
+🎯 **Brand:** Jadi leader omega premium Indonesia
+
+**Bottom Line:**
+Gap lemak 30% + lelah 28.7% = peluang emas Rp 2.6B. Omega Premium dengan positioning anti-lelah bisa jadi game changer. ROI 180% dalam 12 bulan kalau eksekusi benar.`;
+}
+
+function generateGeneralResponse(message) {
+  const responses = [
+    `Berdasarkan data dashboard H1 2025, untuk pertanyaan "${message}":
+
+**📊 Context Data:**
+• Pendapatan H1: Rp 19.45B (+22% growth)
+• User base: 1,234 orang (+12% monthly growth)
+• Top produk: Multi Core (16,650 botol)
+• Masalah utama: Kekurangan lemak sehat (30%) + lelah (28.7%)
+
+**💡 Insight:**
+Data menunjukkan ada gap besar antara kebutuhan nutrisi vs yang tersedia. Multi Core sukses karena solusi lengkap, tapi masih ada ruang untuk produk spesifik seperti Omega Premium.
+
+**🎯 Rekomendasi:**
+1. Focus ke produk yang address gap nutrisi terbesar
+2. Leverage sukses Multi Core untuk cross-selling  
+3. Kembangkan bundle untuk solusi komprehensif
+
+Mau saya jelaskan lebih detail aspek spesifik mana?`,
+
+    `Menarik sekali pertanyaan tentang "${message}"! Dari analisis dashboard:
+
+**🔍 Yang Terlihat dari Data:**
+• Revenue momentum bagus: +15% MoM di Juni
+• Customer behavior: 73% beli lagi dalam 90 hari
+• Product performance: Jelas ada winner vs yang perlu perbaikan
+• Health trend: Lelah dominan 4/6 bulan = pattern yang bisa diprediksi
+
+**💰 Implikasi Bisnis:**
+- Premium positioning justified dengan data efektivitas
+- Bundle strategy bisa naikkan AOV +35%
+- Subscription model bisa stabilkan 40% revenue
+
+**🚀 Action Items:**
+- Omega Premium untuk gap lemak 30%
+- Bundle anti-lelah Multi+Omega+Whey
+- Subscription model untuk predictable revenue
+
+Ada aspek spesifik yang mau diperdalam?`,
+
+    `Untuk "${message}", berdasarkan performance H1:
+
+**📈 Situasi Sekarang:**
+Kita punya foundation kuat (1,234 user, Rp 19.45B revenue) tapi ada opportunity besar yang belum digarap optimal.
+
+**🎯 Key Insights:**
+• Multi Core = proven success formula (16,650 botol)
+• Gap nutrisi = market opportunity (30% lemak, 20% protein)  
+• Customer willing pay premium (68% revenue dari produk >Rp 150k)
+• Cross-selling works (58% beli multiple products)
+
+**💡 Strategic Direction:**
+Focus ke produk yang solve masalah terbesar (lelah + nutrisi gaps) dengan pricing premium yang justified data.
+
+**Next Steps:**
+1. Develop Omega Premium (address lemak gap)
+2. Create bundle strategy (increase AOV)
+3. Build subscription model (recurring revenue)
+
+Mau dive deeper ke implementation details?`
+  ];
+  
+  return responses[Math.floor(Math.random() * responses.length)];
+}
+
+// Fungsi untuk mengambil respons random dari kategori
 function getRandomResponse(category) {
   const responses = aiResponses[category];
   return responses[Math.floor(Math.random() * responses.length)];
 }
 
-// Generate general AI response
-function generateGeneralResponse(message) {
-  const generalResponses = [
-    `Terima kasih atas pertanyaan Anda tentang "${message}". Berdasarkan analisis data terkini, saya dapat memberikan insight berikut:\n\n• Data menunjukkan trend positif dalam kategori yang Anda tanyakan\n• Rekomendasi: Perlu analisis lebih mendalam untuk memberikan saran spesifik\n• Saran: Coba gunakan pertanyaan yang lebih spesifik tentang trend, produk, strategi, atau analisis pasar\n\nApakah ada aspek tertentu yang ingin Anda dalami lebih lanjut?`,
-    
-    `Pertanyaan yang menarik! Untuk memberikan analisis yang lebih akurat tentang "${message}", saya memerlukan konteks yang lebih spesifik.\n\n**Yang bisa saya bantu:**\n• Analisis trend gizi dan keluhan pengguna\n• Rekomendasi pengembangan produk baru\n• Strategi peluncuran dan go-to-market\n• Analisis kompetitor dan peluang pasar\n\nSilakan gunakan tombol pertanyaan cepat di bawah atau ajukan pertanyaan yang lebih spesifik!`,
-    
-    `Saya memahami Anda menanyakan tentang "${message}". Sebagai AI Assistant NutrivIT, saya dioptimalkan untuk memberikan insight strategis tentang:\n\n🔍 **Analisis Data**\n• Trend keluhan gizi pengguna\n• Pola konsumsi dan preferensi\n• Performance produk existing\n\n💡 **Rekomendasi Bisnis**\n• Peluang produk baru\n• Strategi pricing dan positioning\n• Channel distribution optimal\n\nBagaimana saya dapat membantu Anda lebih spesifik hari ini?`
-  ];
-  
-  return generalResponses[Math.floor(Math.random() * generalResponses.length)];
-}
-
 // Show typing indicator
 function showTypingIndicator() {
-  if (isTyping) return;
-  
-  isTyping = true;
   const messagesContainer = document.getElementById('chat-messages');
-  
   const typingDiv = document.createElement('div');
   typingDiv.className = 'typing-indicator';
   typingDiv.id = 'typing-indicator';
@@ -217,6 +992,7 @@ function showTypingIndicator() {
       <i class="fas fa-robot"></i>
     </div>
     <div class="typing-content">
+      <div class="typing-text">AI sedang analisis data...</div>
       <div class="typing-dots">
         <div class="dot"></div>
         <div class="dot"></div>
@@ -235,7 +1011,6 @@ function hideTypingIndicator() {
   if (typingIndicator) {
     typingIndicator.remove();
   }
-  isTyping = false;
 }
 
 // Clear chat function
@@ -336,63 +1111,127 @@ function acceptRecommendation(id) {
 function showRecommendationDetails(id) {
   const details = {
     1: {
-      title: 'Detail Suplemen Vitamin D Premium',
+      title: 'Detail Lengkap: Ekspansi Portfolio Lemak Sehat',
       content: `
-        <strong>Market Analysis:</strong><br>
-        • Target market: 2.3M pekerja WFH di Indonesia<br>
-        • Market penetration: 8% (current) → 15% (target)<br>
-        • Price point: Rp 180,000 - 250,000<br><br>
+        <strong>Situasi saat ini:</strong><br>
+        • Gap lemak sehat:  30% kekurangan konsisten 6 bulan (570kg Jan → 375kg Jun)<br>
+        • Dampak ke User: 8% (current) → 15% (target)<br>
+        • Produk Existing: NuVit-Omega cuma 11,890 botol (underperform vs potensi)<br>
+        • Root Cause: Positioning "brain health" bukan "anti lelah"<br><br>
         
-        <strong>Product Specifications:</strong><br>
-        • Vitamin D3 2000 IU + K2 MK-7 100mcg<br>
-        • Soft gel capsules, 60 count<br>
-        • Premium packaging dengan UV protection<br><br>
+       <strong>Solusi: NuVit-Omega Premium</strong><br>
+        • Formula baru: EPA 800mg + DHA 400mg (rasio 2:1 khusus energi)<br>
+        • Tambahan: CoQ10 + Vitamin E untuk absorpsi maksimal<br>
+        • Kemasan: 90 softgels (3 bulan) vs sekarang 60<br>
+        • Positioning: "Solusi Lengkap Anti Lelah" bukan brain health<br><br>
         
-        <strong>Financial Projections:</strong><br>
-        • Development cost: Rp 450M<br>
-        • Break-even: 8 months<br>
-        • ROI: 142% in 12 months<br>
-        • Revenue projection: Rp 2.1B (Year 1)
+        <strong>Proyeksi Finansial (12 Bulan):</strong><br>
+        • Investasi Awal: Rp 2.5B (pengembangan + marketing + stock)<br>
+        • Harga jual: Rp 250k vs NuVit-Omega lama Rp 180k (+39%)<br>
+        • Target jual: Q3: 2,000 botol | Q4: 3,500 botol | 2025: 5,000/tahun<br>
+        • Revenue 12 Bulan: Rp 2.625B<br>
+        • ROI: 180% dalam 12 bulan<br>
+        • Break-even: Bulan ke-6
+
+        <strong>Kenapa Ini Peluang Emas:</strong><br>
+        • Market gap 30% lemak = 354+ user immediate target<br>
+        • Premium pricing justified (user mau bayar untuk solusi efektif)<br>
+        • First-mover advantage di segment omega premium Indonesia<br>
+        • Cross-selling potential: 40% bundle dengan Multi Core<br><br>
       `
     },
     2: {
-      title: 'Detail Protein Nabati Expansion',
+      title: 'Detail Bundle Strategy Energy Booster Pack',
       content: `
-        <strong>Market Opportunity:</strong><br>
-        • Plant-based protein market growth: 42% YoY<br>
-        • Target demographic: Millennials 25-35 years<br>
-        • Health-conscious consumers: 67% willing to pay premium<br><br>
+        <strong>Data Pendukung dari Dashboard:</strong><br>
+        • NuVit-Multi core: Leader dengan 16,650 botol H1 (proven success)<br>
+        • Nuvit-Whey Muscle: 14,720 botol (protein gap 20% masih ada)<br>
+        • Customer Behavior: 65% user lelah juga beli NuVit-Whey Muscle<br>
+        • Cross-selling Rate: 58% user beli 2+ produk (bisa ditingkatkan)<br><br>
+
         
-        <strong>Product Portfolio:</strong><br>
-        • Pea protein isolate blend<br>
-        • Hemp + Chia seed variants<br>
-        • Flavor profiles: Vanilla, Chocolate, Berry<br><br>
+        <strong>Konsep Bundle Energy Booster Pack:</strong><br>
+        • Isi paket: NuVit-Multi Core (90 caps) + NuVit-Whey Muscle (1kg) + NuVit-Omega Premium (90 caps)<br>
+        • Harga individual: Rp 595k total<br>
+        • Harga bundle: Rp 505k (hemat Rp 90k = diskon 15%)<br>
+        • Supply duration: 75 hari (compliance period optimal)<br>
+        • Target market: 354 user kelelahan + 200 prevention-focused<br><br>
         
-        <strong>Investment Required:</strong><br>
-        • R&D: Rp 280M<br>
-        • Marketing: Rp 520M<br>
-        • Production setup: Rp 1.1B<br>
-        • Expected ROI: 89% in 18 months
+        <strong">Business Case:</strong><br>
+        • Target Take Rate: 25% dari user eligible = 139 bundle/bulan<br>
+        • Revenue Contribution: Rp 70M monthly dari bundle sales<br>
+        • Average Order Value: Naik +65% vs single product<br>
+        • Customer Lifetime Value: +40% dengan multi-product engagement<br>
+        • Cross-selling Rate: Target naik dari 58% ke 70%<br><br>
+        
+        <strong> Strategi Marketing Bundle:</strong><br>
+        • Scientific Messaging: "3 Nutrisi Utama Anti Lelah dalam 1 Paket"<br>
+        • Value Proposition: Hemat Rp 90k + solusi lengkap<br>
+        • Target Customer: User Multi Core yang sering komplain lelah<br>
+        • Education Focus: Kenapa butuh vitamin + protein + lemak sehat together<br><br>
+        
+        <strong> Implementation Timeline:</strong><br>
+        • Week 1-2: Bundle packaging design + pricing strategy finalization<br>
+        • Week 3-4: Soft launch dengan 50 high-value customers<br>
+        • Week 5-6: Full launch + email campaign 15,000 existing users<br>
+        • Week 7-8: Performance monitoring + optimization berdasarkan take rate<br><br>
+        
+        <strong>Risiko & Mitigasi:</strong><br>
+        • Risiko: Take rate rendah (<15%)<br>
+        • Mitigasi: Extended trial period 30 hari + money-back guarantee<br>
+        • Risiko: Margin pressure dari discount<br>
+        • Mitigasi: Volume economics + customer retention benefits
       `
     },
     3: {
-      title: 'Detail Eco-friendly Packaging',
+      title: 'Detail NuVit-Green Detox Marketing Boost Campaign',
       content: `
-        <strong>Sustainability Initiative:</strong><br>
-        • Consumer demand: 23% prefer eco-packaging<br>
-        • Regulatory compliance: Upcoming plastic regulations<br>
-        • Brand positioning: Premium sustainable health<br><br>
+        <strong> Performance Analysis Green Detox H1:</strong><br>
+        • Total Sales: 15,830 botol (rank #2 - surprise performer!)<br>
+        • Peak Months: February (obesitas trend) + March (detox awareness)<br>
+        • Growth Pattern: +42% YoY dalam kategori detox<br>
+        • Customer Profile: Health-conscious 25-40 tahun dengan disposable income<br>
+        • Seasonal Correlation: Strong performance saat health-focus periods<br><br>
         
-        <strong>Implementation Plan:</strong><br>
-        • Phase 1: Top 5 products (3 months)<br>
-        • Phase 2: All vitamin products (6 months)<br>
-        • Phase 3: Complete portfolio (12 months)<br><br>
+        <strong> Summer Detox Challenge Campaign:</strong><br>
+        • Campaign Theme: "21-Day Summer Body Detox Challenge"<br>
+        • Community Approach: WhatsApp groups untuk peer support<br>
+        • Content Strategy: Daily tips + before/after transformations<br>
+        • Influencer Partnership: 10 health influencers dengan authentic engagement<br>
+        • Educational Focus: Scientific backing + healthy lifestyle integration<br><br>
         
-        <strong>Cost Analysis:</strong><br>
-        • Additional cost: +12% per unit<br>
-        • Price increase potential: +8%<br>
-        • Marketing value: Premium positioning<br>
-        • Long-term savings: Reduced regulatory risks
+        <strong> Investment & ROI Analysis:</strong><br>
+        • Total Campaign Budget: Rp 450M<br>
+        • Breakdown: Digital ads (60%) + Influencer (25%) + Content creation (15%)<br>
+        • Target Additional Sales: 3,000 botol Q3 (+19% vs baseline)<br>
+        • Direct Revenue Uplift: Rp 225M dari incremental sales<br>
+        • Campaign ROI: 150% dalam 3 bulan<br>
+        • Long-term Value: Template untuk seasonal campaigns recurring<br><br>
+        
+        <strong>Digital Campaign Strategy:</strong><br>
+        • Social Media:Instagram + TikTok dengan hashtag #SummerDetoxChallenge<br>
+        • Content Pillars: Education (40%) + Transformation (35%) + Community (25%)<br>
+        • Engagement Tactics: Daily challenges + weekly prizes + expert Q&A<br>
+        • User Generated Content: Before/after photos + testimonials<br><br>
+        
+        <strong>Success Metrics & KPIs:</strong><br>
+        • Campaign Engagement:</strong> Target 15% social media engagement rate<br>
+        • Conversion Rate:</strong> 8% dari campaign traffic ke sales<br>
+        • Community Building:</strong> 500+ active challenge participants<br>
+        • Brand Awareness:</strong> +60% mention dalam health conversations<br>
+        • Customer Acquisition:</strong> 800+ new customers via campaign attribution<br><br>
+        
+        <strong>Execution Timeline:</strong><br>
+        • Pre-Launch (2 weeks): Content creation + influencer onboarding<br>
+        • Launch Week: Massive social media push + PR outreach<br>
+        • Challenge Period (21 days): Daily engagement + community management<br>
+        • Post-Campaign (1 week): Results compilation + testimonial gathering<br><br>
+        
+        <strong >Long-term Strategic Value:</strong><br>
+        • Establish Green Detox sebagai seasonal champion product<br>
+        • Build community database untuk future campaigns<br>
+        • Create content library untuk year-round marketing<br>
+        • Position NutrivIT sebagai lifestyle brand vs supplement seller
       `
     }
   };
@@ -642,7 +1481,7 @@ function exportAsJSON() {
       timestamp: msg.timestamp.toISOString()
     })),
     metadata: {
-      platform: 'NutrivIT AI Analysis',
+      platform: 'NutriVit AI Analysis',
       version: '1.0.0',
       exportedBy: 'Manager'
     }
@@ -663,7 +1502,7 @@ function exportAsText() {
     return `[${time}] ${sender}:\n${msg.text}\n`;
   }).join('\n');
   
-  const header = `NutrivIT AI Analysis Chat Export
+  const header = `NutriVit AI Analysis Chat Export
 Generated: ${new Date().toLocaleString('id-ID')}
 Total Messages: ${chatHistory.length}
 \n${'='.repeat(50)}\n\n`;

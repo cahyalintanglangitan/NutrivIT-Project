@@ -124,7 +124,7 @@
             </div>
             <div class="stat-info">
               <h3>Total Produk</h3>
-              <p class="stat-number" data-target="156">0</p>
+              <p class="stat-number" data-target="8">0</p>
               <span class="stat-change positive">
                 <i class="fas fa-arrow-up"></i> +8% dari bulan lalu
               </span>
@@ -142,9 +142,9 @@
             </div>
             <div class="stat-info">
               <h3>Revenue</h3>
-              <p class="stat-number">Rp 684.2M</p>
+              <p class="stat-number">Rp 3.25B</p>
               <span class="stat-change positive">
-                <i class="fas fa-arrow-up"></i> +22% dari bulan lalu
+                <i class="fas fa-arrow-up"></i> +15% dari bulan lalu
               </span>
               <div class="stat-progress">
                 <div class="progress-bar">
@@ -160,9 +160,9 @@
             </div>
             <div class="stat-info">
               <h3>Keluhan Bulan Ini</h3>
-              <p class="stat-number" data-target="23">0</p>
+              <p class="stat-number" data-target="1044">0</p>
               <span class="stat-change negative">
-                <i class="fas fa-arrow-down"></i> -15% dari bulan lalu
+                <i class="fas fa-arrow-up"></i> +2.2% dari bulan lalu
               </span>
               <div class="stat-progress">
                 <div class="progress-bar">
@@ -177,37 +177,48 @@
         <div class="analytics-section">
           <div class="section-header">
             <h3><i class="fas fa-chart-bar"></i> Analytics Overview</h3>
-            <div class="time-filter">
-              <button class="filter-btn active" data-period="6months">6 Bulan</button>
-              <button class="filter-btn" data-period="year">1 Tahun</button>
-              <button class="filter-btn" data-period="all">Semua</button>
-            </div>
+            
           </div>
 
           <!-- First Row Charts -->
           <div class="charts-row">
             <div class="chart-card large">
-              <div class="chart-header">
-                <h4><i class="fas fa-exclamation-circle"></i> Tren Keluhan Pengguna </h4>
-                <div class="chart-actions">
-                  <button class="chart-btn"><i class="fas fa-expand"></i></button>
-                  <button class="chart-btn"><i class="fas fa-download"></i></button>
-                </div>
-              </div>
-              <div class="chart-container">
-                <canvas id="complaintsChart"></canvas>
-              </div>
-              <div class="chart-insights">
-                <div class="insight-item">
-                  <span class="insight-label">Rata-rata per bulan:</span>
-                  <span class="insight-value">28 keluhan</span>
-                </div>
-                <div class="insight-item">
-                  <span class="insight-label">Trend:</span>
-                  <span class="insight-value positive">Menurun 15%</span>
-                </div>
-              </div>
-            </div>
+  <div class="chart-header">
+    <h4><i class="fas fa-stethoscope"></i> Top Keluhan Gizi</h4>
+    <div class="chart-actions">
+      <div class="month-selector">
+        <label for="monthSelect">Bulan:</label>
+        <select id="monthSelect" class="month-dropdown" onchange="updateComplaintsData()">
+          <option value="januari">Januari 2025</option>
+          <option value="februari">Februari 2025</option>
+          <option value="maret">Maret 2025</option>
+          <option value="april">April 2025</option>
+          <option value="mei">Mei 2025</option>
+          <option value="juni">Juni 2025</option>
+        </select>
+      </div>
+      <button class="chart-btn"><i class="fas fa-expand"></i></button>
+      <button class="chart-btn"><i class="fas fa-download"></i></button>
+    </div>
+  </div>
+  <div class="chart-container">
+    <canvas id="complaintsChart"></canvas>
+  </div>
+  <div class="chart-insights">
+    <div class="insight-item">
+      <span class="insight-label">Total keluhan bulan ini:</span>
+      <span class="insight-value" id="totalComplaints">1,248 keluhan</span>
+    </div>
+    <div class="insight-item">
+      <span class="insight-label">Keluhan tertinggi:</span>
+      <span class="insight-value" id="topComplaint">Mudah Lelah (23.9%)</span>
+    </div>
+    <div class="insight-item">
+      <span class="insight-label">Trend vs bulan lalu:</span>
+      <span class="insight-value positive" id="trendValue">Menurun 8%</span>
+    </div>
+  </div>
+</div>
 
             <div class="chart-card medium">
               <div class="chart-header">
@@ -253,11 +264,11 @@
               <div class="chart-insights">
                 <div class="insight-item">
                   <span class="insight-label">Rata-rata capaian:</span>
-                  <span class="insight-value">78.5%</span>
+                  <span class="insight-value">72.3%</span>
                 </div>
                 <div class="insight-item">
-                  <span class="insight-label">Trend:</span>
-                  <span class="insight-value positive">Meningkat 8%</span>
+                  <span class="insight-label">Defisit terbesar:</span>
+                  <span class="insight-value ">Lemak Sehat (30%)</span>
                 </div>
               </div>
             </div>
@@ -275,12 +286,16 @@
               </div>
               <div class="chart-insights">
                 <div class="insight-item">
-                  <span class="insight-label">Kebutuhan tertinggi:</span>
-                  <span class="insight-value">Protein & Vitamin C</span>
+                  <span class="insight-label">Total defisit:</span>
+                  <span class="insight-value">8.7 ton nutrisi</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Market opportunity:</span>
+                  <span class="insight-value">NuVit-Omega category</span>
                 </div>
                 <div class="insight-item">
                   <span class="insight-label">Trend:</span>
-                  <span class="insight-value positive">Stabil</span>
+                  <span class="insight-value negative">Defisit menurun 37%</span>
                 </div>
               </div>
             </div>
@@ -303,42 +318,42 @@
                 <div class="product-stat">
                   <div class="product-rank">#1</div>
                   <div class="product-info">
-                    <h5>Vitamin C 1000mg</h5>
-                    <p>2,450 terjual bulan ini</p>
+                    <h5>NuVit-Multi Core</h5>
+                    <p>3,250 terjual bulan ini</p>
                   </div>
-                  <div class="product-growth positive">+18%</div>
+                  <div class="product-growth positive">+32%</div>
                 </div>
                 <div class="product-stat">
                   <div class="product-rank">#2</div>
                   <div class="product-info">
-                    <h5>Whey Protein</h5>
-                    <p>1,890 terjual bulan ini</p>
+                    <h5>NuVit-Whey Muscle</h5>
+                    <p>2,980 terjual bulan ini</p>
                   </div>
-                  <div class="product-growth positive">+12%</div>
+                  <div class="product-growth positive">+28%</div>
                 </div>
                 <div class="product-stat">
                   <div class="product-rank">#3</div>
                   <div class="product-info">
-                    <h5>Omega 3 Premium</h5>
-                    <p>1,650 terjual bulan ini</p>
+                    <h5>NuVit-Honey Natural</h5>
+                    <p>1,850 terjual bulan ini</p>
                   </div>
-                  <div class="product-growth positive">+8%</div>
+                  <div class="product-growth positive">+18%</div>
                 </div>
                 <div class="product-stat">
                   <div class="product-rank">#4</div>
                   <div class="product-info">
-                    <h5>Multivitamin Daily</h5>
-                    <p>1,420 terjual bulan ini</p>
+                    <h5>NuVit-Omega Brain</h5>
+                    <p>1,720 terjual bulan ini</p>
                   </div>
-                  <div class="product-growth positive">+5%</div>
+                  <div class="product-growth positive">+12%</div>
                 </div>
                 <div class="product-stat">
                   <div class="product-rank">#5</div>
                   <div class="product-info">
-                    <h5>BCAA Complex</h5>
-                    <p>1,180 terjual bulan ini</p>
+                    <h5>NuVit-C Boost</h5>
+                    <p>1,450 terjual bulan ini</p>
                   </div>
-                  <div class="product-growth negative">-2%</div>
+                  <div class="product-growth positive">+8%</div>
                 </div>
               </div>
             </div>

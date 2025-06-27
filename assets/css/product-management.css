@@ -9,7 +9,6 @@
 body {
   background: #f4f6fc;
   height: 100vh;
-  overflow: hidden;
 }
 
 .dashboard-container {
@@ -245,7 +244,6 @@ body {
 
 .content-section {
   padding: 30px;
-  overflow-y: auto;
   flex: 1;
   background: #f8f9fa;
 }
@@ -696,17 +694,13 @@ body {
   color: #1e40af;
 }
 
-.category-suplemen {
-  background: #dcfce7;
-  color: #166534;
-}
 
 .category-herbal {
   background: #fef3c7;
   color: #92400e;
 }
 
-.category-diet {
+.category-fitness {
   background: #fce7f3;
   color: #be185d;
 }

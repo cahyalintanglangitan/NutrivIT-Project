@@ -15,84 +15,109 @@ let categoryChart = null;
 const sampleProducts = [
     {
         id: 1,
-        name: "Vitamin C 1000mg",
-        description: "High potency vitamin C supplement",
-        category: "Vitamin",
+        name: "NuVit-C Boost",
+        description: "High potency vitamin C supplement for immunity boost",
+        category: "Vitamin & Suplemen",
         price: 125000,
         stock: 850,
-        sales: 1245,
+        sales: 2500,
         rating: 4.8,
         status: "active",
         image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=100&h=100&fit=crop",
-        sku: "VIT-C-1000"
+        sku: "NUV-C-1000"
     },
     {
         id: 2,
-        name: "Omega-3 Fish Oil",
-        description: "Essential fatty acids supplement",
-        category: "Suplemen",
-        price: 180000,
-        stock: 45,
-        sales: 892,
-        rating: 4.6,
-        status: "active",
-        image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=100&h=100&fit=crop",
-        sku: "OMG-FO-500"
-    },
-    {
-        id: 3,
-        name: "Turmeric Extract",
-        description: "Natural anti-inflammatory supplement",
-        category: "Herbal",
-        price: 95000,
-        stock: 12,
-        sales: 654,
-        rating: 4.7,
-        status: "active",
-        image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=100&h=100&fit=crop",
-        sku: "TUR-EXT-250"
-    },
-    {
-        id: 4,
-        name: "Protein Shake Vanilla",
-        description: "Whey protein isolate powder",
-        category: "Diet",
-        price: 340000,
-        stock: 128,
-        sales: 423,
-        rating: 4.4,
-        status: "active",
-        image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=100&h=100&fit=crop",
-        sku: "PRO-VAN-1KG"
-    },
-    {
-        id: 5,
-        name: "Green Tea Extract",
-        description: "Antioxidant rich green tea capsules",
-        category: "Herbal",
-        price: 75000,
-        stock: 0,
-        sales: 234,
-        rating: 4.2,
-        status: "inactive",
-        image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=100&h=100&fit=crop",
-        sku: "GTE-CAP-60"
-    },
-    {
-        id: 6,
-        name: "Multivitamin Complex",
-        description: "Complete daily vitamin supplement",
-        category: "Vitamin",
+        name: "NuVit-Multi Core",
+        description: "Complete daily vitamin & mineral supplement",
+        category: "Vitamin & Suplemen",
         price: 165000,
         stock: 234,
-        sales: 876,
+        sales: 1400,
         rating: 4.5,
         status: "active",
         image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=100&h=100&fit=crop",
-        sku: "MVI-CPX-90"
+        sku: "NUV-MUL-90"
+    },
+    {
+        id: 3,
+        name: "NuVit-Omega Brain",
+        description: "Premium omega-3 for brain & heart health",
+        category: "Vitamin & Suplemen",
+        price: 180000,
+        stock: 145,
+        sales: 1650,
+        rating: 4.6,
+        status: "active",
+        image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=100&h=100&fit=crop",
+        sku: "NUV-OMG-500"
+    },
+    {
+        id: 4,
+        name: "NuVit-Curcuma Gold",
+        description: "Natural anti-inflammatory turmeric extract",
+        category: "Herbal & Natural",
+        price: 95000,
+        stock: 186,
+        sales: 1000,
+        rating: 4.7,
+        status: "active",
+        image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=100&h=100&fit=crop",
+        sku: "NUV-CUR-250"
+    },
+    {
+        id: 5,
+        name: "NuVit-Honey Natural",
+        description: "Pure natural honey for energy & wellness",
+        category: "Herbal & Natural",
+        price: 85000,
+        stock: 92,
+        sales: 850,
+        rating: 4.4,
+        status: "active",
+        image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=100&h=100&fit=crop",
+        sku: "NUV-HON-500"
+    },
+    {
+        id: 6,
+        name: "NuVit-Green Detox",
+        description: "Organic green tea extract for detox & metabolism",
+        category: "Herbal & Natural",
+        price: 75000,
+        stock: 67,
+        sales: 700,
+        rating: 4.2,
+        status: "active",
+        image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=100&h=100&fit=crop",
+        sku: "NUV-GRN-60"
+    },
+    {
+        id: 7,
+        name: "NuVit-Whey Muscle",
+        description: "Premium whey protein isolate for muscle building",
+        category: "Fitness & Protein",
+        price: 340000,
+        stock: 89,
+        sales: 1900,
+        rating: 4.7,
+        status: "active",
+        image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=100&h=100&fit=crop",
+        sku: "NUV-WHY-1KG"
+    },
+    {
+        id: 8,
+        name: "NuVit-BCAA Recovery",
+        description: "Advanced BCAA complex for workout recovery",
+        category: "Fitness & Protein",
+        price: 225000,
+        stock: 124,
+        sales: 1200,
+        rating: 4.5,
+        status: "active",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100&h=100&fit=crop",
+        sku: "NUV-BCA-300"
     }
 ];
-
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     products = [...sampleProducts];
@@ -388,8 +413,8 @@ function getCategoryDistribution() {
     // Make sure we have products to analyze
     if (!products || products.length === 0) {
         return {
-            labels: ['Vitamin', 'Suplemen', 'Herbal', 'Diet'],
-            data: [2, 1, 2, 1] // Default data
+            labels: ['Vitamin & Suplemen', 'Herbal & Natural', 'Fitness & Protein'],
+            data: [2, 2, 1] // Default data
         };
     }
     
@@ -402,8 +427,8 @@ function getCategoryDistribution() {
     // If no categories found, use default
     if (Object.keys(categories).length === 0) {
         return {
-            labels: ['Vitamin', 'Suplemen', 'Herbal', 'Diet'],
-            data: [2, 1, 2, 1]
+            labels: ['Vitamin & Suplemen', 'Herbal & Natural', 'Fitness & Protein'],
+            data: [2, 2, 1]
         };
     }
     

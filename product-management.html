@@ -100,7 +100,7 @@
     .badge.Vitamin { background: #6c5ce7; }
     .badge.Suplemen { background: #00b894; }
     .badge.Herbal { background: #e17055; }
-    .badge.Diet { background: #fd79a8; }
+    .badge.fitness { background: #fd79a8; }
 
     .status.active { color: green; font-weight: bold; }
     .status.inactive { color: red; font-weight: bold; }
@@ -164,17 +164,17 @@
     <div class="stats-cards">
       <div class="card">
         <h3>Total Products</h3>
-        <p>6</p>
-        <small>↑ +15% dari bulan lalu</small>
+        <p>8</p>
+        <small>↑ +8% dari bulan lalu</small>
       </div>
       <div class="card">
         <h3>Total Revenue</h3>
-        <p>Rp 684.2M</p>
-        <small>↑ +22% tingkat penjualan</small>
+        <p>Rp 3.25B</p>
+        <small>↑ +15% dari bulan lalu</small>
       </div>
       <div class="card">
         <h3>Best Seller</h3>
-        <p>Vitamin C 1000mg</p>
+        <p>NuVit-Multi Core </p>
         <small>1,245 terjual bulan ini</small>
       </div>
       <div class="card">
@@ -212,65 +212,86 @@
         </thead>
         <tbody>
         <tr>
-          <td>Vitamin C 1000mg</td>
-          <td><span class="badge Vitamin">Vitamin</span></td>
+          <td>NuVit-C Boost </td>
+          <td><span class="badge Vitamin">Vitamin & Suplemen</span></td>
           <td>Rp 125,000</td>
           <td>850</td>
-          <td>1,245</td>
+          <td>14,230</td>
           <td>4.8</td>
           <td><span class="status active">Active</span></td>
           <td><button class="action-btn"><i class="fas fa-eye"></i></button></td>
         </tr>
         <tr>
-          <td>Omega-3 Fish Oil</td>
-          <td><span class="badge Suplemen">Suplemen</span></td>
+          <td>NuVit-Omega Brain</td>
+          <td><span class="badge Vitamin">Vitamin & Suplemen</span></td>
           <td>Rp 180,000</td>
-          <td>45</td>
-          <td>892</td>
+          <td>145</td>
+          <td>11,890</td>
           <td>4.6</td>
           <td><span class="status active">Active</span></td>
           <td><button class="action-btn"><i class="fas fa-eye"></i></button></td>
         </tr>
         <tr>
-          <td>Turmeric Extract</td>
-          <td><span class="badge Herbal">Herbal</span></td>
+          <td>NuVit-Curcuma Gold</td>
+          <td><span class="badge Herbal">Herbal & Natural</span></td>
           <td>Rp 95,000</td>
-          <td>12</td>
-          <td>654</td>
+          <td>186</td>
+          <td>8,450</td>
           <td>4.7</td>
           <td><span class="status active">Active</span></td>
           <td><button class="action-btn"><i class="fas fa-eye"></i></button></td>
         </tr>
         <tr>
-          <td>Protein Shake Vanilla</td>
-          <td><span class="badge Diet">Diet</span></td>
+          <td>NuVit-Whey Muscle</td>
+          <td><span class="badge fitness">Fitness & Protein</span></td>
           <td>Rp 340,000</td>
-          <td>128</td>
-          <td>423</td>
+          <td>5000</td>
+          <td>14,720</td>
           <td>4.4</td>
           <td><span class="status active">Active</span></td>
           <td><button class="action-btn"><i class="fas fa-eye"></i></button></td>
         </tr>
         <tr>
-          <td>Green Tea Extract</td>
-          <td><span class="badge Herbal">Herbal</span></td>
+          <td>NuVit-Green Detox</td>
+          <td><span class="badge Herbal">Herbal & Natural</span></td>
           <td>Rp 75,000</td>
-          <td>0</td>
-          <td>234</td>
+          <td>6700</td>
+          <td>15,830</td>
           <td>4.2</td>
-          <td><span class="status inactive">Inactive</span></td>
+          <td><span class="status active">Active</span></td>
           <td><button class="action-btn"><i class="fas fa-eye"></i></button></td>
         </tr>
         <tr>
-          <td>Multivitamin Complex</td>
-          <td><span class="badge Vitamin">Vitamin</span></td>
+          <td>NuVit-Multi Core</td>
+          <td><span class="badge Vitamin">Vitamin & Suplemen</span></td>
           <td>Rp 165,000</td>
           <td>234</td>
-          <td>876</td>
+          <td>16,650</td>
           <td>4.5</td>
           <td><span class="status active">Active</span></td>
           <td><button class="action-btn"><i class="fas fa-eye"></i></button></td>
         </tr>
+        <tr>
+          <td>NuVit-Honey Natural</td>
+          <td><span class="badge Herbal">Herbal & Natural</span></td>
+          <td>Rp 85,000</td>
+          <td>920</td>
+          <td>10,380</td>
+          <td>4.4</td>
+          <td><span class="status active">Active</span></td>
+          <td><button class="action-btn"><i class="fas fa-eye"></i></button></td>
+        </tr>
+        <tr>
+          <td>NuVit-BCAA Recovery</td>
+          <td><span class="badge fitness">Fitness & Protein</span></td>
+          <td>Rp 225,000</td>
+          <td>1240</td>
+          <td>7,920</td>
+          <td>4.</td>
+          <td><span class="status active">Active</span></td>
+          <td><button class="action-btn"><i class="fas fa-eye"></i></button></td>
+        </tr>
+        
         </tbody>
       </table>
     </div>
@@ -299,9 +320,9 @@
   new Chart(ctx2, {
     type: 'doughnut',
     data: {
-      labels: ['Vitamin', 'Suplemen', 'Herbal', 'Diet'],
+      labels: ['Vitamin & Suplemen', 'Herbal & Natural', 'Fitness & Protein'],
       datasets: [{
-        data: [2, 1, 2, 1],
+        data: [2, 2, 1],
         backgroundColor: ['#6c5ce7', '#00b894', '#e17055', '#fd79a8']
       }]
     }
