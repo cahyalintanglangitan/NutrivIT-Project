@@ -28,7 +28,7 @@ const usersData = [
     productsBought: 18,
     lastPurchase: "3 hari lalu",
     avgRating: 4.6,
-    totalReviews: 12
+    totalReviews: 12,
   },
   {
     id: 2,
@@ -56,7 +56,7 @@ const usersData = [
     productsBought: 8,
     lastPurchase: "1 minggu lalu",
     avgRating: 4.2,
-    totalReviews: 6
+    totalReviews: 6,
   },
   {
     id: 3,
@@ -84,7 +84,7 @@ const usersData = [
     productsBought: 25,
     lastPurchase: "1 hari lalu",
     avgRating: 4.8,
-    totalReviews: 20
+    totalReviews: 20,
   },
   {
     id: 4,
@@ -112,7 +112,7 @@ const usersData = [
     productsBought: 12,
     lastPurchase: "5 hari lalu",
     avgRating: 4.5,
-    totalReviews: 9
+    totalReviews: 9,
   },
   {
     id: 5,
@@ -140,50 +140,53 @@ const usersData = [
     productsBought: 5,
     lastPurchase: "2 minggu lalu",
     avgRating: 3.9,
-    totalReviews: 3
-  }
+    totalReviews: 3,
+  },
 ];
 
-let currentFilter = 'all';
+let currentFilter = "all";
 let currentUser = null;
 
 // Initialize page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Set current date
-  document.getElementById('current-date').textContent = new Date().toLocaleDateString('id-ID', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+  document.getElementById("current-date").textContent =
+    new Date().toLocaleDateString("id-ID", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
 
   // Check authentication
-  if (!localStorage.getItem('auth')) {
-    window.location.href = 'login.html';
+  if (!localStorage.getItem("auth")) {
+    window.location.href = "login.html";
   }
 
   // Load users data
   loadUsersTable();
-  
+
   // Setup search functionality
-  document.getElementById('user-search').addEventListener('input', handleSearch);
+  document
+    .getElementById("user-search")
+    .addEventListener("input", handleSearch);
 });
 
 // Load users table
 function loadUsersTable() {
-  const tbody = document.getElementById('users-tbody');
+  const tbody = document.getElementById("users-tbody");
   let filteredUsers = usersData;
 
   // Apply filter
-  if (currentFilter !== 'all') {
-    filteredUsers = usersData.filter(user => {
-      switch(currentFilter) {
-        case 'active':
-          return user.status === 'active';
-        case 'consultation':
-          return user.consultationStatus === 'active';
-        case 'premium':
-          return user.type === 'Premium';
+  if (currentFilter !== "all") {
+    filteredUsers = usersData.filter((user) => {
+      switch (currentFilter) {
+        case "active":
+          return user.status === "active";
+        case "consultation":
+          return user.consultationStatus === "active";
+        case "premium":
+          return user.type === "Premium";
         default:
           return true;
       }
@@ -191,20 +194,26 @@ function loadUsersTable() {
   }
 
   // Apply search
-  const searchTerm = document.getElementById('user-search').value.toLowerCase();
+  const searchTerm = document.getElementById("user-search").value.toLowerCase();
   if (searchTerm) {
-    filteredUsers = filteredUsers.filter(user => 
-      user.name.toLowerCase().includes(searchTerm) ||
-      user.email.toLowerCase().includes(searchTerm)
+    filteredUsers = filteredUsers.filter(
+      (user) =>
+        user.name.toLowerCase().includes(searchTerm) ||
+        user.email.toLowerCase().includes(searchTerm)
     );
   }
 
   // Generate table rows
-  tbody.innerHTML = filteredUsers.map(user => `
+  tbody.innerHTML = filteredUsers
+    .map(
+      (user) => `
     <tr onclick="openUserDetail(${user.id})">
       <td>
         <div class="user-cell">
-          <div class="user-avatar-small">${user.name.split(' ').map(n => n[0]).join('')}</div>
+          <div class="user-avatar-small">${user.name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")}</div>
           <span>${user.name}</span>
         </div>
       </td>
@@ -213,45 +222,57 @@ function loadUsersTable() {
       <td>
         <span class="status ${user.status}">
           <i class="fas fa-circle"></i> 
-          ${user.status === 'active' ? 'Aktif' : 'Nonaktif'}
+          ${user.status === "active" ? "Aktif" : "Nonaktif"}
         </span>
       </td>
       <td>
         <div class="nutrition-progress">
           <div class="nutrition-bar">
-            <div class="nutrition-fill" style="width: ${user.nutritionProgress}%"></div>
+            <div class="nutrition-fill" style="width: ${
+              user.nutritionProgress
+            }%"></div>
           </div>
           ${user.nutritionProgress}%
         </div>
       </td>
       <td>
         <span class="consultation-badge ${user.consultationStatus}">
-          ${user.consultationStatus === 'active' ? 'Aktif' : 'Nonaktif'}
+          ${user.consultationStatus === "active" ? "Aktif" : "Nonaktif"}
         </span>
       </td>
       <td>
-        <button class="btn-small" onclick="event.stopPropagation(); openUserDetail(${user.id})">
+        <button class="btn-small" onclick="event.stopPropagation(); openUserDetail(${
+          user.id
+        })">
           <i class="fas fa-eye"></i>
         </button>
-        <button class="btn-small" onclick="event.stopPropagation(); editUser(${user.id})">
+        <button class="btn-small" onclick="event.stopPropagation(); editUser(${
+          user.id
+        })">
           <i class="fas fa-edit"></i>
         </button>
-        <button class="btn-small btn-danger" onclick="event.stopPropagation(); deleteUser(${user.id})">
+        <button class="btn-small btn-danger" onclick="event.stopPropagation(); deleteUser(${
+          user.id
+        })">
           <i class="fas fa-trash"></i>
         </button>
       </td>
     </tr>
-  `).join('');
+  `
+    )
+    .join("");
 }
 
 // Filter users
 function filterUsers(filter) {
   currentFilter = filter;
-  
+
   // Update active filter button
-  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-  
+  document
+    .querySelectorAll(".filter-btn")
+    .forEach((btn) => btn.classList.remove("active"));
+  event.target.classList.add("active");
+
   loadUsersTable();
 }
 
@@ -262,67 +283,69 @@ function handleSearch() {
 
 // Open user detail modal
 function openUserDetail(userId) {
-  currentUser = usersData.find(user => user.id === userId);
+  currentUser = usersData.find((user) => user.id === userId);
   if (!currentUser) return;
 
   // Show modal
-  document.getElementById('userModal').style.display = 'block';
-  
+  document.getElementById("userModal").style.display = "block";
+
   // Update modal title
-  document.getElementById('modal-title').textContent = `Detail Pengguna - ${currentUser.name}`;
-  
+  document.getElementById(
+    "modal-title"
+  ).textContent = `Detail Pengguna - ${currentUser.name}`;
+
   // Load profile data
   loadProfileTab();
-  
+
   // Show profile tab by default
-  showTab('profile');
+  showTab("profile");
 }
 
 // Close user modal
 function closeUserModal() {
-  document.getElementById('userModal').style.display = 'none';
+  document.getElementById("userModal").style.display = "none";
   currentUser = null;
 }
 
 // Open user modal for new user
 function openUserModal() {
   // This would open a form for adding new user
-  alert('Fitur tambah user baru akan segera hadir!');
+  alert("Fitur tambah user baru akan segera hadir!");
 }
 
 // Show specific tab
 function showTab(tabName) {
   // Hide all tab contents
-  document.querySelectorAll('.tab-content').forEach(content => {
-    content.classList.remove('active');
+  document.querySelectorAll(".tab-content").forEach((content) => {
+    content.classList.remove("active");
   });
-  
+
   // Remove active class from all tab buttons
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.remove('active');
+  document.querySelectorAll(".tab-btn").forEach((btn) => {
+    btn.classList.remove("active");
   });
-  
+
   // Show selected tab content
-  document.getElementById(`${tabName}-tab`).classList.add('active');
-  
+  document.getElementById(`${tabName}-tab`).classList.add("active");
+
   // Add active class to clicked tab button
-  event.target.classList.add('active');
-  
+  event.target.classList.add("active");
+
   // Load tab-specific data
-  switch(tabName) {
-    case 'profile':
+  switch (tabName) {
+    case "profile":
       loadProfileTab();
       break;
-    case 'health':
+    case "health":
       loadHealthTab();
       break;
-    case 'consultation':
+    case "consultation":
       loadConsultationTab();
       break;
-    case 'purchases':
+    case "purchases":
       loadPurchasesTab();
       break;
-    case 'reviews':
+    case "reviews":
       loadReviewsTab();
       break;
   }
@@ -331,55 +354,67 @@ function showTab(tabName) {
 // Load profile tab data
 function loadProfileTab() {
   if (!currentUser) return;
-  
-  document.getElementById('user-name').textContent = currentUser.name;
-  document.getElementById('user-email').textContent = currentUser.email;
-  document.getElementById('user-phone').textContent = currentUser.phone;
-  document.getElementById('user-address').textContent = currentUser.address;
-  document.getElementById('user-age').textContent = currentUser.age + ' tahun';
-  document.getElementById('user-gender').textContent = currentUser.gender;
-  document.getElementById('user-height').textContent = currentUser.height;
-  document.getElementById('user-weight').textContent = currentUser.weight;
-  document.getElementById('user-bmi').textContent = currentUser.bmi;
-  document.getElementById('user-type').textContent = currentUser.type;
+
+  document.getElementById("user-name").textContent = currentUser.name;
+  document.getElementById("user-email").textContent = currentUser.email;
+  document.getElementById("user-phone").textContent = currentUser.phone;
+  document.getElementById("user-address").textContent = currentUser.address;
+  document.getElementById("user-age").textContent = currentUser.age + " tahun";
+  document.getElementById("user-gender").textContent = currentUser.gender;
+  document.getElementById("user-height").textContent = currentUser.height;
+  document.getElementById("user-weight").textContent = currentUser.weight;
+  document.getElementById("user-bmi").textContent = currentUser.bmi;
+  document.getElementById("user-type").textContent = currentUser.type;
 }
 
 // Load health tab data
 function loadHealthTab() {
   if (!currentUser) return;
-  
-  document.getElementById('daily-calories').textContent = currentUser.dailyCalories;
-  document.getElementById('hydration').textContent = currentUser.hydration;
-  document.getElementById('activity').textContent = currentUser.activity;
+
+  document.getElementById("daily-calories").textContent =
+    currentUser.dailyCalories;
+  document.getElementById("hydration").textContent = currentUser.hydration;
+  document.getElementById("activity").textContent = currentUser.activity;
 }
 
 // Load consultation tab data
 function loadConsultationTab() {
   if (!currentUser) return;
-  
+
   // Update consultation stats
-  document.querySelector('.consult-stat:nth-child(1) .stat-value').textContent = currentUser.totalConsultations;
-  document.querySelector('.consult-stat:nth-child(2) .stat-value').textContent = currentUser.avgDuration;
-  document.querySelector('.consult-stat:nth-child(3) .stat-value').textContent = currentUser.satisfactionRating + '/5';
+  document.querySelector(".consult-stat:nth-child(1) .stat-value").textContent =
+    currentUser.totalConsultations;
+  document.querySelector(".consult-stat:nth-child(2) .stat-value").textContent =
+    currentUser.avgDuration;
+  document.querySelector(".consult-stat:nth-child(3) .stat-value").textContent =
+    currentUser.satisfactionRating + "/5";
 }
 
 // Load purchases tab data
 function loadPurchasesTab() {
   if (!currentUser) return;
-  
+
   // Update purchase stats
-  document.querySelector('.purchase-stat:nth-child(1) .stat-value').textContent = currentUser.totalPurchases;
-  document.querySelector('.purchase-stat:nth-child(2) .stat-value').textContent = currentUser.productsBought + ' item';
-  document.querySelector('.purchase-stat:nth-child(3) .stat-value').textContent = currentUser.lastPurchase;
+  document.querySelector(
+    ".purchase-stat:nth-child(1) .stat-value"
+  ).textContent = currentUser.totalPurchases;
+  document.querySelector(
+    ".purchase-stat:nth-child(2) .stat-value"
+  ).textContent = currentUser.productsBought + " item";
+  document.querySelector(
+    ".purchase-stat:nth-child(3) .stat-value"
+  ).textContent = currentUser.lastPurchase;
 }
 
 // Load reviews tab data
 function loadReviewsTab() {
   if (!currentUser) return;
-  
+
   // Update review stats
-  document.querySelector('.review-stat:nth-child(1) .stat-value').textContent = currentUser.avgRating + '/5';
-  document.querySelector('.review-stat:nth-child(2) .stat-value').textContent = currentUser.totalReviews;
+  document.querySelector(".review-stat:nth-child(1) .stat-value").textContent =
+    currentUser.avgRating + "/5";
+  document.querySelector(".review-stat:nth-child(2) .stat-value").textContent =
+    currentUser.totalReviews;
 }
 
 // Edit user
@@ -389,23 +424,25 @@ function editUser(userId) {
 
 // Delete user
 function deleteUser(userId) {
-  if (confirm('Apakah Anda yakin ingin menghapus user ini?')) {
-    alert(`User dengan ID ${userId} telah dihapus!\n(Simulasi - data tidak benar-benar dihapus)`);
+  if (confirm("Apakah Anda yakin ingin menghapus user ini?")) {
+    alert(
+      `User dengan ID ${userId} telah dihapus!\n(Simulasi - data tidak benar-benar dihapus)`
+    );
   }
 }
 
 // Logout functionality
 function handleLogout() {
-  if (confirm('Apakah Anda yakin ingin keluar?')) {
-    localStorage.removeItem('auth');
-    window.location.href = 'login.html';
+  if (confirm("Apakah Anda yakin ingin keluar?")) {
+    localStorage.removeItem("auth");
+    window.location.href = "login.html";
   }
 }
 
 // Close modal when clicking outside
-window.onclick = function(event) {
-  const modal = document.getElementById('userModal');
+window.onclick = function (event) {
+  const modal = document.getElementById("userModal");
   if (event.target === modal) {
     closeUserModal();
   }
-}
+};

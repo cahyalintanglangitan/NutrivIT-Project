@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Analysis - NutrivIT</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="./assets/css/dashboard.css" />
   <link rel="stylesheet" href="./assets/css/ai-analysis.css" />
-   <script src="assets/js/dashboard.js"></script>
+  <script src="assets/js/dashboard.js"></script>
 </head>
+
 <body>
-    <div class="dashboard-container">
+  <div class="dashboard-container">
     <!-- Sidebar -->
     <div class="sidebar">
       <div class="sidebar-header">
         <h1><i class="fas fa-leaf"></i> NutriVit</h1>
         <p class="subtitle">Management System</p>
       </div>
-      
+
       <nav class="sidebar-nav">
         <a href="dashboard.html" class="nav-item">
           <i class="fas fa-chart-pie nav-icon"></i>
@@ -36,7 +38,7 @@
           Manajerial AI
         </a>
       </nav>
-      
+
       <div class="sidebar-footer" onclick="handleProfile()" style="cursor: pointer;">
         <div class="user-info">
           <div class="user-avatar">
@@ -159,7 +161,8 @@
               </div>
               <div class="message-content">
                 <div class="message-text">
-                  Halo! Saya AI Assistant NutriVit. Saya siap membantu Anda menganalisis tren kesehatan dan memberikan rekomendasi strategis untuk pengembangan produk. Apa yang ingin Anda ketahui hari ini?
+                  Halo! Saya AI Assistant NutriVit. Saya siap membantu Anda menganalisis tren kesehatan dan memberikan
+                  rekomendasi strategis untuk pengembangan produk. Apa yang ingin Anda ketahui hari ini?
                 </div>
                 <div class="message-time">
                   <span id="welcome-time"></span>
@@ -188,11 +191,9 @@
             </div>
 
             <div class="input-box">
-              <textarea 
-                id="user-input" 
+              <textarea id="user-input"
                 placeholder="Tanyakan tentang strategi berdasarkan data dashboard: keluhan gizi, gap nutrisi, performa produk, atau peluang pengembangan..."
-                rows="3"
-              ></textarea>
+                rows="3"></textarea>
               <button class="send-btn" onclick="sendMessage()" id="send-btn">
                 <i class="fas fa-paper-plane"></i>
               </button>
@@ -291,7 +292,9 @@
                 <div class="recommendation-time">2 jam lalu</div>
               </div>
               <h4>Ekspansi Portfolio Lemak Sehat</h4>
-              <p>Data menunjukkan 30% defisit lemak sehat konsisten selama 6 bulan, menyebabkan kelelahan kronis dominan. Launch NuVit-Omega Premium dengan formula advanced EPA/DHA. Proyeksi: mengurangi gap 40% dan boost revenue 25%.</p>
+              <p>Data menunjukkan 30% defisit lemak sehat konsisten selama 6 bulan, menyebabkan kelelahan kronis
+                dominan. Launch NuVit-Omega Premium dengan formula advanced EPA/DHA. Proyeksi: mengurangi gap 40% dan
+                boost revenue 25%.</p>
               <div class="recommendation-actions">
                 <button class="action-btn accept" onclick="acceptRecommendation(1)">
                   <i class="fas fa-check"></i> Terima
@@ -311,7 +314,8 @@
                 <div class="recommendation-time">5 jam lalu</div>
               </div>
               <h4>Bundle Strategy: Energy Booster Pack</h4>
-              <p>Multi Core (leader 16.6k unit) + Whey Muscle (protein gap 20%) = perfect combo untuk kelelahan kronis. Create bundle dengan discount 15%, target 2,000 unit Q3. Expected revenue: +Rp 850M.</p>
+              <p>Multi Core (leader 16.6k unit) + Whey Muscle (protein gap 20%) = perfect combo untuk kelelahan kronis.
+                Create bundle dengan discount 15%, target 2,000 unit Q3. Expected revenue: +Rp 850M.</p>
               <div class="recommendation-actions">
                 <button class="action-btn accept" onclick="acceptRecommendation(2)">
                   <i class="fas fa-check"></i> Terima
@@ -331,7 +335,8 @@
                 <div class="recommendation-time">1 hari lalu</div>
               </div>
               <h4>Green Detox Marketing Boost</h4>
-              <p>Green Detox mencapai 15.8k unit (rank #2) karena trend detox February-March. Leverage momentum dengan campaign "Summer Detox Challenge" untuk maintain growth H2.</p>
+              <p>Green Detox mencapai 15.8k unit (rank #2) karena trend detox February-March. Leverage momentum dengan
+                campaign "Summer Detox Challenge" untuk maintain growth H2.</p>
               <div class="recommendation-actions">
                 <button class="action-btn accept" onclick="acceptRecommendation(3)">
                   <i class="fas fa-check"></i> Terima
@@ -349,4 +354,5 @@
 
   <script src="./assets/js/ai-analysis.js"></script>
 </body>
+
 </html>

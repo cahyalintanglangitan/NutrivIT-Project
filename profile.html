@@ -525,18 +525,18 @@
     });
 
     // Tab functionality
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const tabBtns = document.querySelectorAll('.tab-btn');
       const tabPanes = document.querySelectorAll('.tab-pane');
 
       tabBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function () {
           const targetTab = this.getAttribute('data-tab');
-          
+
           // Remove active class from all tabs and panes
           tabBtns.forEach(b => b.classList.remove('active'));
           tabPanes.forEach(p => p.classList.remove('active'));
-          
+
           // Add active class to clicked tab and corresponding pane
           this.classList.add('active');
           document.getElementById(targetTab).classList.add('active');
@@ -548,7 +548,7 @@
       forms.forEach(form => {
         const saveBtn = form.querySelector('.btn-primary');
         if (saveBtn) {
-          saveBtn.addEventListener('click', function(e) {
+          saveBtn.addEventListener('click', function (e) {
             e.preventDefault();
             // Show success message
             showNotification('Pengaturan berhasil disimpan!', 'success');
@@ -565,13 +565,13 @@
         <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
         <span>${message}</span>
       `;
-      
+
       document.body.appendChild(notification);
-      
+
       setTimeout(() => {
         notification.classList.add('show');
       }, 100);
-      
+
       setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => {
@@ -581,15 +581,15 @@
     }
 
     // Avatar upload functionality
-    document.querySelector('.avatar-upload').addEventListener('click', function() {
+    document.querySelector('.avatar-upload').addEventListener('click', function () {
       const input = document.createElement('input');
       input.type = 'file';
       input.accept = 'image/*';
-      input.onchange = function(e) {
+      input.onchange = function (e) {
         const file = e.target.files[0];
         if (file) {
           const reader = new FileReader();
-          reader.onload = function(e) {
+          reader.onload = function (e) {
             // Here you would typically upload the image to server
             showNotification('Foto profil berhasil diupdate!', 'success');
           };

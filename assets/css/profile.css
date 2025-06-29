@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -21,7 +21,7 @@ body {
 /* Sidebar Styles */
 .sidebar {
   width: 280px;
-  background: linear-gradient(135deg, #08A55A 0%, #3FCAEA 100%);
+  background: linear-gradient(135deg, #08a55a 0%, #3fcaea 100%);
   color: white;
   display: flex;
   flex-direction: column;
@@ -30,13 +30,17 @@ body {
 }
 
 .sidebar::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(8, 165, 90, 0.9) 0%, rgba(63, 202, 234, 0.9) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(8, 165, 90, 0.9) 0%,
+    rgba(63, 202, 234, 0.9) 100%
+  );
   backdrop-filter: blur(10px);
 }
 
@@ -83,7 +87,7 @@ body {
 }
 
 .nav-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -249,7 +253,7 @@ body {
 }
 
 .profile-banner {
-  background: linear-gradient(135deg, #08A55A 0%, #3FCAEA 100%);
+  background: linear-gradient(135deg, #08a55a 0%, #3fcaea 100%);
   border-radius: 20px;
   padding: 40px;
   position: relative;
@@ -263,7 +267,11 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at top right, rgba(255,255,255,0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
 }
 
 .profile-info {
@@ -294,7 +302,7 @@ body {
   right: 5px;
   width: 35px;
   height: 35px;
-  background: #08A55A;
+  background: #08a55a;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -369,7 +377,7 @@ body {
 }
 
 .tab-btn.active {
-  background: linear-gradient(135deg, #08A55A, #3FCAEA);
+  background: linear-gradient(135deg, #08a55a, #3fcaea);
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(8, 165, 90, 0.3);
@@ -377,7 +385,7 @@ body {
 
 .tab-btn:hover:not(.active) {
   background: #f8f9fa;
-  color: #08A55A;
+  color: #08a55a;
 }
 
 /* Tab Content */
@@ -469,7 +477,7 @@ body {
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #08A55A;
+  border-color: #08a55a;
   box-shadow: 0 0 0 3px rgba(8, 165, 90, 0.1);
 }
 
@@ -494,7 +502,7 @@ body {
 
 /* Buttons */
 .btn-primary {
-  background: linear-gradient(135deg, #08A55A 0%, #067f47 100%);
+  background: linear-gradient(135deg, #08a55a 0%, #067f47 100%);
   color: white;
   border: none;
   padding: 12px 24px;
@@ -530,8 +538,8 @@ body {
 
 .btn-secondary:hover {
   background: #e9ecef;
-  border-color: #08A55A;
-  color: #08A55A;
+  border-color: #08a55a;
+  color: #08a55a;
 }
 
 /* Password Requirements */
@@ -562,7 +570,7 @@ body {
 }
 
 .password-requirements i {
-  color: #08A55A;
+  color: #08a55a;
   font-size: 12px;
 }
 
@@ -631,7 +639,7 @@ body {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 24px;
 }
 
@@ -643,7 +651,7 @@ body {
   left: 3px;
   bottom: 3px;
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 50%;
 }
 
@@ -655,7 +663,7 @@ body {
 }
 
 input:checked + .toggle-slider {
-  background-color: #08A55A;
+  background-color: #08a55a;
 }
 
 input:checked + .toggle-slider:before {
@@ -791,7 +799,7 @@ input:checked + .toggle-slider:before {
   transform: translateX(400px);
   transition: transform 0.3s ease;
   z-index: 1000;
-  border-left: 4px solid #08A55A;
+  border-left: 4px solid #08a55a;
 }
 
 .notification.show {
@@ -819,7 +827,7 @@ input:checked + .toggle-slider:before {
   .settings-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
   }
@@ -829,44 +837,44 @@ input:checked + .toggle-slider:before {
   .dashboard-container {
     flex-direction: column;
   }
-  
+
   .sidebar {
     width: 100%;
     height: auto;
   }
-  
+
   .main-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
   }
-  
+
   .profile-info {
     flex-direction: column;
     text-align: center;
     gap: 20px;
   }
-  
+
   .profile-stats {
     justify-content: center;
     gap: 20px;
   }
-  
+
   .tab-navigation {
     flex-wrap: wrap;
   }
-  
+
   .tab-btn {
     flex: none;
     min-width: 120px;
   }
-  
+
   .notification-option {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-  
+
   .notification-toggles {
     align-self: flex-end;
   }
@@ -876,23 +884,23 @@ input:checked + .toggle-slider:before {
   .content-section {
     padding: 20px;
   }
-  
+
   .profile-banner {
     padding: 25px;
   }
-  
+
   .settings-form {
     padding: 20px;
   }
-  
+
   .settings-header {
     padding: 20px;
   }
-  
+
   .form-actions {
     flex-direction: column;
   }
-  
+
   .profile-avatar-large {
     width: 100px;
     height: 100px;

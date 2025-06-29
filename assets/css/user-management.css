@@ -46,7 +46,7 @@
 .user-avatar-small {
   width: 32px;
   height: 32px;
-  background: #08A55A;
+  background: #08a55a;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -73,7 +73,7 @@
 
 .nutrition-fill {
   height: 100%;
-  background: linear-gradient(90deg, #08A55A, #3FCAEA);
+  background: linear-gradient(90deg, #08a55a, #3fcaea);
   transition: width 0.3s;
 }
 
@@ -191,8 +191,8 @@
 }
 
 .tab-btn.active {
-  color: #08A55A;
-  border-bottom-color: #08A55A;
+  color: #08a55a;
+  border-bottom-color: #08a55a;
   background: rgba(8, 165, 90, 0.1);
 }
 
@@ -219,7 +219,7 @@
 .profile-avatar {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #08A55A 0%, #3FCAEA 100%);
+  background: linear-gradient(135deg, #08a55a 0%, #3fcaea 100%);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -291,7 +291,7 @@
 
 .health-stat i {
   font-size: 24px;
-  color: #08A55A;
+  color: #08a55a;
 }
 
 .stat-label {
@@ -353,7 +353,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #08A55A, #3FCAEA);
+  background: linear-gradient(90deg, #08a55a, #3fcaea);
   transition: width 0.3s ease;
 }
 
@@ -421,7 +421,7 @@
 
 .consult-stat i {
   font-size: 24px;
-  color: #08A55A;
+  color: #08a55a;
 }
 
 .consultation-history {
@@ -506,7 +506,7 @@
 
 .purchase-stat i {
   font-size: 24px;
-  color: #08A55A;
+  color: #08a55a;
 }
 
 .purchase-history {
@@ -557,7 +557,7 @@
 }
 
 .purchase-details .price {
-  color: #08A55A;
+  color: #08a55a;
   font-weight: 600;
   font-size: 14px;
 }
@@ -581,7 +581,7 @@
 
 .review-stat i {
   font-size: 24px;
-  color: #08A55A;
+  color: #08a55a;
 }
 
 .reviews-list {
@@ -653,44 +653,44 @@
     width: 95%;
     margin: 5% auto;
   }
-  
+
   .user-detail-tabs {
     overflow-x: auto;
     white-space: nowrap;
     padding: 0 15px;
   }
-  
+
   .tab-btn {
     flex-shrink: 0;
     padding: 12px 15px;
   }
-  
+
   .tab-content {
     padding: 15px;
   }
-  
+
   .profile-section {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .info-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .health-stats,
   .consultation-stats,
   .purchase-stats,
   .review-overview {
     grid-template-columns: 1fr;
   }
-  
+
   .purchase-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
-  
+
   .review-header {
     flex-direction: column;
     align-items: flex-start;
@@ -702,26 +702,26 @@
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .filter-section {
     flex-direction: column;
     gap: 15px;
   }
-  
+
   .search-box {
     width: 100%;
   }
-  
+
   .filter-buttons {
     overflow-x: auto;
     white-space: nowrap;
     padding-bottom: 5px;
   }
-  
+
   .filter-btn {
     flex-shrink: 0;
   }
-  
+
   .table-header {
     flex-direction: column;
     gap: 15px;
@@ -796,7 +796,7 @@
   border-radius: 4px;
   cursor: pointer;
   margin-right: 4px;
-  background: #08A55A;
+  background: #08a55a;
   color: white;
   transition: all 0.2s;
   display: inline-flex;
@@ -854,7 +854,7 @@
 
 .search-box input:focus {
   outline: none;
-  border-color: #08A55A;
+  border-color: #08a55a;
   box-shadow: 0 0 0 3px rgba(8, 165, 90, 0.1);
 }
 
@@ -878,14 +878,14 @@
 }
 
 .filter-btn:hover {
-  border-color: #08A55A;
+  border-color: #08a55a;
   background: #f0fff4;
 }
 
 .filter-btn.active {
-  background: #08A55A;
+  background: #08a55a;
   color: white;
-  border-color: #08A55A;
+  border-color: #08a55a;
 }
 
 .filter-btn i {
@@ -967,7 +967,7 @@
 }
 
 .stat-change.positive {
-  color: #08A55A;
+  color: #08a55a;
 }
 
 .stat-change.negative {
@@ -1012,7 +1012,7 @@
 }
 
 .loading::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1020,14 +1020,18 @@
   height: 20px;
   margin: -10px 0 0 -10px;
   border: 2px solid #f3f3f3;
-  border-top: 2px solid #08A55A;
+  border-top: 2px solid #08a55a;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Empty States */
@@ -1101,12 +1105,12 @@
   .filter-section {
     display: none !important;
   }
-  
+
   .main-content {
     margin: 0;
     padding: 0;
   }
-  
+
   .table-container {
     box-shadow: none;
     border: 1px solid #ddd;

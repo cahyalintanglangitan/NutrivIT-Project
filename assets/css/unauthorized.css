@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -82,7 +82,8 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
     opacity: 0.1;
   }
@@ -132,7 +133,7 @@ body {
 
 .logo-icon {
   font-size: 48px;
-  background: linear-gradient(135deg, #08A55A 0%, #3FCAEA 100%);
+  background: linear-gradient(135deg, #08a55a 0%, #3fcaea 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -141,7 +142,7 @@ body {
 .logo-text {
   font-size: 42px;
   font-weight: bold;
-  background: linear-gradient(135deg, #08A55A 0%, #3FCAEA 100%);
+  background: linear-gradient(135deg, #08a55a 0%, #3fcaea 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -200,7 +201,8 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4);
   }
@@ -211,7 +213,8 @@ body {
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -304,7 +307,7 @@ body {
 .detail-value {
   color: #666;
   font-size: 14px;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   background: #e9ecef;
   padding: 4px 8px;
   border-radius: 4px;
@@ -356,7 +359,7 @@ body {
 }
 
 .notice-list li::before {
-  content: '•';
+  content: "•";
   position: absolute;
   left: 0;
   color: #856404;
@@ -373,7 +376,7 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #08A55A 0%, #067f47 100%);
+  background: linear-gradient(135deg, #08a55a 0%, #067f47 100%);
   color: white;
   border: none;
   padding: 15px 25px;
@@ -435,8 +438,8 @@ body {
 
 .btn-tertiary:hover {
   background: #e9ecef;
-  border-color: #08A55A;
-  color: #08A55A;
+  border-color: #08a55a;
+  color: #08a55a;
   transform: translateY(-2px);
 }
 
@@ -490,7 +493,7 @@ body {
 }
 
 .footer-links a {
-  color: #08A55A;
+  color: #08a55a;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -599,14 +602,14 @@ body {
 }
 
 .support-option:hover {
-  border-color: #08A55A;
+  border-color: #08a55a;
   background: #f8fff9;
 }
 
 .support-icon {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #08A55A, #3FCAEA);
+  background: linear-gradient(135deg, #08a55a, #3fcaea);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -622,7 +625,7 @@ body {
 }
 
 .support-details p {
-  color: #08A55A;
+  color: #08a55a;
   font-weight: 600;
   margin-bottom: 3px;
 }
@@ -658,7 +661,7 @@ body {
 
 .quick-report textarea:focus {
   outline: none;
-  border-color: #08A55A;
+  border-color: #08a55a;
 }
 
 /* Responsive Design */
@@ -667,52 +670,52 @@ body {
     padding: 30px 25px;
     margin: 10px;
   }
-  
+
   .logo-icon {
     font-size: 36px;
   }
-  
+
   .logo-text {
     font-size: 32px;
   }
-  
+
   .error-title {
     font-size: 24px;
   }
-  
+
   .error-subtitle {
     font-size: 16px;
   }
-  
+
   .action-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .action-buttons button {
     width: 100%;
     max-width: 250px;
   }
-  
+
   .detail-content {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
   }
-  
+
   .detail-value {
     max-width: 100%;
   }
-  
+
   .support-option {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .modal-content {
     width: 95%;
   }
-  
+
   .modal-header,
   .modal-body {
     padding: 20px;
@@ -723,22 +726,22 @@ body {
   .unauthorized-content {
     padding: 25px 20px;
   }
-  
+
   .error-icon-bg {
     width: 100px;
     height: 100px;
   }
-  
+
   .error-icon {
     font-size: 36px;
   }
-  
+
   .warning-badge {
     width: 35px;
     height: 35px;
     font-size: 16px;
   }
-  
+
   .floating-shape {
     display: none;
   }

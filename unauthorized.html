@@ -45,13 +45,13 @@
         <div class="error-content">
           <h2 class="error-title">Akses Tidak Diizinkan</h2>
           <h3 class="error-subtitle">Unauthorized Access Detected</h3>
-          
+
           <div class="error-message">
             <p class="primary-message">
               Maaf, Anda tidak memiliki izin untuk mengakses halaman ini.
             </p>
             <p class="secondary-message">
-              Sistem telah mendeteksi upaya akses yang tidak sah. Jika Anda merasa ini adalah kesalahan, 
+              Sistem telah mendeteksi upaya akses yang tidak sah. Jika Anda merasa ini adalah kesalahan,
               silakan hubungi administrator sistem.
             </p>
           </div>
@@ -120,7 +120,7 @@
           <!-- Countdown Timer -->
           <div class="countdown-section">
             <p class="countdown-text">
-              Anda akan diarahkan ke halaman login dalam 
+              Anda akan diarahkan ke halaman login dalam
               <span class="countdown-timer" id="countdown">30</span> detik
             </p>
             <div class="countdown-progress">
@@ -187,7 +187,8 @@
           </div>
           <div class="quick-report">
             <h4>Laporkan Masalah Ini</h4>
-            <textarea placeholder="Jelaskan apa yang sedang Anda coba lakukan ketika error ini terjadi..." rows="4"></textarea>
+            <textarea placeholder="Jelaskan apa yang sedang Anda coba lakukan ketika error ini terjadi..."
+              rows="4"></textarea>
             <button class="btn-primary" onclick="submitReport()">
               <i class="fas fa-paper-plane"></i>
               Kirim Laporan
@@ -232,7 +233,7 @@
       countdownElement.textContent = countdown;
       const progress = ((30 - countdown) / 30) * 100;
       progressBar.style.width = progress + '%';
-      
+
       if (countdown <= 0) {
         goToLogin();
       } else {
@@ -272,7 +273,7 @@
     function submitReport() {
       const textarea = document.querySelector('.quick-report textarea');
       const report = textarea.value.trim();
-      
+
       if (report) {
         // Here you would typically send the report to your backend
         alert('Laporan berhasil dikirim. Tim support akan menghubungi Anda segera.');
@@ -299,7 +300,7 @@
         userAgent: navigator.userAgent,
         type: 'unauthorized_access'
       };
-      
+
       // Here you would typically send this to your backend logging system
       console.warn('Unauthorized access attempt logged:', logData);
     }
@@ -314,15 +315,15 @@
     };
 
     // Disable right-click context menu
-    document.addEventListener('contextmenu', function(e) {
+    document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
     });
 
     // Disable F12, Ctrl+Shift+I, Ctrl+U
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'F12' || 
-          (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-          (e.ctrlKey && e.key === 'u')) {
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+        (e.ctrlKey && e.key === 'u')) {
         e.preventDefault();
       }
     });
