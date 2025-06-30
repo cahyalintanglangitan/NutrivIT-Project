@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Jun 2025 pada 11.14
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Generation Time: Jun 30, 2025 at 04:54 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `nutrition_mis`
+-- Database: `nutrivit`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ai_consultations`
+-- Table structure for table `ai_consultations`
 --
 
 CREATE TABLE `ai_consultations` (
@@ -33,25 +33,26 @@ CREATE TABLE `ai_consultations` (
   `consultation_type` enum('nutrition','fitness','supplement','general') DEFAULT 'general',
   `question` text NOT NULL,
   `ai_response` text DEFAULT NULL,
+  `consultation_duration` int(255) NOT NULL,
   `satisfaction_rating` decimal(2,1) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `ai_consultations`
+-- Dumping data for table `ai_consultations`
 --
 
-INSERT INTO `ai_consultations` (`id`, `user_id`, `consultation_type`, `question`, `ai_response`, `satisfaction_rating`, `created_at`) VALUES
-(1, 'USR001', 'nutrition', 'Bagaimana cara meningkatkan protein intake?', 'Anda bisa menambah konsumsi daging tanpa lemak, telur, dan whey protein. Target 1.6-2.2g protein per kg berat badan.', 4.5, '2025-06-24 17:18:32'),
-(2, 'USR002', 'fitness', 'Program latihan untuk pemula?', 'Mulai dengan 3x seminggu, kombinasi cardio dan strength training. Fokus pada form yang benar.', 4.8, '2025-06-24 17:18:32'),
-(3, 'USR004', 'supplement', 'Suplemen apa yang cocok untuk pencernaan?', 'Probiotik dan digestive enzymes bisa membantu. Konsultasikan dengan dokter jika masalah berlanjut.', 4.2, '2025-06-24 17:18:32'),
-(4, 'USR005', 'nutrition', 'Meal prep untuk bulking?', 'Siapkan makanan tinggi kalori: nasi, ayam, sayuran, dan protein shake. Makan setiap 3 jam.', 4.6, '2025-06-24 17:18:32'),
-(5, 'USR001', 'general', 'Tips menjaga konsistensi diet?', 'Buat jadwal makan teratur, meal prep di weekend, dan track progress harian.', 4.3, '2025-06-24 17:18:32');
+INSERT INTO `ai_consultations` (`id`, `user_id`, `consultation_type`, `question`, `ai_response`, `consultation_duration`, `satisfaction_rating`, `created_at`) VALUES
+(1, 'USR001', 'nutrition', 'Bagaimana cara meningkatkan protein intake?', 'Anda bisa menambah konsumsi daging tanpa lemak, telur, dan whey protein. Target 1.6-2.2g protein per kg berat badan.', 0, 4.5, '2025-06-24 17:18:32'),
+(2, 'USR002', 'fitness', 'Program latihan untuk pemula?', 'Mulai dengan 3x seminggu, kombinasi cardio dan strength training. Fokus pada form yang benar.', 0, 4.8, '2025-06-24 17:18:32'),
+(3, 'USR004', 'supplement', 'Suplemen apa yang cocok untuk pencernaan?', 'Probiotik dan digestive enzymes bisa membantu. Konsultasikan dengan dokter jika masalah berlanjut.', 0, 4.2, '2025-06-24 17:18:32'),
+(4, 'USR005', 'nutrition', 'Meal prep untuk bulking?', 'Siapkan makanan tinggi kalori: nasi, ayam, sayuran, dan protein shake. Makan setiap 3 jam.', 0, 4.6, '2025-06-24 17:18:32'),
+(5, 'USR001', 'general', 'Tips menjaga konsistensi diet?', 'Buat jadwal makan teratur, meal prep di weekend, dan track progress harian.', 0, 4.3, '2025-06-24 17:18:32');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nutrition_achievements`
+-- Table structure for table `nutrition_achievements`
 --
 
 CREATE TABLE `nutrition_achievements` (
@@ -71,7 +72,7 @@ CREATE TABLE `nutrition_achievements` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `nutrition_achievements`
+-- Dumping data for table `nutrition_achievements`
 --
 
 INSERT INTO `nutrition_achievements` (`id`, `user_id`, `date`, `calories_target`, `calories_achieved`, `protein_target`, `protein_achieved`, `carbs_target`, `carbs_achieved`, `fat_target`, `fat_achieved`, `percentage_achieved`, `created_at`) VALUES
@@ -85,7 +86,7 @@ INSERT INTO `nutrition_achievements` (`id`, `user_id`, `date`, `calories_target`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
@@ -100,7 +101,7 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `orders`
+-- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`id`, `order_number`, `user_id`, `total_amount`, `status`, `payment_method`, `shipping_address`, `created_at`) VALUES
@@ -114,7 +115,7 @@ INSERT INTO `orders` (`id`, `order_number`, `user_id`, `total_amount`, `status`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `order_items`
+-- Table structure for table `order_items`
 --
 
 CREATE TABLE `order_items` (
@@ -127,7 +128,7 @@ CREATE TABLE `order_items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `order_items`
+-- Dumping data for table `order_items`
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `unit_price`, `total_price`) VALUES
@@ -144,7 +145,7 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `unit_pri
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -155,56 +156,29 @@ CREATE TABLE `products` (
   `price` decimal(12,2) NOT NULL,
   `stock` int(11) DEFAULT 0,
   `image_url` varchar(500) DEFAULT NULL,
+  `product_status` enum('Active','Inactive') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `products`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `category`, `description`, `price`, `stock`, `image_url`, `created_at`, `updated_at`) VALUES
-('PRD001', 'Whey Protein Premium', 'protein', 'High-quality whey protein for muscle building', 299000.00, 45, NULL, '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('PRD002', 'Vitamin C 1000mg', 'vitamin', 'Immune system booster vitamin C tablets', 125000.00, 78, NULL, '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('PRD003', 'Omega-3 Fish Oil', 'supplement', 'Pure fish oil for heart and brain health', 185000.00, 32, NULL, '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('PRD004', 'Multivitamin Complex', 'vitamin', 'Complete daily vitamin and mineral supplement', 75000.00, 67, NULL, '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('PRD005', 'Herbal Detox Tea', 'herbal', 'Natural detox tea blend for cleansing', 95000.00, 89, NULL, '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('PRD006', 'Creatine Monohydrate', 'supplement', 'Pure creatine for strength and power', 150000.00, 56, NULL, '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('PRD007', 'Collagen Peptides', 'supplement', 'Anti-aging collagen supplement', 220000.00, 34, NULL, '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('PRD008', 'Organic Spirulina', 'organic', 'Superfood spirulina powder', 180000.00, 42, NULL, '2025-06-24 17:18:32', '2025-06-24 17:18:32');
+INSERT INTO `products` (`id`, `name`, `category`, `description`, `price`, `stock`, `image_url`, `product_status`, `created_at`, `updated_at`) VALUES
+('PRD001', 'Whey Protein Premium', 'protein', 'High-quality whey protein for muscle building', 299000.00, 45, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('PRD002', 'Vitamin C 1000mg', 'vitamin', 'Immune system booster vitamin C tablets', 125000.00, 78, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('PRD003', 'Omega-3 Fish Oil', 'supplement', 'Pure fish oil for heart and brain health', 185000.00, 32, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('PRD004', 'Multivitamin Complex', 'vitamin', 'Complete daily vitamin and mineral supplement', 75000.00, 67, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('PRD005', 'Herbal Detox Tea', 'herbal', 'Natural detox tea blend for cleansing', 95000.00, 89, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('PRD006', 'Creatine Monohydrate', 'supplement', 'Pure creatine for strength and power', 150000.00, 56, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('PRD007', 'Collagen Peptides', 'supplement', 'Anti-aging collagen supplement', 220000.00, 34, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('PRD008', 'Organic Spirulina', 'organic', 'Superfood spirulina powder', 180000.00, 42, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `product_recommendations`
---
-
-CREATE TABLE `product_recommendations` (
-  `id` int(11) NOT NULL,
-  `user_id` varchar(10) DEFAULT NULL,
-  `product_id` varchar(10) DEFAULT NULL,
-  `recommendation_reason` text DEFAULT NULL,
-  `ai_confidence` decimal(3,2) DEFAULT 0.75,
-  `status` enum('pending','viewed','purchased','ignored') DEFAULT 'pending',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `product_recommendations`
---
-
-INSERT INTO `product_recommendations` (`id`, `user_id`, `product_id`, `recommendation_reason`, `ai_confidence`, `status`, `created_at`) VALUES
-(1, 'USR001', 'PRD006', 'Based on your muscle building goals and current protein intake', 0.85, 'viewed', '2025-06-24 17:18:32'),
-(2, 'USR002', 'PRD007', 'Collagen supplement for anti-aging benefits based on your profile', 0.78, 'pending', '2025-06-24 17:18:32'),
-(3, 'USR004', 'PRD008', 'Spirulina for digestive health and overall wellness', 0.82, 'pending', '2025-06-24 17:18:32'),
-(4, 'USR005', 'PRD006', 'Creatine for strength training enhancement', 0.90, 'purchased', '2025-06-24 17:18:32'),
-(5, 'USR001', 'PRD007', 'Collagen for recovery and joint health', 0.75, 'ignored', '2025-06-24 17:18:32'),
-(6, 'USR002', 'PRD003', 'Omega-3 for heart health maintenance', 0.80, 'viewed', '2025-06-24 17:18:32');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `product_reviews`
+-- Table structure for table `product_reviews`
 --
 
 CREATE TABLE `product_reviews` (
@@ -218,7 +192,7 @@ CREATE TABLE `product_reviews` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `product_reviews`
+-- Dumping data for table `product_reviews`
 --
 
 INSERT INTO `product_reviews` (`id`, `user_id`, `product_id`, `order_id`, `rating`, `review_text`, `created_at`) VALUES
@@ -232,41 +206,43 @@ INSERT INTO `product_reviews` (`id`, `user_id`, `product_id`, `order_id`, `ratin
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` varchar(10) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `gender` enum('male','female') DEFAULT 'male',
   `age` int(11) DEFAULT NULL,
   `weight` decimal(5,2) DEFAULT NULL,
   `height` decimal(5,2) DEFAULT NULL,
+  `member_type` enum('Premium','Reguler') NOT NULL,
   `status` enum('active','inactive','pending') DEFAULT 'active',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `joining_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `gender`, `age`, `weight`, `height`, `status`, `created_at`, `updated_at`) VALUES
-('USR001', 'Andi Pratama', 'andi@email.com', '081234567801', 'male', 28, 70.50, 175.00, 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR002', 'Sari Dewi', 'sari@email.com', '081234567802', 'female', 25, 55.00, 160.00, 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR003', 'Budi Santoso', 'budi@email.com', '081234567803', 'male', 35, 80.00, 170.00, 'inactive', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR004', 'Maya Lestari', 'maya@email.com', '081234567804', 'female', 30, 60.00, 165.00, 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR005', 'Rudi Hermawan', 'rudi@email.com', '081234567805', 'male', 32, 75.00, 178.00, 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR006', 'Lila Sari', 'lila@email.com', '081234567806', 'female', 27, 52.00, 158.00, 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR007', 'Ahmad Fauzi', 'ahmad@email.com', '081234567807', 'male', 29, 68.00, 172.00, 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR008', 'Rina Wati', 'rina@email.com', '081234567808', 'female', 26, 58.00, 162.00, 'pending', '2025-06-24 17:18:32', '2025-06-24 17:18:32');
+INSERT INTO `users` (`id`, `name`, `email`, `password_hash`, `phone`, `gender`, `age`, `weight`, `height`, `member_type`, `status`, `created_at`, `joining_date`) VALUES
+('USR001', 'Andi Pratama', 'andi@email.com', '', '081234567801', 'male', 28, 70.50, 175.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('USR002', 'Sari Dewi', 'sari@email.com', '', '081234567802', 'female', 25, 55.00, 160.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('USR003', 'Budi Santoso', 'budi@email.com', '', '081234567803', 'male', 35, 80.00, 170.00, 'Premium', 'inactive', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('USR004', 'Maya Lestari', 'maya@email.com', '', '081234567804', 'female', 30, 60.00, 165.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('USR005', 'Rudi Hermawan', 'rudi@email.com', '', '081234567805', 'male', 32, 75.00, 178.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('USR006', 'Lila Sari', 'lila@email.com', '', '081234567806', 'female', 27, 52.00, 158.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('USR007', 'Ahmad Fauzi', 'ahmad@email.com', '', '081234567807', 'male', 29, 68.00, 172.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('USR008', 'Rina Wati', 'rina@email.com', '', '081234567808', 'female', 26, 58.00, 162.00, 'Premium', 'pending', '2025-06-24 17:18:32', '2025-06-24 17:18:32');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_complaints`
+-- Table structure for table `user_complaints`
 --
 
 CREATE TABLE `user_complaints` (
@@ -279,7 +255,7 @@ CREATE TABLE `user_complaints` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user_complaints`
+-- Dumping data for table `user_complaints`
 --
 
 INSERT INTO `user_complaints` (`id`, `user_id`, `complaint_type`, `description`, `status`, `created_at`) VALUES
@@ -296,14 +272,14 @@ INSERT INTO `user_complaints` (`id`, `user_id`, `complaint_type`, `description`,
 --
 
 --
--- Indeks untuk tabel `ai_consultations`
+-- Indexes for table `ai_consultations`
 --
 ALTER TABLE `ai_consultations`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idx_consultations_user` (`user_id`);
 
 --
--- Indeks untuk tabel `nutrition_achievements`
+-- Indexes for table `nutrition_achievements`
 --
 ALTER TABLE `nutrition_achievements`
   ADD PRIMARY KEY (`id`),
@@ -311,7 +287,7 @@ ALTER TABLE `nutrition_achievements`
   ADD KEY `idx_nutrition_user_date` (`user_id`,`date`);
 
 --
--- Indeks untuk tabel `orders`
+-- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
@@ -320,7 +296,7 @@ ALTER TABLE `orders`
   ADD KEY `idx_orders_created_at` (`created_at`);
 
 --
--- Indeks untuk tabel `order_items`
+-- Indexes for table `order_items`
 --
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
@@ -328,22 +304,14 @@ ALTER TABLE `order_items`
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indeks untuk tabel `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idx_products_category` (`category`);
 
 --
--- Indeks untuk tabel `product_recommendations`
---
-ALTER TABLE `product_recommendations`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `idx_recommendations_user_status` (`user_id`,`status`);
-
---
--- Indeks untuk tabel `product_reviews`
+-- Indexes for table `product_reviews`
 --
 ALTER TABLE `product_reviews`
   ADD PRIMARY KEY (`id`),
@@ -352,7 +320,7 @@ ALTER TABLE `product_reviews`
   ADD KEY `idx_reviews_product` (`product_id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -361,96 +329,83 @@ ALTER TABLE `users`
   ADD KEY `idx_users_created_at` (`created_at`);
 
 --
--- Indeks untuk tabel `user_complaints`
+-- Indexes for table `user_complaints`
 --
 ALTER TABLE `user_complaints`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idx_complaints_user_status` (`user_id`,`status`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `ai_consultations`
+-- AUTO_INCREMENT for table `ai_consultations`
 --
 ALTER TABLE `ai_consultations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `nutrition_achievements`
+-- AUTO_INCREMENT for table `nutrition_achievements`
 --
 ALTER TABLE `nutrition_achievements`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `orders`
+-- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `order_items`
+-- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `product_recommendations`
---
-ALTER TABLE `product_recommendations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT untuk tabel `product_reviews`
+-- AUTO_INCREMENT for table `product_reviews`
 --
 ALTER TABLE `product_reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `user_complaints`
+-- AUTO_INCREMENT for table `user_complaints`
 --
 ALTER TABLE `user_complaints`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `ai_consultations`
+-- Constraints for table `ai_consultations`
 --
 ALTER TABLE `ai_consultations`
   ADD CONSTRAINT `ai_consultations_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `nutrition_achievements`
+-- Constraints for table `nutrition_achievements`
 --
 ALTER TABLE `nutrition_achievements`
   ADD CONSTRAINT `nutrition_achievements_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `orders`
+-- Constraints for table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `order_items`
+-- Constraints for table `order_items`
 --
 ALTER TABLE `order_items`
   ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `product_recommendations`
---
-ALTER TABLE `product_recommendations`
-  ADD CONSTRAINT `product_recommendations_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `product_recommendations_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `product_reviews`
+-- Constraints for table `product_reviews`
 --
 ALTER TABLE `product_reviews`
   ADD CONSTRAINT `product_reviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
@@ -458,7 +413,7 @@ ALTER TABLE `product_reviews`
   ADD CONSTRAINT `product_reviews_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `user_complaints`
+-- Constraints for table `user_complaints`
 --
 ALTER TABLE `user_complaints`
   ADD CONSTRAINT `user_complaints_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
