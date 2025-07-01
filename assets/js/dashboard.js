@@ -237,6 +237,115 @@ function updateComplaintsChart(data) {
   });
 }
 
+// Notification Panel Functions
+function toggleNotificationPanel() {
+  const panel = document.getElementById('notificationPanel');
+  panel.classList.toggle('active');
+  
+  // Close panel when clicking outside
+  if (panel.classList.contains('active')) {
+    setTimeout(() => {
+      document.addEventListener('click', closeNotificationOnOutsideClick);
+    }, 100);
+  } else {
+    document.removeEventListener('click', closeNotificationOnOutsideClick);
+  }
+}
+
+function closeNotificationOnOutsideClick(event) {
+  const panel = document.getElementById('notificationPanel');
+  const bell = document.querySelector('.notification-bell');
+  
+  if (!panel.contains(event.target) && !bell.contains(event.target)) {
+    panel.classList.remove('active');
+    document.removeEventListener('click', closeNotificationOnOutsideClick);
+  }
+}
+
+function markAllAsRead() {
+  const unreadItems = document.querySelectorAll('.notification-item.unread');
+  unreadItems.forEach(item => {
+    item.classList.remove('unread');
+    const dot = item.querySelector('.unread-dot');
+    if (dot) {
+      dot.remove();
+    }
+  });
+  
+  // Update notification badge
+  const badge = document.querySelector('.notification-badge');
+  if (badge) {
+    badge.textContent = '0';
+    badge.style.display = 'none';
+  }
+  
+  showNotification('Semua notifikasi telah ditandai sebagai dibaca', 'success');
+}
+
+function viewAllNotifications() {
+  alert('Fitur lihat semua notifikasi akan segera tersedia');
+}
+
+// Show notification function
+function showNotification(message, type = 'info') {
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type}`;
+  notification.innerHTML = `
+    <div class="notification-content">
+      <i class="fas fa-${getNotificationIcon(type)}"></i>
+      <span>${message}</span>
+    </div>
+  `;
+  
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: ${getNotificationColor(type)};
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    z-index: 9999;
+    min-width: 300px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  `;
+  
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.style.transform = 'translateX(0)';
+  }, 100);
+  
+  setTimeout(() => {
+    notification.style.transform = 'translateX(100%)';
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 300);
+  }, 3000);
+}
+
+function getNotificationIcon(type) {
+  switch (type) {
+    case 'success': return 'check-circle';
+    case 'error': return 'exclamation-triangle';
+    case 'warning': return 'exclamation-circle';
+    default: return 'info-circle';
+  }
+}
+
+function getNotificationColor(type) {
+  switch (type) {
+    case 'success': return '#08A55A';
+    case 'error': return '#dc3545';
+    case 'warning': return '#ffc107';
+    default: return '#3FCAEA';
+  }
+}
+
 // Chart initialization
 function initializeCharts() {
   // Complaints Trend Chart
@@ -467,6 +576,17 @@ function initializeCharts() {
     });
   }
 }
+
+// Handle escape key to close modals
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    const notificationPanel = document.getElementById('notificationPanel');
+    
+    if (notificationPanel.classList.contains('active')) {
+      toggleNotificationPanel();
+    }
+  }
+});
 
 // Filter functionality
 document.querySelectorAll(".filter-btn").forEach((btn) => {

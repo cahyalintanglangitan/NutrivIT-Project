@@ -59,9 +59,9 @@
           <p class="page-subtitle">Selamat datang kembali di NutrivIT Management System</p>
         </div>
         <div class="header-actions">
-          <div class="notification-bell">
+          <div class="notification-bell" onclick="toggleNotificationPanel()">
             <i class="fas fa-bell"></i>
-            <span class="notification-badge">3</span>
+            <span class="notification-badge">5</span>
           </div>
           <span class="date">
             <i class="fas fa-calendar-alt"></i>
@@ -360,6 +360,119 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Notification Panel -->
+  <div class="notification-panel" id="notificationPanel">
+    <div class="notification-header">
+      <h3><i class="fas fa-bell"></i> Notifikasi Dashboard</h3>
+      <button class="close-notification" onclick="toggleNotificationPanel()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="notification-content">
+      <div class="notification-item unread">
+        <div class="notification-icon warning">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="notification-details">
+          <h4>Peningkatan Keluhan Gizi</h4>
+          <p>Keluhan kelelahan kronis naik 27.4% di bulan Juni</p>
+          <span class="notification-time">5 menit yang lalu</span>
+        </div>
+        <div class="notification-status">
+          <span class="unread-dot"></span>
+        </div>
+      </div>
+
+      <div class="notification-item unread">
+        <div class="notification-icon success">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <div class="notification-details">
+          <h4>Target Revenue Tercapai</h4>
+          <p>Revenue bulan ini mencapai Rp 3.25B (+15% dari target)</p>
+          <span class="notification-time">1 jam yang lalu</span>
+        </div>
+        <div class="notification-status">
+          <span class="unread-dot"></span>
+        </div>
+      </div>
+
+      <div class="notification-item unread">
+        <div class="notification-icon info">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="notification-details">
+          <h4>Pertumbuhan User Aktif</h4>
+          <p>1,234 user aktif dengan pertumbuhan +12% bulan ini</p>
+          <span class="notification-time">2 jam yang lalu</span>
+        </div>
+        <div class="notification-status">
+          <span class="unread-dot"></span>
+        </div>
+      </div>
+
+      <div class="notification-item unread">
+        <div class="notification-icon warning">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="notification-details">
+          <h4>Defisit Nutrisi Tinggi</h4>
+          <p>Defisit lemak sehat mencapai 38% pada pengguna aktif</p>
+          <span class="notification-time">3 jam yang lalu</span>
+        </div>
+        <div class="notification-status">
+          <span class="unread-dot"></span>
+        </div>
+      </div>
+
+      <div class="notification-item unread">
+        <div class="notification-icon success">
+          <i class="fas fa-box"></i>
+        </div>
+        <div class="notification-details">
+          <h4>Produk Terlaris Update</h4>
+          <p>NuVit-Multi Core memimpin dengan 3,250 penjualan (+32%)</p>
+          <span class="notification-time">4 jam yang lalu</span>
+        </div>
+        <div class="notification-status">
+          <span class="unread-dot"></span>
+        </div>
+      </div>
+
+      <div class="notification-item read">
+        <div class="notification-icon info">
+          <i class="fas fa-chart-pie"></i>
+        </div>
+        <div class="notification-details">
+          <h4>Laporan Analitik Mingguan</h4>
+          <p>Laporan analitik dashboard telah diperbarui</p>
+          <span class="notification-time">1 hari yang lalu</span>
+        </div>
+      </div>
+
+      <div class="notification-item read">
+        <div class="notification-icon success">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <div class="notification-details">
+          <h4>System Update Berhasil</h4>
+          <p>NutrivIT Management System v2.1 berhasil diperbarui</p>
+          <span class="notification-time">2 hari yang lalu</span>
+        </div>
+      </div>
+    </div>
+    <div class="notification-footer">
+      <button class="btn-mark-all-read" onclick="markAllAsRead()">
+        <i class="fas fa-check-double"></i>
+        Tandai Semua Dibaca
+      </button>
+      <button class="btn-view-all" onclick="viewAllNotifications()">
+        <i class="fas fa-list"></i>
+        Lihat Semua
+      </button>
     </div>
   </div>
 
