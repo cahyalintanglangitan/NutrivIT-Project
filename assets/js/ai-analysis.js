@@ -598,25 +598,57 @@ function sendMessage() {
   const textarea = document.getElementById("user-input");
   const message = textarea.value.trim();
 
-  if (!message || isTyping) return;
+  // Keluar jika tidak ada pesan atau AI sedang "mengetik"
+  const typingIndicator = document.getElementById("typing-indicator");
+  if (!message || typingIndicator) return;
 
-  // Add user message to chat
+  // Tambahkan pesan pengguna ke tampilan chat
   addMessage(message, "user");
 
-  // Clear input
+  // Kosongkan input dan nonaktifkan tombol kirim
   textarea.value = "";
   textarea.style.height = "auto";
   document.getElementById("send-btn").disabled = true;
 
-  // Show typing indicator and get AI response
+  // Tampilkan indikator "sedang mengetik"
   showTypingIndicator();
 
-  // Simulate AI processing time
-  setTimeout(() => {
-    const response = generateAIResponse(message);
+  // Kirim pesan ke backend (api_chat.php) menggunakan Fetch API
+  fetch('api_chat.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({ prompt: message })
+  })
+  .then(response => {
+    if (!response.ok) {
+      // Jika server merespons dengan error (misal: 500 Internal Server Error)
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Sembunyikan indikator "sedang mengetik"
     hideTypingIndicator();
-    addMessage(response, "ai");
-  }, 2000 + Math.random() * 2000); // 2-4 seconds delay
+
+    if (data.reply) {
+      // Jika ada balasan dari AI, tampilkan di chat
+      addMessage(data.reply, "ai");
+    } else {
+      // Jika ada pesan error dari backend
+      const errorMessage = data.error || 'Terjadi kesalahan yang tidak diketahui.';
+      addMessage(`⚠️ **Error:** ${errorMessage}`, "ai");
+    }
+  })
+  .catch(error => {
+    console.error('Fetch Error:', error);
+    // Sembunyikan indikator "sedang mengetik" jika terjadi error
+    hideTypingIndicator();
+    // Tampilkan pesan error di chat
+    addMessage(`⚠️ **Error:** Tidak dapat terhubung ke server AI. Silakan coba lagi nanti. (${error.message})`, "ai");
+  });
 }
 
 // Quick question handler
