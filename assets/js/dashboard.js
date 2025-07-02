@@ -1,11 +1,11 @@
 // Profile functionality
 function handleProfile() {
-  window.location.href = "profile.html";
+  window.location.href = "profile.php";
 }
 
 // Check authentication
 if (!localStorage.getItem("auth")) {
-  window.location.href = "login.html";
+  window.location.href = "login.php";
 }
 
 // Set current date

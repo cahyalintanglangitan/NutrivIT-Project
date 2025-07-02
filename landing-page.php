@@ -553,7 +553,7 @@
               <li><a href="#" class="footer-link">Privacy Policy</a></li>
               <li><a href="#" class="footer-link">Terms of Service</a></li>
               <li><a href="#" class="footer-link">Cookie Policy</a></li>
-              <li><a href="login.html" class="footer-link">Admin Login</a></li>
+              <li><a href="login.php" class="footer-link">Admin Login</a></li>
             </ul>
           </div>
         </div>

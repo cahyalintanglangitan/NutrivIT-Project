@@ -15,7 +15,7 @@ function updateCurrentDate() {
 
 // Handle profile click
 function handleProfile() {
-  window.location.href = "profile.html";
+  window.location.href = "profile.php";
 }
 
 // Filter functions

@@ -250,13 +250,13 @@
       // Clear any existing auth
       localStorage.removeItem('auth');
       sessionStorage.clear();
-      window.location.href = 'login.html';
+      window.location.href = 'login.php';
     }
 
     function goToDashboard() {
       // Check if user has valid auth
       if (localStorage.getItem('auth')) {
-        window.location.href = 'dashboard.html';
+        window.location.href = 'dashboard.php';
       } else {
         goToLogin();
       }

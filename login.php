@@ -48,7 +48,7 @@
 
       if (email === "manager@email.com" && password === "admin123") {
         localStorage.setItem("auth", "true");
-        window.location.href = "dashboard.html";
+        window.location.href = "dashboard.php";
       } else {
         errorElement.style.display = "block";
       }

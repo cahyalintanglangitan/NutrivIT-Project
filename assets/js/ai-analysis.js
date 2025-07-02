@@ -560,7 +560,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Check authentication
   if (!localStorage.getItem("auth")) {
-    window.location.href = "login.html";
+    window.location.href = "login.php";
   }
 
   // Setup input handlers
@@ -1336,7 +1336,7 @@ function updateLastUpdateTime() {
 function handleLogout() {
   if (confirm("Apakah Anda yakin ingin keluar?")) {
     localStorage.removeItem("auth");
-    window.location.href = "login.html";
+    window.location.href = "login.php";
   }
 }
 

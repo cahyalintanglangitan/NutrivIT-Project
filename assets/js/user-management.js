@@ -435,7 +435,7 @@ function deleteUser(userId) {
 function handleLogout() {
   if (confirm("Apakah Anda yakin ingin keluar?")) {
     localStorage.removeItem("auth");
-    window.location.href = "login.html";
+    window.location.href = "login.php";
   }
 }
 
