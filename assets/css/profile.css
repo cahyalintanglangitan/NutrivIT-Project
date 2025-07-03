@@ -86,26 +86,6 @@ body {
   position: relative;
 }
 
-.nav-item::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 0;
-  background: rgba(255, 255, 255, 0.1);
-  transition: width 0.3s ease;
-}
-
-.nav-item:hover::before {
-  width: 100%;
-}
-
-.nav-item:hover {
-  border-left-color: white;
-  background: rgba(255, 255, 255, 0.1);
-}
-
 .nav-icon {
   margin-right: 12px;
   font-size: 16px;

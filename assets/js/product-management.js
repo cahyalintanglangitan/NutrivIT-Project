@@ -1,49 +1,24 @@
-// Set current date
+// Tampilkan tanggal hari ini
 function updateCurrentDate() {
   const dateElement = document.getElementById("current-date");
   if (dateElement) {
     const now = new Date();
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
+    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
     dateElement.textContent = now.toLocaleDateString("id-ID", options);
   }
 }
 
-// Handle profile click
+// Navigasi ke halaman profil
 function handleProfile() {
   window.location.href = "profile.php";
 }
 
-// Filter functions
-function filterByStock(type) {
-  // Update active filter button
-  document.querySelectorAll(".filter-btn").forEach((btn) => {
-    btn.classList.remove("active");
-  });
-  event.target.classList.add("active");
-
-  // Filter logic would go here
-  console.log("Filtering by:", type);
-}
-
-function showAddProductModal() {
-  alert("Add Product modal would open here");
-}
-
-// Notification Panel Functions
+// Panel Notifikasi
 function toggleNotificationPanel() {
   const panel = document.getElementById('notificationPanel');
   panel.classList.toggle('active');
-  
-  // Close panel when clicking outside
   if (panel.classList.contains('active')) {
-    setTimeout(() => {
-      document.addEventListener('click', closeNotificationOnOutsideClick);
-    }, 100);
+    setTimeout(() => document.addEventListener('click', closeNotificationOnOutsideClick), 100);
   } else {
     document.removeEventListener('click', closeNotificationOnOutsideClick);
   }
@@ -52,7 +27,6 @@ function toggleNotificationPanel() {
 function closeNotificationOnOutsideClick(event) {
   const panel = document.getElementById('notificationPanel');
   const bell = document.querySelector('.notification-bell');
-  
   if (!panel.contains(event.target) && !bell.contains(event.target)) {
     panel.classList.remove('active');
     document.removeEventListener('click', closeNotificationOnOutsideClick);
@@ -60,84 +34,20 @@ function closeNotificationOnOutsideClick(event) {
 }
 
 function markAllAsRead() {
-  const unreadItems = document.querySelectorAll('.notification-item.unread');
-  unreadItems.forEach(item => {
+  document.querySelectorAll('.notification-item.unread').forEach(item => {
     item.classList.remove('unread');
     const dot = item.querySelector('.unread-dot');
-    if (dot) {
-      dot.remove();
-    }
+    if (dot) dot.remove();
   });
-  
-  // Update notification badge
   const badge = document.querySelector('.notification-badge');
   if (badge) {
     badge.textContent = '0';
     badge.style.display = 'none';
   }
-  
-  showNotification('Semua not')
-    badge.textContent = '0';
-    badge.style.display = 'none';
-  }
-  
   showNotification('Semua notifikasi telah ditandai sebagai dibaca', 'success');
-
-
-function viewAllNotifications() {
-  alert('Fitur lihat semua notifikasi akan segera tersedia');
 }
 
-// Product Detail Modal Functions
-function viewProductDetail(name, sku, category, price, stock, sales, rating, description) {
-  // Populate modal with product data
-  document.getElementById('productDetailName').textContent = name;
-  document.getElementById('productDetailSku').textContent = 'SKU: ' + sku;
-  document.getElementById('productDetailPrice').textContent = price;
-  document.getElementById('productDetailStock').textContent = stock;
-  document.getElementById('productDetailSales').textContent = sales;
-  document.getElementById('productDetailRating').textContent = rating;
-  document.getElementById('productDetailDescription').textContent = description;
-  
-  // Set category badge
-  const categoryElement = document.getElementById('productDetailCategory');
-  let categoryClass = '';
-  if (category.includes('Vitamin')) {
-    categoryClass = 'category-vitamin';
-  } else if (category.includes('Herbal')) {
-    categoryClass = 'category-herbal';
-  } else if (category.includes('Fitness')) {
-    categoryClass = 'category-fitness';
-  }
-  
-  categoryElement.innerHTML = `<span class="category-badge ${categoryClass}">${category}</span>`;
-  
-  // Show modal
-  const modal = document.getElementById('productDetailModal');
-  modal.classList.add('active');
-  
-  // Close modal when clicking outside
-  setTimeout(() => {
-    document.addEventListener('click', closeModalOnOutsideClick);
-  }, 100);
-}
-
-function closeProductDetailModal() {
-  const modal = document.getElementById('productDetailModal');
-  modal.classList.remove('active');
-  document.removeEventListener('click', closeModalOnOutsideClick);
-}
-
-function closeModalOnOutsideClick(event) {
-  const modal = document.getElementById('productDetailModal');
-  const modalContent = modal.querySelector('.modal-content');
-  
-  if (modal.classList.contains('active') && !modalContent.contains(event.target)) {
-    closeProductDetailModal();
-  }
-}
-
-// Show notification function
+// Notifikasi
 function showNotification(message, type = 'info') {
   const notification = document.createElement('div');
   notification.className = `notification notification-${type}`;
@@ -147,7 +57,6 @@ function showNotification(message, type = 'info') {
       <span>${message}</span>
     </div>
   `;
-  
   notification.style.cssText = `
     position: fixed;
     top: 20px;
@@ -162,20 +71,11 @@ function showNotification(message, type = 'info') {
     transform: translateX(100%);
     transition: transform 0.3s ease;
   `;
-  
   document.body.appendChild(notification);
-  
-  setTimeout(() => {
-    notification.style.transform = 'translateX(0)';
-  }, 100);
-  
+  setTimeout(() => notification.style.transform = 'translateX(0)', 100);
   setTimeout(() => {
     notification.style.transform = 'translateX(100%)';
-    setTimeout(() => {
-      if (notification.parentNode) {
-        notification.parentNode.removeChild(notification);
-      }
-    }, 300);
+    setTimeout(() => notification.remove(), 300);
   }, 3000);
 }
 
@@ -197,111 +97,126 @@ function getNotificationColor(type) {
   }
 }
 
-// Initialize charts
-function initializeCharts() {
-  const ctx1 = document.getElementById("salesChart");
-  const ctx2 = document.getElementById("categoryChart");
+// Modal Detail Produk
+function viewProductDetail(name, sku, category, price, stock, sales, rating, description) {
+  document.getElementById('productDetailName').textContent = name;
+  document.getElementById('productDetailSku').textContent = 'SKU: ' + sku;
+  document.getElementById('productDetailPrice').textContent = price;
+  document.getElementById('productDetailStock').textContent = stock;
+  document.getElementById('productDetailSales').textContent = sales;
+  document.getElementById('productDetailRating').textContent = rating;
+  document.getElementById('productDetailDescription').textContent = description;
 
-  // Sales Performance Chart
-  new Chart(ctx1, {
-    type: "line",
-    data: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun"],
-      datasets: [
-        {
-          label: "Penjualan (Rp Million)",
-          data: [1.8, 2.1, 1.9, 2.4, 2.2, 2.6],
-          borderColor: "#08A55A",
-          backgroundColor: "rgba(8, 165, 90, 0.1)",
-          tension: 0.4,
-          fill: true,
-          pointBackgroundColor: "#08A55A",
-          pointBorderColor: "#fff",
-          pointBorderWidth: 2,
-          pointRadius: 6,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: "top",
-          labels: {
-            usePointStyle: true,
-            padding: 20,
-          },
-        },
-      },
-      scales: {
-        x: {
-          grid: {
-            display: false,
-          },
-        },
-        y: {
-          grid: {
-            color: "rgba(0,0,0,0.1)",
-          },
-        },
-      },
-    },
-  });
+  const categoryElement = document.getElementById('productDetailCategory');
+  let categoryClass = '';
+  if (category.includes('Vitamin')) categoryClass = 'category-vitamin';
+  else if (category.includes('Herbal')) categoryClass = 'category-herbal';
+  else if (category.includes('Fitness')) categoryClass = 'category-fitness';
+  categoryElement.innerHTML = `<span class="category-badge ${categoryClass}">${category}</span>`;
 
-  // Category Distribution Chart
-  new Chart(ctx2, {
-    type: "doughnut",
-    data: {
-      labels: ["Vitamin & Suplemen", "Herbal & Natural", "Fitness & Protein"],
-      datasets: [
-        {
-          data: [3, 3, 2],
-          backgroundColor: ["#667eea", "#43e97b", "#f093fb"],
-          borderWidth: 3,
-          borderColor: "#fff",
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: "60%",
-      plugins: {
-        legend: {
-          position: "bottom",
-          labels: {
-            padding: 20,
-            usePointStyle: true,
-          },
-        },
-      },
-    },
-  });
+  const modal = document.getElementById('productDetailModal');
+  modal.classList.add('active');
+  setTimeout(() => document.addEventListener('click', closeModalOnOutsideClick), 100);
 }
 
-// Handle escape key to close modals
+function closeProductDetailModal() {
+  const modal = document.getElementById('productDetailModal');
+  modal.classList.remove('active');
+  document.removeEventListener('click', closeModalOnOutsideClick);
+}
+
+function closeModalOnOutsideClick(event) {
+  const modal = document.getElementById('productDetailModal');
+  const modalContent = modal.querySelector('.modal-content');
+  if (modal.classList.contains('active') && !modalContent.contains(event.target)) {
+    closeProductDetailModal();
+  }
+}
+
+// Filter Produk (Nama & Kategori)
+function filterProducts() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const selectedCategory = document.getElementById("categoryFilter").value.toLowerCase();
+  const table = document.querySelector(".data-table");
+  const allRows = table.querySelectorAll("tbody tr");
+  let matchFound = false;
+
+  allRows.forEach(row => {
+    if (row.closest("#noDataMessage")) return;
+    const name = row.querySelector(".product-name")?.textContent.toLowerCase() || "";
+    const category = row.querySelector(".category-badge")?.textContent.toLowerCase().trim() || "";
+    const nameMatch = name.includes(input);
+    const categoryMatch = !selectedCategory || category === selectedCategory;
+    if (nameMatch && categoryMatch) {
+      row.style.display = "";
+      row.classList.add("row-hover-effect");
+      matchFound = true;
+    } else {
+      row.style.display = "none";
+      row.classList.remove("row-hover-effect");
+    }
+  });
+  document.getElementById("noDataMessage").style.display = matchFound ? "none" : "";
+}
+
+// Filter Produk Berdasarkan Stok
+function filterByStock(mode, btn) {
+  const rows = document.querySelectorAll(".data-table tbody tr");
+  let matchFound = false;
+
+  rows.forEach(row => {
+    const stockText = row.querySelector(".stock-indicator")?.textContent || "0";
+    const stock = parseInt(stockText.replace(/\D/g, '')) || 0;
+
+    let showRow = false;
+    if (mode === 'all') showRow = true;
+    else if (mode === 'in-stock') showRow = stock >= 20;
+    else if (mode === 'low-stock') showRow = stock < 20;
+
+    if (showRow) {
+      row.style.display = "";
+      row.classList.add("row-hover-effect");
+      matchFound = true;
+    } else {
+      row.style.display = "none";
+      row.classList.remove("row-hover-effect");
+    }
+  });
+
+  // Tampilkan atau sembunyikan pesan "tidak ditemukan"
+  const noDataEl = document.getElementById("noDataMessage");
+  if (noDataEl) noDataEl.style.display = matchFound ? "none" : "";
+
+  // Ubah status tombol yang aktif
+  document.querySelectorAll(".filter-btn").forEach(button => {
+    button.classList.remove("active", "btn-success");
+  });
+  if (btn) {
+    btn.classList.add("active", "btn-success");
+  } else {
+    const autoBtn = document.querySelector(`.filter-btn[data-mode="${mode}"]`);
+    if (autoBtn) autoBtn.classList.add("active", "btn-success");
+  }
+}
+
+// Tutup modal dengan tombol Escape
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
     const notificationPanel = document.getElementById('notificationPanel');
     const productModal = document.getElementById('productDetailModal');
-    
-    if (notificationPanel.classList.contains('active')) {
+    if (notificationPanel && notificationPanel.classList.contains('active')) {
       toggleNotificationPanel();
     }
-    
-    if (productModal.classList.contains('active')) {
+    if (productModal && productModal.classList.contains('active')) {
       closeProductDetailModal();
     }
   }
 });
 
-// Initialize when DOM is loaded
+// Inisialisasi saat DOM siap
 document.addEventListener("DOMContentLoaded", function () {
   updateCurrentDate();
-
-  // Initialize charts after a short delay
-  setTimeout(() => {
-    initializeCharts();
-  }, 100);
+  initializeCategoryDropdown();
+  setTimeout(initializeCharts, 100);
+  filterProducts();
 });
