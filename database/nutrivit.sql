@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 30, 2025 at 04:54 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost
+-- Generation Time: Jul 03, 2025 at 09:19 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -167,7 +167,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `category`, `description`, `price`, `stock`, `image_url`, `product_status`, `created_at`, `updated_at`) VALUES
 ('PRD001', 'Whey Protein Premium', 'protein', 'High-quality whey protein for muscle building', 299000.00, 45, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('PRD002', 'Vitamin C 1000mg', 'vitamin', 'Immune system booster vitamin C tablets', 125000.00, 78, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('PRD002', 'Vitamin C 1000mg', 'vitamin', 'Immune system booster vitamin C tablets', 125000.00, 18, NULL, 'Active', '2025-06-24 17:18:32', '2025-07-03 19:18:09'),
 ('PRD003', 'Omega-3 Fish Oil', 'supplement', 'Pure fish oil for heart and brain health', 185000.00, 32, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
 ('PRD004', 'Multivitamin Complex', 'vitamin', 'Complete daily vitamin and mineral supplement', 75000.00, 67, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
 ('PRD005', 'Herbal Detox Tea', 'herbal', 'Natural detox tea blend for cleansing', 95000.00, 89, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
@@ -202,6 +202,38 @@ INSERT INTO `product_reviews` (`id`, `user_id`, `product_id`, `order_id`, `ratin
 (4, 'USR002', 'PRD005', 2, 4.0, 'Teh detox yang menyegarkan', '2025-06-24 17:18:32'),
 (5, 'USR001', 'PRD003', 3, 4.7, 'Omega-3 berkualitas tinggi', '2025-06-24 17:18:32'),
 (6, 'USR005', 'PRD001', 5, 4.9, 'Hasil terbaik untuk muscle building', '2025-06-24 17:18:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales`
+--
+
+CREATE TABLE `sales` (
+  `id` int(11) NOT NULL,
+  `product_id` varchar(30) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `total_price` decimal(12,2) DEFAULT NULL,
+  `sale_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`id`, `product_id`, `quantity`, `total_price`, `sale_date`) VALUES
+(13, 'NUV-C-1000', 20, 2500000.00, '2025-01-05'),
+(14, 'NUV-WHY-1KG', 8, 2720000.00, '2025-01-18'),
+(15, 'NUV-MUL-90', 15, 2475000.00, '2025-02-11'),
+(16, 'NUV-OMG-500', 12, 2160000.00, '2025-02-27'),
+(17, 'NUV-CUR-250', 25, 2375000.00, '2025-03-09'),
+(18, 'NUV-C-1000', 18, 2250000.00, '2025-03-19'),
+(19, 'NUV-MUL-90', 30, 4950000.00, '2025-04-02'),
+(20, 'NUV-WHY-1KG', 10, 3400000.00, '2025-04-22'),
+(21, 'NUV-OMG-500', 20, 3600000.00, '2025-05-08'),
+(22, 'NUV-CUR-250', 18, 1710000.00, '2025-05-25'),
+(23, 'NUV-C-1000', 22, 2750000.00, '2025-06-04'),
+(24, 'NUV-MUL-90', 35, 5775000.00, '2025-06-29');
 
 -- --------------------------------------------------------
 
@@ -320,6 +352,12 @@ ALTER TABLE `product_reviews`
   ADD KEY `idx_reviews_product` (`product_id`);
 
 --
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -368,6 +406,12 @@ ALTER TABLE `order_items`
 --
 ALTER TABLE `product_reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `user_complaints`
