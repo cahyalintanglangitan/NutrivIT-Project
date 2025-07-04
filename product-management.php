@@ -48,7 +48,7 @@ while ($row = $categoryQuery->fetch_assoc()) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="auth-guard.js"></script>
-    <link rel="stylesheet" href="/assets/css/product-management.css">
+    <link rel="stylesheet" href="./assets/css/product-management.css">
 </head>
 <body>
 <div class="dashboard-container">

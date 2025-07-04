@@ -10,7 +10,7 @@ if (!function_exists('curl_init')) {
 }
 
 // --- Konfigurasi Penting ---
-$apiKey = 'GANTI_DENGAN_API_KEY_GEMINI_ANDA'; // PASTIKAN ANDA SUDAH MENGGANTI INI
+$apiKey = 'AIzaSyAM5UFIdh_fJRbVkGi6yF86bgi_nI1GdCA'; // PASTIKAN ANDA SUDAH MENGGANTI INI
 $model = 'gemini-1.5-flash-latest';
 $apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key={$apiKey}";
 
