@@ -181,15 +181,15 @@ INSERT INTO `products` (`id`, `name`, `category`, `description`, `price`, `stock
 -- Table structure for table `product_reviews`
 --
 
-CREATE TABLE `product_reviews` (
-  `id` int(11) NOT NULL,
-  `user_id` varchar(10) DEFAULT NULL,
-  `product_id` varchar(10) DEFAULT NULL,
-  `order_id` int(11) DEFAULT NULL,
-  `rating` decimal(2,1) DEFAULT NULL CHECK (`rating` >= 1.0 and `rating` <= 5.0),
-  `review_text` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CREATE TABLE `product_reviews` (
+    `id` int(11) NOT NULL,
+    `user_id` varchar(10) DEFAULT NULL,
+    `product_id` varchar(10) DEFAULT NULL,
+    `order_id` int(11) DEFAULT NULL,
+    `rating` decimal(2,1) DEFAULT NULL CHECK (`rating` >= 1.0 and `rating` <= 5.0),
+    `review_text` text DEFAULT NULL,
+    `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_reviews`

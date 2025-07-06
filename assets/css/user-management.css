@@ -790,13 +790,16 @@
 
 /* Button Styles */
 .btn-small {
-  padding: 6px 8px;
-  font-size: 11px;
+ padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 6px;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  margin-right: 4px;
-  background: #08a55a;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #3b82f6;
   color: white;
   transition: all 0.2s;
   display: inline-flex;
@@ -805,7 +808,6 @@
 }
 
 .btn-small:hover {
-  background: #067f47;
   transform: translateY(-1px);
 }
 

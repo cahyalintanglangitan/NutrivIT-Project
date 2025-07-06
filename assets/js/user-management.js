@@ -1,448 +1,243 @@
-// User Management JavaScript
-
-// Sample user data
-const usersData = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john@email.com",
-    phone: "+62 812-3456-7890",
-    address: "Jl. Sudirman No. 123, Jakarta",
-    age: 28,
-    gender: "Laki-laki",
-    height: "175 cm",
-    weight: "70 kg",
-    bmi: "22.9 (Normal)",
-    type: "Premium",
-    joinDate: "15 Jan 2024",
-    status: "active",
-    nutritionProgress: 85,
-    consultationStatus: "active",
-    dailyCalories: "1,850 kkal",
-    hydration: "85%",
-    activity: "Sedang",
-    totalConsultations: 24,
-    avgDuration: "15 menit",
-    satisfactionRating: 4.8,
-    totalPurchases: "Rp 2.450.000",
-    productsBought: 18,
-    lastPurchase: "3 hari lalu",
-    avgRating: 4.6,
-    totalReviews: 12,
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane@email.com",
-    phone: "+62 812-9876-5432",
-    address: "Jl. Gatot Subroto No. 456, Jakarta",
-    age: 32,
-    gender: "Perempuan",
-    height: "165 cm",
-    weight: "58 kg",
-    bmi: "21.3 (Normal)",
-    type: "Basic",
-    joinDate: "10 Jan 2024",
-    status: "active",
-    nutritionProgress: 78,
-    consultationStatus: "inactive",
-    dailyCalories: "1,650 kkal",
-    hydration: "75%",
-    activity: "Tinggi",
-    totalConsultations: 18,
-    avgDuration: "12 menit",
-    satisfactionRating: 4.5,
-    totalPurchases: "Rp 1.200.000",
-    productsBought: 8,
-    lastPurchase: "1 minggu lalu",
-    avgRating: 4.2,
-    totalReviews: 6,
-  },
-  {
-    id: 3,
-    name: "Ahmad Rahman",
-    email: "ahmad@email.com",
-    phone: "+62 813-1111-2222",
-    address: "Jl. Thamrin No. 789, Jakarta",
-    age: 35,
-    gender: "Laki-laki",
-    height: "168 cm",
-    weight: "75 kg",
-    bmi: "26.6 (Overweight)",
-    type: "Premium",
-    joinDate: "05 Feb 2024",
-    status: "active",
-    nutritionProgress: 65,
-    consultationStatus: "active",
-    dailyCalories: "2,100 kkal",
-    hydration: "60%",
-    activity: "Rendah",
-    totalConsultations: 31,
-    avgDuration: "20 menit",
-    satisfactionRating: 4.9,
-    totalPurchases: "Rp 3.800.000",
-    productsBought: 25,
-    lastPurchase: "1 hari lalu",
-    avgRating: 4.8,
-    totalReviews: 20,
-  },
-  {
-    id: 4,
-    name: "Sari Dewi",
-    email: "sari@email.com",
-    phone: "+62 814-3333-4444",
-    address: "Jl. Kuningan No. 321, Jakarta",
-    age: 29,
-    gender: "Perempuan",
-    height: "160 cm",
-    weight: "52 kg",
-    bmi: "20.3 (Normal)",
-    type: "Basic",
-    joinDate: "20 Feb 2024",
-    status: "active",
-    nutritionProgress: 92,
-    consultationStatus: "active",
-    dailyCalories: "1,550 kkal",
-    hydration: "90%",
-    activity: "Sedang",
-    totalConsultations: 15,
-    avgDuration: "18 menit",
-    satisfactionRating: 4.7,
-    totalPurchases: "Rp 950.000",
-    productsBought: 12,
-    lastPurchase: "5 hari lalu",
-    avgRating: 4.5,
-    totalReviews: 9,
-  },
-  {
-    id: 5,
-    name: "Budi Santoso",
-    email: "budi@email.com",
-    phone: "+62 815-5555-6666",
-    address: "Jl. Casablanca No. 654, Jakarta",
-    age: 42,
-    gender: "Laki-laki",
-    height: "172 cm",
-    weight: "80 kg",
-    bmi: "27.1 (Overweight)",
-    type: "Premium",
-    joinDate: "01 Mar 2024",
-    status: "inactive",
-    nutritionProgress: 55,
-    consultationStatus: "inactive",
-    dailyCalories: "2,200 kkal",
-    hydration: "50%",
-    activity: "Rendah",
-    totalConsultations: 8,
-    avgDuration: "10 menit",
-    satisfactionRating: 3.8,
-    totalPurchases: "Rp 450.000",
-    productsBought: 5,
-    lastPurchase: "2 minggu lalu",
-    avgRating: 3.9,
-    totalReviews: 3,
-  },
-];
-
-let currentFilter = "all";
-let currentUser = null;
-
-// Initialize page
 document.addEventListener("DOMContentLoaded", function () {
-  // Set current date
-  document.getElementById("current-date").textContent =
-    new Date().toLocaleDateString("id-ID", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-
-  // Check authentication
-  if (!localStorage.getItem("auth")) {
-    window.location.href = "login.html";
-  }
-
-  // Load users data
-  loadUsersTable();
-
-  // Setup search functionality
-  document
-    .getElementById("user-search")
-    .addEventListener("input", handleSearch);
-});
-
-// Load users table
-function loadUsersTable() {
+  let users = window.usersData || [];
+  let filteredUsers = [...users];
+  let currentFilter = 'all';
   const tbody = document.getElementById("users-tbody");
-  let filteredUsers = usersData;
 
-  // Apply filter
-  if (currentFilter !== "all") {
-    filteredUsers = usersData.filter((user) => {
-      switch (currentFilter) {
-        case "active":
-          return user.status === "active";
-        case "consultation":
-          return user.consultationStatus === "active";
-        case "premium":
-          return user.type === "Premium";
-        default:
-          return true;
-      }
-    });
+  function updateCurrentDate() {
+    const dateElement = document.getElementById("current-date");
+    if (dateElement) {
+      const now = new Date();
+      const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+      dateElement.textContent = now.toLocaleDateString("id-ID", options);
+    }
+  }
+  updateCurrentDate();
+
+  function getStatusText(status) {
+    if (status === "active") return "Aktif";
+    if (status === "inactive") return "Tidak Aktif";
+    return "Menunggu";
   }
 
-  // Apply search
-  const searchTerm = document.getElementById("user-search").value.toLowerCase();
-  if (searchTerm) {
-    filteredUsers = filteredUsers.filter(
-      (user) =>
-        user.name.toLowerCase().includes(searchTerm) ||
-        user.email.toLowerCase().includes(searchTerm)
-    );
-  }
+ function generateActionButtons(userId) {
+  return `
+    <button class="btn-small" onclick="event.stopPropagation(); window.openUserDetail('${userId}')">
+      <i class="fas fa-eye"></i> Lihat Detail
+    </button>
+    
+  `;
+}
 
-  // Generate table rows
-  tbody.innerHTML = filteredUsers
-    .map(
-      (user) => `
-    <tr onclick="openUserDetail(${user.id})">
-      <td>
-        <div class="user-cell">
-          <div class="user-avatar-small">${user.name
-            .split(" ")
-            .map((n) => n[0])
-            .join("")}</div>
-          <span>${user.name}</span>
-        </div>
-      </td>
-      <td>${user.email}</td>
-      <td>${user.joinDate}</td>
-      <td>
-        <span class="status ${user.status}">
-          <i class="fas fa-circle"></i> 
-          ${user.status === "active" ? "Aktif" : "Nonaktif"}
-        </span>
-      </td>
-      <td>
-        <div class="nutrition-progress">
-          <div class="nutrition-bar">
-            <div class="nutrition-fill" style="width: ${
-              user.nutritionProgress
-            }%"></div>
+
+  function renderUsersTable(data) {
+    tbody.innerHTML = '';
+    if (!data.length) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align:center; color:#999; font-style:italic;">
+            <i class="fas fa-info-circle"></i> Tidak ada pengguna ditemukan.
+          </td>
+        </tr>`;
+      return;
+    }
+    tbody.innerHTML = data.map(user => `
+      <tr onclick="window.openUserDetail('${user.id}')">
+        <td>
+          <div class="user-cell">
+            <div class="user-avatar-small">
+              ${user.name.split(" ").map(n => n[0]).join("")}
+            </div>
+            <span>${user.name}</span>
           </div>
-          ${user.nutritionProgress}%
-        </div>
-      </td>
-      <td>
-        <span class="consultation-badge ${user.consultationStatus}">
-          ${user.consultationStatus === "active" ? "Aktif" : "Nonaktif"}
-        </span>
-      </td>
-      <td>
-        <button class="btn-small" onclick="event.stopPropagation(); openUserDetail(${
-          user.id
-        })">
-          <i class="fas fa-eye"></i>
-        </button>
-        <button class="btn-small" onclick="event.stopPropagation(); editUser(${
-          user.id
-        })">
-          <i class="fas fa-edit"></i>
-        </button>
-        <button class="btn-small btn-danger" onclick="event.stopPropagation(); deleteUser(${
-          user.id
-        })">
-          <i class="fas fa-trash"></i>
-        </button>
-      </td>
-    </tr>
-  `
-    )
-    .join("");
-}
-
-// Filter users
-function filterUsers(filter) {
-  currentFilter = filter;
-
-  // Update active filter button
-  document
-    .querySelectorAll(".filter-btn")
-    .forEach((btn) => btn.classList.remove("active"));
-  event.target.classList.add("active");
-
-  loadUsersTable();
-}
-
-// Handle search
-function handleSearch() {
-  loadUsersTable();
-}
-
-// Open user detail modal
-function openUserDetail(userId) {
-  currentUser = usersData.find((user) => user.id === userId);
-  if (!currentUser) return;
-
-  // Show modal
-  document.getElementById("userModal").style.display = "block";
-
-  // Update modal title
-  document.getElementById(
-    "modal-title"
-  ).textContent = `Detail Pengguna - ${currentUser.name}`;
-
-  // Load profile data
-  loadProfileTab();
-
-  // Show profile tab by default
-  showTab("profile");
-}
-
-// Close user modal
-function closeUserModal() {
-  document.getElementById("userModal").style.display = "none";
-  currentUser = null;
-}
-
-// Open user modal for new user
-function openUserModal() {
-  // This would open a form for adding new user
-  alert("Fitur tambah user baru akan segera hadir!");
-}
-
-// Show specific tab
-function showTab(tabName) {
-  // Hide all tab contents
-  document.querySelectorAll(".tab-content").forEach((content) => {
-    content.classList.remove("active");
-  });
-
-  // Remove active class from all tab buttons
-  document.querySelectorAll(".tab-btn").forEach((btn) => {
-    btn.classList.remove("active");
-  });
-
-  // Show selected tab content
-  document.getElementById(`${tabName}-tab`).classList.add("active");
-
-  // Add active class to clicked tab button
-  event.target.classList.add("active");
-
-  // Load tab-specific data
-  switch (tabName) {
-    case "profile":
-      loadProfileTab();
-      break;
-    case "health":
-      loadHealthTab();
-      break;
-    case "consultation":
-      loadConsultationTab();
-      break;
-    case "purchases":
-      loadPurchasesTab();
-      break;
-    case "reviews":
-      loadReviewsTab();
-      break;
+        </td>
+        <td>${user.email}</td>
+        <td>${new Date(user.joining_date).toLocaleDateString("id-ID", { year: 'numeric', month: 'short', day: 'numeric' })}</td>
+        <td>
+          <span class="status ${user.status}">
+            <i class="fas fa-circle"></i>
+            ${getStatusText(user.status)}
+          </span>
+        </td>
+        <td>
+          <div class="nutrition-progress">
+            <div class="nutrition-bar">
+              <div class="nutrition-fill" style="width: ${Math.round(user.nutritionProgress || 0)}%"></div>
+            </div>
+            ${Math.round(user.nutritionProgress || 0)}%
+          </div>
+        </td>
+        <td>
+          <span class="consultation-badge ${user.consultationStatus}">
+            ${getStatusText(user.consultationStatus)}
+          </span>
+        </td>
+        <td>
+          ${generateActionButtons(user.id)}
+        </td>
+      </tr>
+    `).join("");
   }
-}
 
-// Load profile tab data
-function loadProfileTab() {
-  if (!currentUser) return;
+  function filterUsers(type = 'all') {
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    const btn = document.getElementById(`filter-${type}`);
+    if (btn) btn.classList.add('active');
+    currentFilter = type;
 
-  document.getElementById("user-name").textContent = currentUser.name;
-  document.getElementById("user-email").textContent = currentUser.email;
-  document.getElementById("user-phone").textContent = currentUser.phone;
-  document.getElementById("user-address").textContent = currentUser.address;
-  document.getElementById("user-age").textContent = currentUser.age + " tahun";
-  document.getElementById("user-gender").textContent = currentUser.gender;
-  document.getElementById("user-height").textContent = currentUser.height;
-  document.getElementById("user-weight").textContent = currentUser.weight;
-  document.getElementById("user-bmi").textContent = currentUser.bmi;
-  document.getElementById("user-type").textContent = currentUser.type;
-}
+    // Jika ingin ambil dari server, uncomment kode di bawah:
 
-// Load health tab data
-function loadHealthTab() {
-  if (!currentUser) return;
+    // Filter lokal
+    const filterMap = {
+      active: u => u.status === 'active',
+      consultation: u => u.consultationStatus === 'active',
+      premium: u => (u.member_type ?? '') === 'Premium'
+    };
+    filteredUsers = filterMap[type] ? users.filter(filterMap[type]) : [...users];
+    renderUsersTable(filteredUsers);
+  }
 
-  document.getElementById("daily-calories").textContent =
-    currentUser.dailyCalories;
-  document.getElementById("hydration").textContent = currentUser.hydration;
-  document.getElementById("activity").textContent = currentUser.activity;
-}
-
-// Load consultation tab data
-function loadConsultationTab() {
-  if (!currentUser) return;
-
-  // Update consultation stats
-  document.querySelector(".consult-stat:nth-child(1) .stat-value").textContent =
-    currentUser.totalConsultations;
-  document.querySelector(".consult-stat:nth-child(2) .stat-value").textContent =
-    currentUser.avgDuration;
-  document.querySelector(".consult-stat:nth-child(3) .stat-value").textContent =
-    currentUser.satisfactionRating + "/5";
-}
-
-// Load purchases tab data
-function loadPurchasesTab() {
-  if (!currentUser) return;
-
-  // Update purchase stats
-  document.querySelector(
-    ".purchase-stat:nth-child(1) .stat-value"
-  ).textContent = currentUser.totalPurchases;
-  document.querySelector(
-    ".purchase-stat:nth-child(2) .stat-value"
-  ).textContent = currentUser.productsBought + " item";
-  document.querySelector(
-    ".purchase-stat:nth-child(3) .stat-value"
-  ).textContent = currentUser.lastPurchase;
-}
-
-// Load reviews tab data
-function loadReviewsTab() {
-  if (!currentUser) return;
-
-  // Update review stats
-  document.querySelector(".review-stat:nth-child(1) .stat-value").textContent =
-    currentUser.avgRating + "/5";
-  document.querySelector(".review-stat:nth-child(2) .stat-value").textContent =
-    currentUser.totalReviews;
-}
-
-// Edit user
-function editUser(userId) {
-  alert(`Edit user dengan ID: ${userId}\nFitur edit akan segera hadir!`);
-}
-
-// Delete user
-function deleteUser(userId) {
-  if (confirm("Apakah Anda yakin ingin menghapus user ini?")) {
-    alert(
-      `User dengan ID ${userId} telah dihapus!\n(Simulasi - data tidak benar-benar dihapus)`
+  function searchUsers(keyword) {
+    const lower = keyword.toLowerCase();
+    const result = filteredUsers.filter(u =>
+      u.name.toLowerCase().includes(lower) ||
+      u.email.toLowerCase().includes(lower)
     );
+    renderUsersTable(result);
   }
-}
 
-// Logout functionality
-function handleLogout() {
-  if (confirm("Apakah Anda yakin ingin keluar?")) {
-    localStorage.removeItem("auth");
-    window.location.href = "login.php";
-  }
-}
+  function openUserDetail(id) {
+    const user = users.find(u => u.id == id);
+    if (!user) return;
 
-// Close modal when clicking outside
-window.onclick = function (event) {
-  const modal = document.getElementById("userModal");
-  if (event.target === modal) {
-    closeUserModal();
+    setText("user-name", user.name);
+    setText("user-email", user.email);
+    setText("user-phone", user.phone);
+    setText("user-age", user.age);
+    setText("user-gender", user.gender);
+    setText("user-height", user.height ? `${user.height} cm` : "-");
+    setText("user-weight", user.weight ? `${user.weight} kg` : "-");
+    setText("user-type", user.member_type);
+
+    const bmi = user.height && user.weight ? Math.round(user.weight / ((user.height / 100) ** 2)) : "-";
+    setText("user-bmi", bmi);
+
+    setText("daily-calories", user.daily_calories ? `${Math.round(user.daily_calories)} kkal` : "-");
+    setText("hydration", "85%");
+    setText("activity", "Sedang");
+
+    ["protein", "carbs", "fat", "vitamin"].forEach(nutrient => {
+      const percent = Math.round(user[`${nutrient}_percent`] ?? 0);
+      document.getElementById(`${nutrient}-bar`).style.width = `${percent}%`;
+      setText(`${nutrient}-val`, `${percent}%`);
+    });
+
+    const complaintsEl = document.getElementById("complaints-container");
+    complaintsEl.innerHTML = "<h4>Keluhan Gizi Terkini</h4>";
+    (user.last_complaints ?? []).forEach((item, i) => {
+      complaintsEl.innerHTML += `
+        <div class="complaint-item">
+          <i class="${i === 0 ? "fas fa-exclamation-triangle" : "fas fa-info-circle"}"></i>
+          <div>
+            <span class="complaint-title">${item.title}</span>
+            <span class="complaint-date">${item.date}</span>
+            <p class="complaint-description">${item.description}</p>
+          </div>
+        </div>`;
+    });
+    if (!user.last_complaints?.length) {
+      complaintsEl.innerHTML += "<p>Tidak ada keluhan terkini.</p>";
+    }
+
+    const stats = user.consultations ?? [];
+    const total = stats.length;
+    const avgDuration = total ? Math.round(stats.reduce((a, b) => a + (parseInt(b.duration) || 0), 0) / total) : 0;
+    const avgRating = total ? Math.round(stats.reduce((a, b) => a + (parseFloat(b.rating) || 0), 0) / total) : 0;
+
+    setText("consult-total", total);
+    setText("consult-duration", `${avgDuration} menit`);
+    setText("consult-rating", `${avgRating}/5`);
+
+    const consultList = document.getElementById("consultation-history-list");
+    consultList.innerHTML = total
+      ? stats.map(c => `
+          <div class="consult-item">
+            <div class="consult-header">
+              <span class="consult-topic">${c.topic}</span>
+              <span class="consult-date">${c.date}</span>
+            </div>
+            <p class="consult-summary">${c.summary}</p>
+            <div class="consult-rating">
+              ${generateStarRating(Math.round(c.rating))}
+              <span>${Math.round(c.rating)}</span>
+            </div>
+          </div>
+        `).join("")
+      : "<p>Tidak ada konsultasi terbaru.</p>";
+
+    const purchases = user.orders ?? [];
+    const summary = user.purchase_summary ?? {};
+
+    setText("purchase-total", summary.total_amount || "Rp 0");
+    setText("purchase-items", `${Math.round(summary.total_items || 0)} item`);
+    setText("purchase-last", summary.last_purchase || "-");
+
+    const purchaseList = document.getElementById("purchase-history-list");
+    purchaseList.innerHTML = purchases.length
+      ? purchases.map(p => `
+          <div class="purchase-item">
+            <div class="purchase-info">
+              <span class="product-name">${p.product}</span>
+              <span class="purchase-date">${p.date}</span>
+            </div>
+            <div class="purchase-details">
+              <span class="quantity">${Math.round(p.quantity)}x</span>
+              <span class="price">${p.price}</span>
+            </div>
+          </div>
+        `).join("")
+      : "<p>Tidak ada riwayat pembelian.</p>";
+
+    document.getElementById("userModal").style.display = "block";
   }
-};
+
+  function generateStarRating(rating) {
+    return [...Array(5)].map((_, i) =>
+      `<i class="${i < rating ? 'fas' : 'far'} fa-star"></i>`
+    ).join("");
+  }
+
+  function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value ?? "-";
+  }
+
+  function closeUserModal() {
+    document.getElementById("userModal").style.display = "none";
+  }
+
+  function showTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(`${tabName}-tab`)?.classList.add('active');
+    document.querySelector(`.tab-btn[onclick="showTab('${tabName}')"]`)?.classList.add('active');
+  }
+
+  // Registrasi global ke window agar bisa dipanggil dari HTML
+  window.openUserDetail = openUserDetail;
+  window.editUser = function(id) {
+    alert("Edit user: " + id);
+  };
+  window.deleteUser = function(id) {
+    if (confirm("Yakin ingin menghapus user ini?")) {
+      alert("User " + id + " dihapus.");
+    }
+  };
+  window.filterUsers = filterUsers;
+  window.searchUsers = searchUsers;
+  window.closeUserModal = closeUserModal;
+  window.showTab = showTab;
+
+  // Render awal
+  renderUsersTable(users);
+});
