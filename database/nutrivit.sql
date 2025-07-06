@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 03, 2025 at 09:19 PM
+-- Generation Time: Jul 06, 2025 at 08:05 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -181,15 +181,15 @@ INSERT INTO `products` (`id`, `name`, `category`, `description`, `price`, `stock
 -- Table structure for table `product_reviews`
 --
 
-  CREATE TABLE `product_reviews` (
-    `id` int(11) NOT NULL,
-    `user_id` varchar(10) DEFAULT NULL,
-    `product_id` varchar(10) DEFAULT NULL,
-    `order_id` int(11) DEFAULT NULL,
-    `rating` decimal(2,1) DEFAULT NULL CHECK (`rating` >= 1.0 and `rating` <= 5.0),
-    `review_text` text DEFAULT NULL,
-    `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `product_reviews` (
+  `id` int(11) NOT NULL,
+  `user_id` varchar(10) DEFAULT NULL,
+  `product_id` varchar(10) DEFAULT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `rating` decimal(2,1) DEFAULT NULL CHECK (`rating` >= 1.0 and `rating` <= 5.0),
+  `review_text` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_reviews`
@@ -253,6 +253,7 @@ CREATE TABLE `users` (
   `height` decimal(5,2) DEFAULT NULL,
   `member_type` enum('Premium','Reguler') NOT NULL,
   `status` enum('active','inactive','pending') DEFAULT 'active',
+  `konsultasi_status` enum('active','inactive','pending') DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `joining_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -261,15 +262,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password_hash`, `phone`, `gender`, `age`, `weight`, `height`, `member_type`, `status`, `created_at`, `joining_date`) VALUES
-('USR001', 'Andi Pratama', 'andi@email.com', '', '081234567801', 'male', 28, 70.50, 175.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR002', 'Sari Dewi', 'sari@email.com', '', '081234567802', 'female', 25, 55.00, 160.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR003', 'Budi Santoso', 'budi@email.com', '', '081234567803', 'male', 35, 80.00, 170.00, 'Premium', 'inactive', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR004', 'Maya Lestari', 'maya@email.com', '', '081234567804', 'female', 30, 60.00, 165.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR005', 'Rudi Hermawan', 'rudi@email.com', '', '081234567805', 'male', 32, 75.00, 178.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR006', 'Lila Sari', 'lila@email.com', '', '081234567806', 'female', 27, 52.00, 158.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR007', 'Ahmad Fauzi', 'ahmad@email.com', '', '081234567807', 'male', 29, 68.00, 172.00, 'Premium', 'active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR008', 'Rina Wati', 'rina@email.com', '', '081234567808', 'female', 26, 58.00, 162.00, 'Premium', 'pending', '2025-06-24 17:18:32', '2025-06-24 17:18:32');
+INSERT INTO `users` (`id`, `name`, `email`, `password_hash`, `phone`, `gender`, `age`, `weight`, `height`, `member_type`, `status`, `konsultasi_status`, `created_at`, `joining_date`) VALUES
+('USR001', 'Andi Pratama', 'andi@email.com', '', '081234567801', 'male', 28, 70.50, 175.00, 'Premium', 'active', 'active', '2025-06-24 17:18:32', '2025-07-04 13:01:57'),
+('USR002', 'Sari Dewi', 'sari@email.com', '', '081234567802', 'female', 25, 55.00, 160.00, 'Premium', 'active', 'inactive', '2025-06-24 17:18:32', '2025-07-04 13:01:57'),
+('USR003', 'Budi Santoso', 'budi@email.com', '', '081234567803', 'male', 35, 80.00, 170.00, 'Premium', 'inactive', 'active', '2025-06-24 17:18:32', '2025-07-04 13:01:57'),
+('USR004', 'Maya Lestari', 'maya@email.com', '', '081234567804', 'female', 30, 60.00, 165.00, 'Premium', 'active', 'pending', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('USR005', 'Rudi Hermawan', 'rudi@email.com', '', '081234567805', 'male', 32, 75.00, 178.00, 'Premium', 'active', 'active', '2025-06-24 17:18:32', '2025-07-04 13:01:57'),
+('USR006', 'Lila Sari', 'lila@email.com', '', '081234567806', 'female', 27, 52.00, 158.00, 'Premium', 'active', 'inactive', '2025-06-24 17:18:32', '2025-07-04 13:01:57'),
+('USR007', 'Ahmad Fauzi', 'ahmad@email.com', '', '081234567807', 'male', 29, 68.00, 172.00, 'Premium', 'active', 'pending', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('USR008', 'Rina Wati', 'rina@email.com', '', '081234567808', 'female', 26, 58.00, 162.00, 'Premium', 'pending', 'pending', '2025-06-24 17:18:32', '2025-06-24 17:18:32');
 
 -- --------------------------------------------------------
 
