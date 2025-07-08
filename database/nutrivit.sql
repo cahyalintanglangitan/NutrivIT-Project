@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 06, 2025 at 08:05 AM
+-- Generation Time: Jul 08, 2025 at 11:47 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -81,7 +81,45 @@ INSERT INTO `nutrition_achievements` (`id`, `user_id`, `date`, `calories_target`
 (3, 'USR002', '2024-06-24', 1800, 1750, 80.00, 85.00, 180.00, 175.00, 60.00, 58.00, 92.10, '2025-06-24 17:18:32'),
 (4, 'USR002', '2024-06-23', 1800, 1620, 80.00, 75.00, 180.00, 160.00, 60.00, 55.00, 86.70, '2025-06-24 17:18:32'),
 (5, 'USR004', '2024-06-24', 1900, 1456, 90.00, 68.00, 190.00, 145.00, 65.00, 48.00, 67.80, '2025-06-24 17:18:32'),
-(6, 'USR005', '2024-06-24', 2400, 2280, 140.00, 138.00, 240.00, 235.00, 80.00, 78.00, 89.30, '2025-06-24 17:18:32');
+(6, 'USR005', '2024-06-24', 2400, 2280, 140.00, 138.00, 240.00, 235.00, 80.00, 78.00, 89.30, '2025-06-24 17:18:32'),
+(7, 'USR001', '2025-01-10', 2200, 2100, 120.00, 110.00, 220.00, 205.00, 75.00, 70.00, 80.50, '2025-07-08 07:57:31'),
+(8, 'USR002', '2025-01-15', 1800, 1700, 80.00, 76.00, 180.00, 168.00, 60.00, 57.00, 82.10, '2025-07-08 07:57:31'),
+(9, 'USR001', '2025-02-12', 2200, 2150, 120.00, 115.00, 220.00, 210.00, 75.00, 72.00, 86.00, '2025-07-08 07:57:31'),
+(10, 'USR002', '2025-02-18', 1800, 1720, 80.00, 78.00, 180.00, 174.00, 60.00, 59.00, 88.20, '2025-07-08 07:57:31'),
+(11, 'USR001', '2025-03-08', 2200, 2180, 120.00, 118.00, 220.00, 215.00, 75.00, 74.00, 89.30, '2025-07-08 07:57:31'),
+(12, 'USR002', '2025-03-22', 1800, 1780, 80.00, 80.00, 180.00, 179.00, 60.00, 60.00, 91.80, '2025-07-08 07:57:31'),
+(13, 'USR001', '2025-04-05', 2200, 2080, 120.00, 109.00, 220.00, 200.00, 75.00, 68.00, 81.60, '2025-07-08 07:57:31'),
+(14, 'USR002', '2025-04-28', 1800, 1700, 80.00, 74.00, 180.00, 165.00, 60.00, 55.00, 79.40, '2025-07-08 07:57:31'),
+(15, 'USR001', '2025-05-03', 2200, 2120, 120.00, 113.00, 220.00, 208.00, 75.00, 71.00, 84.70, '2025-07-08 07:57:31'),
+(16, 'USR002', '2025-05-25', 1800, 1750, 80.00, 78.00, 180.00, 172.00, 60.00, 58.00, 87.90, '2025-07-08 07:57:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nutrition_needs`
+--
+
+CREATE TABLE `nutrition_needs` (
+  `id` int(11) NOT NULL,
+  `month` varchar(10) NOT NULL,
+  `protein_kg` decimal(10,2) DEFAULT 0.00,
+  `carbs_kg` decimal(10,2) DEFAULT 0.00,
+  `fat_kg` decimal(10,2) DEFAULT 0.00,
+  `vitamin_iu` decimal(10,2) DEFAULT 0.00,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `nutrition_needs`
+--
+
+INSERT INTO `nutrition_needs` (`id`, `month`, `protein_kg`, `carbs_kg`, `fat_kg`, `vitamin_iu`, `created_at`) VALUES
+(1, 'Jan', 480.00, 375.00, 570.00, 525.00, '2025-07-08 08:00:03'),
+(2, 'Feb', 450.00, 330.00, 525.00, 480.00, '2025-07-08 08:00:03'),
+(3, 'Mar', 405.00, 300.00, 480.00, 450.00, '2025-07-08 08:00:03'),
+(4, 'Apr', 375.00, 270.00, 450.00, 420.00, '2025-07-08 08:00:03'),
+(5, 'May', 330.00, 225.00, 405.00, 375.00, '2025-07-08 08:00:03'),
+(6, 'Jun', 300.00, 195.00, 375.00, 345.00, '2025-07-08 08:00:03');
 
 -- --------------------------------------------------------
 
@@ -140,7 +178,14 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `unit_pri
 (6, 4, 'PRD001', 1, 299000.00, 299000.00),
 (7, 4, 'PRD006', 1, 150000.00, 150000.00),
 (8, 5, 'PRD001', 1, 299000.00, 299000.00),
-(9, 6, 'PRD002', 1, 125000.00, 125000.00);
+(9, 6, 'PRD002', 1, 125000.00, 125000.00),
+(10, 2, 'PRD002', 2, 125000.00, 250000.00),
+(11, 2, 'PRD005', 1, 95000.00, 95000.00),
+(12, 4, 'PRD006', 1, 150000.00, 150000.00),
+(13, 4, 'PRD003', 1, 185000.00, 185000.00),
+(14, 5, 'PRD007', 2, 220000.00, 440000.00),
+(15, 6, 'PRD004', 3, 75000.00, 225000.00),
+(16, 6, 'PRD008', 2, 180000.00, 360000.00);
 
 -- --------------------------------------------------------
 
@@ -320,6 +365,12 @@ ALTER TABLE `nutrition_achievements`
   ADD KEY `idx_nutrition_user_date` (`user_id`,`date`);
 
 --
+-- Indexes for table `nutrition_needs`
+--
+ALTER TABLE `nutrition_needs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -388,6 +439,12 @@ ALTER TABLE `ai_consultations`
 -- AUTO_INCREMENT for table `nutrition_achievements`
 --
 ALTER TABLE `nutrition_achievements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `nutrition_needs`
+--
+ALTER TABLE `nutrition_needs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
@@ -400,7 +457,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `product_reviews`
