@@ -354,228 +354,208 @@ function initializeCharts() {
     updateComplaintsData();
   }
   // Product Category Chart
-  const productCategoryCtx = document.getElementById("productCategoryChart");
-  if (productCategoryCtx) {
-    new Chart(productCategoryCtx, {
-      type: "doughnut",
-      data: {
-        labels: ["Vitamin & Suplemen", "Herbal & Natural", "Fitness & Protein"],
-        datasets: [
-          {
-            data: [45, 30, 25],
-            backgroundColor: ["#08A55A", "#3FCAEA", "#667eea"],
-            borderWidth: 0,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
+const productCategoryCtx = document.getElementById("productCategoryChart");
+if (productCategoryCtx && typeof productCategoryDataFromPHP !== "undefined") {
+  new Chart(productCategoryCtx, {
+    type: "doughnut",
+    data: {
+      labels: productCategoryDataFromPHP.labels,
+      datasets: [
+        {
+          data: productCategoryDataFromPHP.data,
+          backgroundColor: ["#08A55A", "#3FCAEA", "#667eea", "#FFCE56", "#A259FF"],
+          borderWidth: 0,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
         },
       },
-    });
-  }
-
-  // Nutrition Achievement Chart
-  const nutritionAchievementCtx = document.getElementById(
-    "nutritionAchievementChart"
-  );
-  if (nutritionAchievementCtx) {
-    new Chart(nutritionAchievementCtx, {
-      type: "bar",
-      data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        datasets: [
-          {
-            label: "Protein",
-            // Jan: 68% (Kelelahan), Feb: 70%, Mar: 73% (Obesitas), Apr: 75%, May: 78%, Jun: 80%
-            data: [68, 70, 73, 75, 78, 80],
-            backgroundColor: "#08A55A",
-            borderRadius: 4,
-          },
-          {
-            label: "Karbohidrat",
-            // Jan: 75%, Feb: 78% (Pencernaan-quality rendah), Mar: 80%, Apr: 82%, May: 85%, Jun: 87%
-            data: [75, 78, 80, 82, 85, 87],
-            backgroundColor: "#3FCAEA",
-            borderRadius: 4,
-          },
-          {
-            label: "Lemak",
-            // Jan: 62% (Paling rendah-Kelelahan), Feb: 65%, Mar: 68%, Apr: 70%, May: 73%, Jun: 75%
-            data: [62, 65, 68, 70, 73, 75],
-            backgroundColor: "#667eea",
-            borderRadius: 4,
-          },
-          {
-            label: "Vitamin",
-            // Jan: 65%, Feb: 68%, Mar: 70%, Apr: 72%, May: 75% (Rendah-Imunitas), Jun: 77%
-            data: [65, 68, 70, 72, 75, 77],
-            backgroundColor: "#f093fb",
-            borderRadius: 4,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: "top",
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100,
-            grid: {
-              color: "rgba(0,0,0,0.1)",
-            },
-          },
-          x: {
-            grid: {
-              display: false,
-            },
-          },
-        },
-      },
-    });
-  }
-
-  const nutritionNeedsCtx = document.getElementById("nutritionNeedsChart");
-  if (nutritionNeedsCtx) {
-    new Chart(nutritionNeedsCtx, {
-      type: "line",
-      data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        datasets: [
-          {
-            label: "Protein (kg)",
-            // Jan: 480kg (32% gap), Feb: 450kg, Mar: 405kg, Apr: 375kg, May: 330kg, Jun: 300kg
-            data: [480, 450, 405, 375, 330, 300],
-            borderColor: "#08A55A",
-            backgroundColor: "rgba(8, 165, 90, 0.1)",
-            tension: 0.4,
-            fill: true,
-          },
-          {
-            label: "Karbohidrat (kg)",
-            // Jan: 375kg (25% gap), Feb: 330kg, Mar: 300kg, Apr: 270kg, May: 225kg, Jun: 195kg
-            data: [375, 330, 300, 270, 225, 195],
-            borderColor: "#3FCAEA",
-            backgroundColor: "rgba(63, 202, 234, 0.1)",
-            tension: 0.4,
-            fill: true,
-          },
-          {
-            label: "Lemak (kg)",
-            // Jan: 570kg (38% gap-Tertinggi), Feb: 525kg, Mar: 480kg, Apr: 450kg, May: 405kg, Jun: 375kg
-            data: [570, 525, 480, 450, 405, 375],
-            borderColor: "#667eea",
-            backgroundColor: "rgba(102, 126, 234, 0.1)",
-            tension: 0.4,
-            fill: true,
-          },
-          {
-            label: "Vitamin (ribu IU)",
-            // Jan: 525 ribu IU (35% gap), Feb: 480, Mar: 450, Apr: 420, May: 375 (Imunitas), Jun: 345
-            data: [525, 480, 450, 420, 375, 345],
-            borderColor: "#f093fb",
-            backgroundColor: "rgba(240, 147, 251, 0.1)",
-            tension: 0.4,
-            fill: true,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: "top",
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: {
-              color: "rgba(0,0,0,0.1)",
-            },
-          },
-          x: {
-            grid: {
-              display: false,
-            },
-          },
-        },
-      },
-    });
-  }
-
-  // Best Selling Products Chart
-  const bestSellingCtx = document.getElementById("bestSellingChart");
-  if (bestSellingCtx) {
-    new Chart(bestSellingCtx, {
-      type: "bar",
-      data: {
-        labels: [
-          "NuVit-Multi Core",
-          "NuVit-Green Detox",
-          "NuVit-Whey Muscle",
-          "NuVit-C Boost",
-          "NuVit-Omega Brain",
-          "NuVit-Honey Natural",
-          "NuVit-Curcuma Gold",
-          "NuVit-BCAA Recovery",
-        ],
-        datasets: [
-          {
-            label: "Penjualan 6 Bulan",
-            data: [16650, 15830, 14720, 14230, 11890, 10380, 8450, 7920],
-            backgroundColor: [
-              "#08A55A",
-              "#3FCAEA",
-              "#667eea",
-              "#f093fb",
-              "#4facfe",
-              "#43e97b",
-              "#ffc107",
-              "#fd7e14",
-            ],
-            borderRadius: 6,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        indexAxis: "y",
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        scales: {
-          x: {
-            beginAtZero: true,
-            grid: {
-              color: "rgba(0,0,0,0.1)",
-            },
-          },
-          y: {
-            grid: {
-              display: false,
-            },
-          },
-        },
-      },
-    });
-  }
+    },
+  });
 }
+
+
+
+const nutritionAchievementCtx = document.getElementById("nutritionAchievementChart");
+
+if (nutritionAchievementCtx && typeof nutritionDataFromPHP !== "undefined") {
+  new Chart(nutritionAchievementCtx, {
+    type: "bar",
+    data: {
+      labels: nutritionDataFromPHP.months,
+      datasets: [
+        {
+          label: "Protein",
+          data: nutritionDataFromPHP.protein,
+          backgroundColor: "#08A55A",
+          borderRadius: 4,
+        },
+        {
+          label: "Karbohidrat",
+          data: nutritionDataFromPHP.carbs,
+          backgroundColor: "#3FCAEA",
+          borderRadius: 4,
+        },
+        {
+          label: "Lemak",
+          data: nutritionDataFromPHP.fat,
+          backgroundColor: "#667eea",
+          borderRadius: 4,
+        },
+        {
+          label: "Vitamin",
+          data: nutritionDataFromPHP.vitamin,
+          backgroundColor: "#f093fb",
+          borderRadius: 4,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: "top" },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          ticks: {
+            callback: function (value) {
+              return value + "%";
+            },
+          },
+          grid: {
+            color: "rgba(0,0,0,0.1)",
+          },
+        },
+        x: {
+          grid: { display: false },
+        },
+      },
+    },
+  });
+}
+
+
+ const nutritionNeedsCtx = document.getElementById("nutritionNeedsChart");
+if (nutritionNeedsCtx && nutritionNeedsData) {
+  new Chart(nutritionNeedsCtx, {
+    type: "line",
+    data: {
+      labels: nutritionNeedsData.months,
+      datasets: [
+        {
+          label: "Protein (kg)",
+          data: nutritionNeedsData.protein,
+          borderColor: "#08A55A",
+          backgroundColor: "rgba(8, 165, 90, 0.1)",
+          tension: 0.4,
+          fill: true,
+        },
+        {
+          label: "Karbohidrat (kg)",
+          data: nutritionNeedsData.carbs,
+          borderColor: "#3FCAEA",
+          backgroundColor: "rgba(63, 202, 234, 0.1)",
+          tension: 0.4,
+          fill: true,
+        },
+        {
+          label: "Lemak (kg)",
+          data: nutritionNeedsData.fat,
+          borderColor: "#667eea",
+          backgroundColor: "rgba(102, 126, 234, 0.1)",
+          tension: 0.4,
+          fill: true,
+        },
+        {
+          label: "Vitamin (ribu IU)",
+          data: nutritionNeedsData.vitamin,
+          borderColor: "#f093fb",
+          backgroundColor: "rgba(240, 147, 251, 0.1)",
+          tension: 0.4,
+          fill: true,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: "top" },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: "rgba(0,0,0,0.1)" },
+        },
+        x: {
+          grid: { display: false },
+        },
+      },
+    },
+  });
+}
+
+
+const bestSellingCtx = document.getElementById("bestSellingChart");
+
+if (bestSellingCtx && bestSellingDataFromPHP) {
+  new Chart(bestSellingCtx, {
+    type: "bar",
+    data: {
+      labels: bestSellingDataFromPHP.labels,
+      datasets: [
+        {
+          label: "Penjualan 6 Bulan",
+          data: bestSellingDataFromPHP.data,
+          backgroundColor: [
+            "#08A55A",
+            "#3FCAEA",
+            "#667eea",
+            "#f093fb",
+            "#4facfe",
+            "#43e97b",
+            "#ffc107",
+            "#fd7e14",
+          ],
+          borderRadius: 6,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: "y",
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          grid: {
+            color: "rgba(0,0,0,0.1)",
+          },
+        },
+        y: {
+          grid: {
+            display: false,
+          },
+        },
+      },
+    },
+  });
+}
+
 
 // Handle escape key to close modals
 document.addEventListener('keydown', function(event) {
@@ -596,4 +576,4 @@ document.querySelectorAll(".filter-btn").forEach((btn) => {
       .forEach((b) => b.classList.remove("active"));
     this.classList.add("active");
   });
-});
+})}
