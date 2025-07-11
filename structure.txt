@@ -1,0 +1,43 @@
+NutrivIT-Project/
+├── ai-analysis.php
+├── ai_studio_gemini.py
+├── api_chat.php
+├── api_key.txt
+├── assets/
+│   ├── css/
+│   │   ├── ai-analysis.css
+│   │   ├── complaints_review.css
+│   │   ├── dashboard.css
+│   │   ├── landing-page.css
+│   │   ├── login.css
+│   │   ├── product-management.css
+│   │   ├── profile.css
+│   │   ├── unauthorized.css
+│   │   └── user-management.css
+│   ├── images/
+│   ├── js/
+│   │   ├── ai-analysis.js
+│   │   ├── complaints_review.js
+│   │   ├── dashboard.js
+│   │   ├── product-management.js
+│   │   └── user-management.js
+│   └── php/
+│       ├── detail-product.php
+│       ├── stat-product.php
+│       └── table-product.php
+├── bar/
+│   └── navbar.php
+├── complaints_review.php
+├── dashboard.php
+├── database/
+│   └── nutrivit.sql
+├── get_users.php
+├── koneksi.php
+├── landing-page.php
+├── login.php
+├── product-management.php
+├── profile.php
+├── project_structure.py
+├── structure.txt
+├── unauthorized.php
+└── user-management.php
