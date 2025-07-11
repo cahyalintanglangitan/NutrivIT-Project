@@ -1,12 +1,4 @@
 <?php
-session_start();
-
-// Check authentication
-if (!isset($_SESSION['auth']) || $_SESSION['auth'] !== true) {
-    header('Location: login.php');
-    exit();
-}
-
 // Include database connection
 require_once 'koneksi.php';
 
@@ -262,8 +254,8 @@ $analytics = getAnalytics($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complaints & Review - NutrivIT Dashboard</title>
-    <link rel="stylesheet" href="./assets/css/dashboard.css">
-    <link rel="stylesheet" href="./assets/css/complaints_review.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="complaints_review.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -280,10 +272,10 @@ $analytics = getAnalytics($conn);
             
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
-                    <li><a href="product-management.php"><i class="fas fa-box"></i> Product Management</a></li>
-                    <li><a href="ai-analysis.php"><i class="fas fa-brain"></i> AI Analysis</a></li>
-                    <li class="active"><a href="complaints_review.php"><i class="fas fa-comments"></i> Complaints & Review</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="product-management.html"><i class="fas fa-box"></i> Product Management</a></li>
+                    <li><a href="ai-analysis.html"><i class="fas fa-brain"></i> AI Analysis</a></li>
+                    <li class="active"><a href="complaints-review.php"><i class="fas fa-comments"></i> Complaints & Review</a></li>
                 </ul>
             </nav>
         </aside>
@@ -699,6 +691,6 @@ $analytics = getAnalytics($conn);
         const analyticsData = <?php echo json_encode($analytics); ?>;
         const productsData = <?php echo json_encode($products); ?>;
     </script>
-    <script src="./assets/js/complaints_review.js"></script>
+    <script src="complaints_review-php.js"></script>
 </body>
 </html>

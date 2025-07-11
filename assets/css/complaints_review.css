@@ -219,7 +219,8 @@
   gap: 10px;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
   padding: 10px 16px;
   border: none;
   border-radius: 8px;
@@ -255,52 +256,61 @@
 }
 
 /* Complaints List */
-.complaints-container, .reviews-container {
+.complaints-container,
+.reviews-container {
   background: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
-.complaints-list, .reviews-list {
+.complaints-list,
+.reviews-list {
   max-height: 600px;
   overflow-y: auto;
 }
 
-.complaint-item, .review-item {
+.complaint-item,
+.review-item {
   padding: 20px 25px;
   border-bottom: 1px solid #f0f0f0;
   transition: background 0.3s;
   cursor: pointer;
 }
 
-.complaint-item:hover, .review-item:hover {
+.complaint-item:hover,
+.review-item:hover {
   background: #f8f9fa;
 }
 
-.complaint-item:last-child, .review-item:last-child {
+.complaint-item:last-child,
+.review-item:last-child {
   border-bottom: none;
 }
 
-.complaint-header, .review-header {
+.complaint-header,
+.review-header {
   display: flex;
-  justify-content: between;
+  justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 12px;
 }
 
-.complaint-info, .review-info {
+.complaint-info,
+.review-info {
   flex: 1;
 }
 
-.complaint-id, .review-id {
+.complaint-id,
+.review-id {
   font-weight: 600;
   color: #333;
   font-size: 16px;
   margin-bottom: 4px;
 }
 
-.complaint-meta, .review-meta {
+.complaint-meta,
+.review-meta {
   display: flex;
   gap: 15px;
   font-size: 12px;
@@ -308,7 +318,8 @@
   margin-bottom: 8px;
 }
 
-.complaint-type, .review-rating {
+.complaint-type,
+.review-rating {
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -400,7 +411,8 @@
 }
 
 /* Description Text */
-.complaint-description, .review-text {
+.complaint-description,
+.review-text {
   color: #666;
   line-height: 1.5;
   margin-bottom: 12px;
@@ -410,7 +422,8 @@
   overflow: hidden;
 }
 
-.complaint-actions, .review-actions {
+.complaint-actions,
+.review-actions {
   display: flex;
   gap: 10px;
   margin-top: 12px;
@@ -661,6 +674,64 @@
   overflow-y: auto;
 }
 
+/* Modal detail styles */
+.complaint-detail,
+.review-detail {
+  max-width: 100%;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.detail-info {
+  margin-bottom: 20px;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.info-row label {
+  font-weight: 600;
+  color: #333;
+  min-width: 120px;
+  margin-right: 10px;
+}
+
+.detail-description {
+  margin-bottom: 20px;
+}
+
+.detail-description label {
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.detail-description p {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding-top: 15px;
+  border-top: 1px solid #e9ecef;
+}
+
 /* Notification Panel */
 .notification-panel {
   position: fixed;
@@ -741,7 +812,7 @@
 
 .notification-item.unread {
   background: rgba(8, 165, 90, 0.02);
-  border-left: 3px solid #08A55A;
+  border-left: 3px solid #08a55a;
 }
 
 .notification-icon {
@@ -761,7 +832,7 @@
 }
 
 .notification-icon.success {
-  background: linear-gradient(135deg, #08A55A, #3FCAEA);
+  background: linear-gradient(135deg, #08a55a, #3fcaea);
 }
 
 .notification-icon.info {
@@ -799,7 +870,7 @@
 .unread-dot {
   width: 8px;
   height: 8px;
-  background: #08A55A;
+  background: #08a55a;
   border-radius: 50%;
 }
 
@@ -830,114 +901,15 @@
 }
 
 .btn-mark-all-read:hover {
-  background: #08A55A;
+  background: #08a55a;
   color: white;
-  border-color: #08A55A;
+  border-color: #08a55a;
 }
 
 .btn-view-all:hover {
-  background: #3FCAEA;
+  background: #3fcaea;
   color: white;
-  border-color: #3FCAEA;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .overview-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .analytics-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .notification-panel {
-    width: 350px;
-    right: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .overview-cards {
-    grid-template-columns: 1fr;
-  }
-  
-  .tab-navigation {
-    flex-direction: column;
-    gap: 5px;
-  }
-  
-  .filters-section {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .filter-group {
-    width: 100%;
-  }
-  
-  .filter-group select {
-    min-width: auto;
-    width: 100%;
-  }
-  
-  .section-header {
-    flex-direction: column;
-    gap: 15px;
-    align-items: stretch;
-  }
-  
-  .header-actions {
-    justify-content: flex-start;
-  }
-  
-  .complaint-header, .review-header {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .complaint-meta, .review-meta {
-    flex-wrap: wrap;
-  }
-  
-  .insights-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .notification-panel {
-    width: 90%;
-    right: 5%;
-    top: 70px;
-  }
-}
-
-@media (max-width: 480px) {
-  .overview-card {
-    padding: 20px;
-  }
-  
-  .card-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-  }
-  
-  .card-number {
-    font-size: 28px;
-  }
-  
-  .complaint-item, .review-item {
-    padding: 15px 20px;
-  }
-  
-  .modal-content {
-    width: 95%;
-    margin: 20px;
-  }
-  
-  .modal-body {
-    padding: 20px;
-  }
+  border-color: #3fcaea;
 }
 
 /* Loading States */
@@ -945,6 +917,9 @@
   opacity: 0.6;
   pointer-events: none;
   position: relative;
+  text-align: center;
+  padding: 40px;
+  color: #666;
 }
 
 .loading::after {
@@ -962,8 +937,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Scrollbar Styles */
@@ -990,4 +969,106 @@
 .reviews-list::-webkit-scrollbar-thumb:hover,
 .notification-content::-webkit-scrollbar-thumb:hover {
   background: #a1a1a1;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .overview-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .notification-panel {
+    width: 350px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .overview-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-navigation {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .filters-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .filter-group select {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .header-actions {
+    justify-content: flex-start;
+  }
+
+  .complaint-header,
+  .review-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .complaint-meta,
+  .review-meta {
+    flex-wrap: wrap;
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .notification-panel {
+    width: 90%;
+    right: 5%;
+    top: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .overview-card {
+    padding: 20px;
+  }
+
+  .card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .card-number {
+    font-size: 28px;
+  }
+
+  .complaint-item,
+  .review-item {
+    padding: 15px 20px;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 20px;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
 }

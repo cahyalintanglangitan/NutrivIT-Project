@@ -1,7 +1,3 @@
-// Profile functionality
-function handleProfile() {
-  window.location.href = "profile.php";
-}
 
 // Check authentication
 if (!localStorage.getItem("auth")) {

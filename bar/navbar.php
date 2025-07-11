@@ -38,21 +38,25 @@ $current_page = basename($_SERVER['PHP_SELF']);
   </div>
 
   <nav class="sidebar-nav">
-    <a href="/dashboard.php" class="nav-item<?php if($current_page == 'dashboard.php') echo ' active'; ?>">
+    <a href="./dashboard.php" class="nav-item<?php if ($current_page == 'dashboard.php') echo ' active'; ?>">
       <i class="fas fa-chart-pie nav-icon"></i>
       Dashboard
     </a>
-    <a href="/user-management.php" class="nav-item<?php if($current_page == 'user-management.php') echo ' active'; ?>">
+    <a href="./user-management.php" class="nav-item<?php if ($current_page == 'user-management.php') echo ' active'; ?>">
       <i class="fas fa-users nav-icon"></i>
       User Management
     </a>
-    <a href="/product-management.php" class="nav-item<?php if($current_page == 'product-management.php') echo ' active'; ?>">
+    <a href="./product-management.php" class="nav-item<?php if ($current_page == 'product-management.php') echo ' active'; ?>">
       <i class="fas fa-boxes nav-icon"></i>
       Product Management
     </a>
-    <a href="/ai-analysis.php" class="nav-item<?php if($current_page == 'ai-analysis.php') echo ' active'; ?>">
+    <a href="./ai-analysis.php" class="nav-item<?php if ($current_page == 'ai-analysis.php') echo ' active'; ?>">
       <i class="fas fa-robot nav-icon"></i>
       Manajerial AI
+    </a>
+    <a href="./complaints_review.php" class="nav-item<?php if ($current_page == 'complaints_review.php') echo ' active'; ?>">
+      <i class="fas fa-robot nav-icon"></i>
+      Complaints & Review
     </a>
   </nav>
 
@@ -68,3 +72,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </div>
   </div>
 </div>
+<script>
+  function handleProfile() {
+  window.location.href = "profile.php";
+}
+</script>
