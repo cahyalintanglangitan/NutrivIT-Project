@@ -598,7 +598,7 @@ function sendMessage() {
   const textarea = document.getElementById("user-input");
   const message = textarea.value.trim();
 
-  // Keluar jika tidak ada pesan atau AI sedang "mengetik"
+  // Keluar jika tidak ada pesan atau sedang "mengetik"
   const typingIndicator = document.getElementById("typing-indicator");
   if (!message || typingIndicator) return;
 
@@ -613,7 +613,7 @@ function sendMessage() {
   // Tampilkan indikator "sedang mengetik"
   showTypingIndicator();
 
-  // Kirim pesan ke backend (api_chat.php) menggunakan Fetch API
+  // Kirim pesan ke backend (api_chat.php) yang sudah diperbarui
   fetch('api_chat.php', {
     method: 'POST',
     headers: {
@@ -624,32 +624,32 @@ function sendMessage() {
   })
   .then(response => {
     if (!response.ok) {
-      // Jika server merespons dengan error (misal: 500 Internal Server Error)
-      throw new Error(`HTTP error! status: ${response.status}`);
+      // Jika server merespons dengan error (misal: 500, 404)
+      // coba untuk membaca body error jika ada
+      return response.json().then(err => { throw new Error(err.error || `HTTP error! status: ${response.status}`) });
     }
     return response.json();
   })
   .then(data => {
-    // Sembunyikan indikator "sedang mengetik"
     hideTypingIndicator();
 
     if (data.reply) {
-      // Jika ada balasan dari AI, tampilkan di chat
+      // Tampilkan balasan dari AI
       addMessage(data.reply, "ai");
     } else {
-      // Jika ada pesan error dari backend
+      // Tampilkan pesan error dari backend jika ada
       const errorMessage = data.error || 'Terjadi kesalahan yang tidak diketahui.';
       addMessage(`⚠️ **Error:** ${errorMessage}`, "ai");
     }
   })
   .catch(error => {
     console.error('Fetch Error:', error);
-    // Sembunyikan indikator "sedang mengetik" jika terjadi error
     hideTypingIndicator();
-    // Tampilkan pesan error di chat
-    addMessage(`⚠️ **Error:** Tidak dapat terhubung ke server AI. Silakan coba lagi nanti. (${error.message})`, "ai");
+    // Tampilkan pesan error di chat untuk masalah koneksi atau parsing
+    addMessage(`⚠️ **Error:** Tidak dapat terhubung ke server AI. Pastikan server berjalan dan database terhubung. (${error.message})`, "ai");
   });
 }
+
 
 // Quick question handler
 function askQuickQuestion(type) {

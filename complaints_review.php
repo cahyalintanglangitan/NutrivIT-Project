@@ -5,7 +5,7 @@ require_once 'koneksi.php';
 // Handle AJAX requests
 if (isset($_GET['action'])) {
     header('Content-Type: application/json');
-    
+
     switch ($_GET['action']) {
         case 'get_complaints':
             echo json_encode(getComplaints($conn, $_GET));
@@ -26,28 +26,29 @@ if (isset($_GET['action'])) {
 }
 
 // Functions for data retrieval
-function getComplaints($conn, $filters = []) {
+function getComplaints($conn, $filters = [])
+{
     $sql = "SELECT uc.*, u.username, u.email 
             FROM user_complaints uc 
             LEFT JOIN users u ON uc.user_id = u.id 
             WHERE 1=1";
-    
+
     $params = [];
     $types = "";
-    
+
     // Apply filters
     if (!empty($filters['status']) && $filters['status'] !== 'all') {
         $sql .= " AND uc.status = ?";
         $params[] = $filters['status'];
         $types .= "s";
     }
-    
+
     if (!empty($filters['type']) && $filters['type'] !== 'all') {
         $sql .= " AND uc.complaint_type = ?";
         $params[] = $filters['type'];
         $types .= "s";
     }
-    
+
     if (!empty($filters['period']) && $filters['period'] !== 'all') {
         switch ($filters['period']) {
             case 'today':
@@ -61,7 +62,7 @@ function getComplaints($conn, $filters = []) {
                 break;
         }
     }
-    
+
     if (!empty($filters['search'])) {
         $sql .= " AND (uc.description LIKE ? OR u.username LIKE ? OR u.email LIKE ?)";
         $searchTerm = '%' . $filters['search'] . '%';
@@ -70,35 +71,36 @@ function getComplaints($conn, $filters = []) {
         $params[] = $searchTerm;
         $types .= "sss";
     }
-    
+
     $sql .= " ORDER BY uc.created_at DESC LIMIT 50";
-    
+
     $stmt = $conn->prepare($sql);
     if (!empty($params)) {
         $stmt->bind_param($types, ...$params);
     }
-    
+
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     $complaints = [];
     while ($row = $result->fetch_assoc()) {
         $complaints[] = $row;
     }
-    
+
     return $complaints;
 }
 
-function getReviews($conn, $filters = []) {
-    $sql = "SELECT pr.*, u.username, u.email, p.product_name, p.product_code
-            FROM product_reviews pr 
-            LEFT JOIN users u ON pr.user_id = u.id 
-            LEFT JOIN products p ON pr.product_id = p.id
-            WHERE 1=1";
-    
+function getReviews($conn, $filters = [])
+{
+    $sql = "SELECT pr.*, u.username, u.email, p.name AS product_name
+        FROM product_reviews pr 
+        LEFT JOIN users u ON pr.user_id = u.id 
+        LEFT JOIN products p ON pr.product_id = p.id
+        WHERE 1=1";
+
     $params = [];
     $types = "";
-    
+
     // Apply filters
     if (!empty($filters['rating']) && $filters['rating'] !== 'all') {
         $rating = intval($filters['rating']);
@@ -106,13 +108,13 @@ function getReviews($conn, $filters = []) {
         $params[] = $rating;
         $types .= "i";
     }
-    
+
     if (!empty($filters['product']) && $filters['product'] !== 'all') {
         $sql .= " AND pr.product_id = ?";
         $params[] = $filters['product'];
         $types .= "i";
     }
-    
+
     if (!empty($filters['period']) && $filters['period'] !== 'all') {
         switch ($filters['period']) {
             case 'today':
@@ -126,39 +128,40 @@ function getReviews($conn, $filters = []) {
                 break;
         }
     }
-    
+
     if (!empty($filters['search'])) {
-        $sql .= " AND (pr.review_text LIKE ? OR u.username LIKE ? OR p.product_name LIKE ?)";
+        $sql .= " AND (pr.review_text LIKE ? OR u.username LIKE ? OR p.name LIKE ?)";
         $searchTerm = '%' . $filters['search'] . '%';
         $params[] = $searchTerm;
         $params[] = $searchTerm;
         $params[] = $searchTerm;
         $types .= "sss";
     }
-    
+
     $sql .= " ORDER BY pr.created_at DESC LIMIT 50";
-    
+
     $stmt = $conn->prepare($sql);
     if (!empty($params)) {
         $stmt->bind_param($types, ...$params);
     }
-    
+
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     $reviews = [];
     while ($row = $result->fetch_assoc()) {
         $reviews[] = $row;
     }
-    
+
     return $reviews;
 }
 
-function updateComplaintStatus($conn, $data) {
+function updateComplaintStatus($conn, $data)
+{
     $sql = "UPDATE user_complaints SET status = ?, updated_at = NOW() WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("si", $data['status'], $data['complaint_id']);
-    
+
     if ($stmt->execute()) {
         return ['success' => true, 'message' => 'Status berhasil diupdate'];
     } else {
@@ -166,25 +169,26 @@ function updateComplaintStatus($conn, $data) {
     }
 }
 
-function getAnalytics($conn) {
+function getAnalytics($conn)
+{
     $analytics = [];
-    
+
     // Total complaints
     $result = $conn->query("SELECT COUNT(*) as total FROM user_complaints");
     $analytics['total_complaints'] = $result->fetch_assoc()['total'];
-    
+
     // Total reviews
     $result = $conn->query("SELECT COUNT(*) as total FROM product_reviews");
     $analytics['total_reviews'] = $result->fetch_assoc()['total'];
-    
+
     // Average rating
     $result = $conn->query("SELECT AVG(rating) as avg_rating FROM product_reviews");
     $analytics['avg_rating'] = round($result->fetch_assoc()['avg_rating'], 1);
-    
+
     // Pending complaints
     $result = $conn->query("SELECT COUNT(*) as total FROM user_complaints WHERE status = 'pending'");
     $analytics['pending_complaints'] = $result->fetch_assoc()['total'];
-    
+
     // Complaint trends (last 6 months)
     $result = $conn->query("
         SELECT 
@@ -195,26 +199,26 @@ function getAnalytics($conn) {
         GROUP BY DATE_FORMAT(created_at, '%Y-%m')
         ORDER BY month
     ");
-    
+
     $trends = [];
     while ($row = $result->fetch_assoc()) {
         $trends[] = $row;
     }
     $analytics['complaint_trends'] = $trends;
-    
+
     // Complaint types distribution
     $result = $conn->query("
         SELECT complaint_type, COUNT(*) as count 
         FROM user_complaints 
         GROUP BY complaint_type
     ");
-    
+
     $types = [];
     while ($row = $result->fetch_assoc()) {
         $types[] = $row;
     }
     $analytics['complaint_types'] = $types;
-    
+
     // Rating distribution
     $result = $conn->query("
         SELECT 
@@ -224,19 +228,19 @@ function getAnalytics($conn) {
         GROUP BY FLOOR(rating)
         ORDER BY rating_floor
     ");
-    
+
     $ratings = [];
     while ($row = $result->fetch_assoc()) {
         $ratings[] = $row;
     }
     $analytics['rating_distribution'] = $ratings;
-    
+
     return $analytics;
 }
 
 // Get products for filter dropdown
 function getProducts($conn) {
-    $result = $conn->query("SELECT id, product_name, product_code FROM products ORDER BY product_name");
+    $result = $conn->query("SELECT id, name AS product_name FROM products ORDER BY name");
     $products = [];
     while ($row = $result->fetch_assoc()) {
         $products[] = $row;
@@ -250,36 +254,21 @@ $analytics = getAnalytics($conn);
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complaints & Review - NutrivIT Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="complaints_review.css">
+    <link rel="stylesheet" href="./assets/css/dashboard.css">
+    <link rel="stylesheet" href="./assets/css/complaints_review.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <i class="fas fa-leaf"></i>
-                    <span>NutrivIT</span>
-                </div>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
-                    <li><a href="product-management.html"><i class="fas fa-box"></i> Product Management</a></li>
-                    <li><a href="ai-analysis.html"><i class="fas fa-brain"></i> AI Analysis</a></li>
-                    <li class="active"><a href="complaints-review.php"><i class="fas fa-comments"></i> Complaints & Review</a></li>
-                </ul>
-            </nav>
-        </aside>
-
+    <!-- Sidebar -->
+    <?php include 'bar/navbar.php'; ?> 
         <!-- Main Content -->
         <main class="main-content">
             <!-- Header -->
@@ -288,7 +277,7 @@ $analytics = getAnalytics($conn);
                     <h1>Complaints & Review Management</h1>
                     <p id="current-date"><?php echo date('l, d F Y'); ?></p>
                 </div>
-                
+
                 <div class="header-right">
                     <div class="notification-bell" onclick="toggleNotificationPanel()">
                         <i class="fas fa-bell"></i>
@@ -386,7 +375,7 @@ $analytics = getAnalytics($conn);
                             <option value="resolved">Resolved</option>
                         </select>
                     </div>
-                    
+
                     <div class="filter-group">
                         <label>Type</label>
                         <select id="complaint-type-filter" onchange="filterComplaints()">
@@ -399,7 +388,7 @@ $analytics = getAnalytics($conn);
                             <option value="other">Other</option>
                         </select>
                     </div>
-                    
+
                     <div class="filter-group">
                         <label>Period</label>
                         <select id="complaint-period-filter" onchange="filterComplaints()">
@@ -409,7 +398,7 @@ $analytics = getAnalytics($conn);
                             <option value="month">This Month</option>
                         </select>
                     </div>
-                    
+
                     <div class="search-group">
                         <input type="text" id="complaint-search" placeholder="Search complaints..." onkeyup="searchComplaints()">
                         <i class="fas fa-search"></i>
@@ -452,7 +441,7 @@ $analytics = getAnalytics($conn);
                             <option value="1">1 Star</option>
                         </select>
                     </div>
-                    
+
                     <div class="filter-group">
                         <label>Product</label>
                         <select id="review-product-filter" onchange="filterReviews()">
@@ -462,7 +451,7 @@ $analytics = getAnalytics($conn);
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    
+
                     <div class="filter-group">
                         <label>Period</label>
                         <select id="review-period-filter" onchange="filterReviews()">
@@ -472,7 +461,7 @@ $analytics = getAnalytics($conn);
                             <option value="month">This Month</option>
                         </select>
                     </div>
-                    
+
                     <div class="search-group">
                         <input type="text" id="review-search" placeholder="Search reviews..." onkeyup="searchReviews()">
                         <i class="fas fa-search"></i>
@@ -693,4 +682,5 @@ $analytics = getAnalytics($conn);
     </script>
     <script src="complaints_review-php.js"></script>
 </body>
+
 </html>
