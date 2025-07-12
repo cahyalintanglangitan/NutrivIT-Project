@@ -28,7 +28,8 @@ if (isset($_GET['action'])) {
 // Functions for data retrieval
 function getComplaints($conn, $filters = [])
 {
-    $sql = "SELECT uc.*, u.username, u.email 
+    // Mengambil kolom 'name' bukan 'username'
+    $sql = "SELECT uc.*, u.name, u.email 
             FROM user_complaints uc 
             LEFT JOIN users u ON uc.user_id = u.id 
             WHERE 1=1";
@@ -64,7 +65,8 @@ function getComplaints($conn, $filters = [])
     }
 
     if (!empty($filters['search'])) {
-        $sql .= " AND (uc.description LIKE ? OR u.username LIKE ? OR u.email LIKE ?)";
+        // Menggunakan kolom 'u.name' untuk pencarian
+        $sql .= " AND (uc.description LIKE ? OR u.name LIKE ? OR u.email LIKE ?)";
         $searchTerm = '%' . $filters['search'] . '%';
         $params[] = $searchTerm;
         $params[] = $searchTerm;
@@ -239,7 +241,8 @@ function getAnalytics($conn)
 }
 
 // Get products for filter dropdown
-function getProducts($conn) {
+function getProducts($conn)
+{
     $result = $conn->query("SELECT id, name AS product_name FROM products ORDER BY name");
     $products = [];
     while ($row = $result->fetch_assoc()) {
@@ -258,39 +261,37 @@ $analytics = getAnalytics($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complaints & Review - NutrivIT Dashboard</title>
-    <link rel="stylesheet" href="./assets/css/dashboard.css">
+    <title>Complaints & Review - NutrivIT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/complaints_review.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
     <div class="dashboard-container">
-    <!-- Sidebar -->
-    <?php include 'bar/navbar.php'; ?> 
-        <!-- Main Content -->
+        <!-- Sidebar -->
+        <?php include 'bar/navbar.php'; ?>
+
         <main class="main-content">
-            <!-- Header -->
             <header class="main-header">
                 <div class="header-left">
-                    <h1>Complaints & Review Management</h1>
-                    <p id="current-date"><?php echo date('l, d F Y'); ?></p>
+                    <h2><i class="fas fa-comments"></i> Complaints & Review</h2>
+                    <p class="page-subtitle">Sampaikan keluhan dan ulasan Anda demi layanan yang lebih baik.</p>
                 </div>
-
-                <div class="header-right">
+                <div class="header-actions">
                     <div class="notification-bell" onclick="toggleNotificationPanel()">
                         <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
+                        <span class="notification-badge">4</span>
                     </div>
-                    <div class="user-profile" onclick="handleProfile()">
-                        <img src="https://via.placeholder.com/40" alt="Profile">
-                        <span>Admin</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
+                    <span class="date">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span id="current-date"></span>
+                    </span>
                 </div>
             </header>
 
+            <div class="content-area">
             <!-- Overview Cards -->
             <div class="overview-cards">
                 <div class="overview-card">
@@ -585,6 +586,7 @@ $analytics = getAnalytics($conn);
                     </div>
                 </div>
             </div>
+            </div>
         </main>
     </div>
 
@@ -680,7 +682,7 @@ $analytics = getAnalytics($conn);
         const analyticsData = <?php echo json_encode($analytics); ?>;
         const productsData = <?php echo json_encode($products); ?>;
     </script>
-    <script src="complaints_review-php.js"></script>
+    <script src="./assets/js/complaints_review.js"></script>
 </body>
 
 </html>

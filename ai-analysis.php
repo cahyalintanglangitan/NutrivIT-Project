@@ -54,53 +54,6 @@
           </div>
         </div>
 
-        <!-- Quick Insights Cards -->
-        <div class="insights-grid">
-          <div class="insight-card urgent">
-            <div class="insight-icon">
-              <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <div class="insight-content">
-              <h4>Gap Kritis Lemak Sehat</h4>
-              <p>30% defisit lemak sehat menyebabkan kelelahan kronis dominan 4/6 bulan</p>
-              <span class="insight-action">Prioritas: Boost NuVit-Omega Brain marketing 40%</span>
-            </div>
-          </div>
-
-          <div class="insight-card opportunity">
-            <div class="insight-icon">
-              <i class="fas fa-lightbulb"></i>
-            </div>
-            <div class="insight-content">
-              <h4>Protein Gap Opportunity</h4>
-              <p>20% protein defisit di Juni = 300kg total market gap</p>
-              <span class="insight-action">Launch NuVit-Whey bundle dengan Multi Core</span>
-            </div>
-          </div>
-
-          <div class="insight-card trending">
-            <div class="insight-icon">
-              <i class="fas fa-trending-up"></i>
-            </div>
-            <div class="insight-content">
-              <h4>Multi Core Dominasi</h4>
-              <p>16,650 unit H1 2025 - leader karena comprehensive solution</p>
-              <span class="insight-action">Expand ke NuVit-Multi Premium variant</span>
-            </div>
-          </div>
-
-          <div class="insight-card prediction">
-            <div class="insight-icon">
-              <i class="fas fa-crystal-ball"></i>
-            </div>
-            <div class="insight-content">
-              <h4>Prediksi Bulan Depan</h4>
-              <p>Kelelahan kronis akan puncak Juli-Agustus, protein demand naik 35%</p>
-              <span class="insight-action">Siapkan stock NuVit-Multi Core & Whey Muscle</span>
-            </div>
-          </div>
-        </div>
-
         <!-- Main AI Chat Interface -->
         <div class="ai-chat-container">
           <div class="chat-header">
@@ -111,9 +64,6 @@
             <div class="chat-actions">
               <button class="btn-secondary" onclick="clearChat()">
                 <i class="fas fa-broom"></i> Bersihkan Chat
-              </button>
-              <button class="btn-secondary" onclick="exportChat()">
-                <i class="fas fa-download"></i> Export
               </button>
             </div>
           </div>
@@ -236,85 +186,6 @@
             </div>
           </div>
         </div>
-
-        <!-- AI Recommendations Panel -->
-        <div class="recommendations-panel">
-          <div class="panel-header">
-            <h3><i class="fas fa-magic"></i> Rekomendasi AI Terbaru</h3>
-            <button class="btn-primary" onclick="generateRecommendations()">
-              <i class="fas fa-sync"></i> Perbarui Rekomendasi
-            </button>
-          </div>
-
-          <div class="recommendations-list" id="recommendations-list">
-            <div class="recommendation-item high-priority">
-              <div class="recommendation-header">
-                <div class="priority-badge high">
-                  <i class="fas fa-exclamation"></i>
-                  Prioritas Tinggi
-                </div>
-                <div class="recommendation-time">2 jam lalu</div>
-              </div>
-              <h4>Ekspansi Portfolio Lemak Sehat</h4>
-              <p>Data menunjukkan 30% defisit lemak sehat konsisten selama 6 bulan, menyebabkan kelelahan kronis
-                dominan. Launch NuVit-Omega Premium dengan formula advanced EPA/DHA. Proyeksi: mengurangi gap 40% dan
-                boost revenue 25%.</p>
-              <div class="recommendation-actions">
-                <button class="action-btn accept" onclick="acceptRecommendation(1)">
-                  <i class="fas fa-check"></i> Terima
-                </button>
-                <button class="action-btn details" onclick="showRecommendationDetails(1)">
-                  <i class="fas fa-info-circle"></i> Detail
-                </button>
-              </div>
-            </div>
-
-            <div class="recommendation-item medium-priority">
-              <div class="recommendation-header">
-                <div class="priority-badge medium">
-                  <i class="fas fa-clock"></i>
-                  Prioritas Sedang
-                </div>
-                <div class="recommendation-time">5 jam lalu</div>
-              </div>
-              <h4>Bundle Strategy: Energy Booster Pack</h4>
-              <p>Multi Core (leader 16.6k unit) + Whey Muscle (protein gap 20%) = perfect combo untuk kelelahan kronis.
-                Create bundle dengan discount 15%, target 2,000 unit Q3. Expected revenue: +Rp 850M.</p>
-              <div class="recommendation-actions">
-                <button class="action-btn accept" onclick="acceptRecommendation(2)">
-                  <i class="fas fa-check"></i> Terima
-                </button>
-                <button class="action-btn details" onclick="showRecommendationDetails(2)">
-                  <i class="fas fa-info-circle"></i> Detail
-                </button>
-              </div>
-            </div>
-
-            <div class="recommendation-item low-priority">
-              <div class="recommendation-header">
-                <div class="priority-badge low">
-                  <i class="fas fa-info"></i>
-                  Prioritas Rendah
-                </div>
-                <div class="recommendation-time">1 hari lalu</div>
-              </div>
-              <h4>Green Detox Marketing Boost</h4>
-              <p>Green Detox mencapai 15.8k unit (rank #2) karena trend detox February-March. Leverage momentum dengan
-                campaign "Summer Detox Challenge" untuk maintain growth H2.</p>
-              <div class="recommendation-actions">
-                <button class="action-btn accept" onclick="acceptRecommendation(3)">
-                  <i class="fas fa-check"></i> Terima
-                </button>
-                <button class="action-btn details" onclick="showRecommendationDetails(3)">
-                  <i class="fas fa-info-circle"></i> Detail
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Notification Panel -->
   <div class="notification-panel" id="notificationPanel">

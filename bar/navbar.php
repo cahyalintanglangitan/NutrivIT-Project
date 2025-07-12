@@ -55,7 +55,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
       Manajerial AI
     </a>
     <a href="./complaints_review.php" class="nav-item<?php if ($current_page == 'complaints_review.php') echo ' active'; ?>">
-      <i class="fas fa-robot nav-icon"></i>
+      <i class="fas fa-comments nav-icon"></i>
       Complaints & Review
     </a>
   </nav>
