@@ -321,13 +321,16 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
+-- Dumping data for table `orders`
+--
+
 INSERT INTO `orders` (`id`, `order_number`, `user_id`, `total_amount`, `status`, `payment_method`, `shipping_address`, `created_at`) VALUES
 (1, 'ORD20240624001', 'USR001', 424000.00, 'delivered', 'credit_card', NULL, '2025-06-24 17:18:32'),
 (2, 'ORD20240624002', 'USR002', 250000.00, 'delivered', 'bank_transfer', NULL, '2025-06-24 17:18:32'),
 (3, 'ORD20240623001', 'USR001', 185000.00, 'delivered', 'e_wallet', NULL, '2025-06-24 17:18:32'),
 (4, 'ORD20240623002', 'USR004', 370000.00, 'shipped', 'credit_card', NULL, '2025-06-24 17:18:32'),
 (5, 'ORD20240622001', 'USR005', 299000.00, 'delivered', 'bank_transfer', NULL, '2025-06-24 17:18:32'),
-(6, 'ORD20240622002', 'USR002', 125000.00, 'delivered', 'e_wallet', NULL, '2025-06-24 17:18:32');
+(6, 'ORD20240622002', 'USR002', 125000.00, 'delivered', 'e_wallet', NULL, '2025-06-24 17:18:32'),
 (7, 'ORD20250625001', 'USR010', 445000.00, 'delivered', 'e_wallet', 'Jl. Mawar No. 10, Jakarta', '2025-06-25 09:15:00'),
 (8, 'ORD20250626001', 'USR015', 185000.00, 'shipped', 'credit_card', 'Jl. Melati No. 22, Bandung', '2025-06-26 11:30:00'),
 (9, 'ORD20250627001', 'USR021', 75000.00, 'paid', 'bank_transfer', 'Jl. Anggrek No. 5, Surabaya', '2025-06-27 14:00:00'),
@@ -345,7 +348,7 @@ INSERT INTO `orders` (`id`, `order_number`, `user_id`, `total_amount`, `status`,
 (21, 'ORD20250709001', 'USR058', 95000.00, 'cancelled', 'bank_transfer', 'Jl. Asia Afrika No. 45, Bandung', '2025-07-09 21:00:00'),
 (22, 'ORD20250710001', 'USR069', 598000.00, 'delivered', 'credit_card', 'Jl. Thamrin No. 9, Jakarta', '2025-07-10 10:00:00'),
 (23, 'ORD20250711001', 'USR081', 180000.00, 'shipped', 'e_wallet', 'Jl. Pajajaran No. 33, Bogor', '2025-07-11 14:15:00'),
-(24, 'ORD20250712001', 'USR095', 345000.00, 'pending', 'bank_transfer', 'Jl. Pemuda No. 77, Semarang', '2025-07-12 09:00:00');
+(24, 'ORD20250712001', 'USR095', 345000.00, 'pending', 'bank_transfer', 'Jl. Pemuda No. 77, Semarang', '2025-07-12 09:00:00'),
 (25, 'ORD20250712002', 'USR001', 299000.00, 'delivered', 'credit_card', 'Jl. Merdeka No. 1, Jakarta', '2025-07-12 14:00:10'),
 (26, 'ORD20250712003', 'USR002', 125000.00, 'delivered', 'e_wallet', 'Jl. Asia Afrika No. 10, Bandung', '2025-07-12 14:05:20'),
 (27, 'ORD20250713001', 'USR003', 445000.00, 'delivered', 'bank_transfer', 'Jl. Tunjungan No. 20, Surabaya', '2025-07-13 09:10:30'),
@@ -403,7 +406,7 @@ INSERT INTO `orders` (`id`, `order_number`, `user_id`, `total_amount`, `status`,
 (79, 'ORD20250808001', 'USR055', 185000.00, 'delivered', 'credit_card', 'Jl. Dharmawangsa No. 540, Surabaya', '2025-08-08 11:30:10'),
 (80, 'ORD20250808002', 'USR056', 75000.00, 'delivered', 'e_wallet', 'Jl. Palagan Tentara Pelajar No. 550, Yogyakarta', '2025-08-08 12:35:20'),
 (81, 'ORD20250809001', 'USR057', 299000.00, 'delivered', 'bank_transfer', 'Jl. Pahlawan No. 560, Semarang', '2025-08-09 13:40:30'),
-(82, 'ORD20250809002', 'USR058', 150000.00, 'delivered', 'credit_card', 'Jl. Adam Malik No. 570, Medan', '2_025-08-09 14:45:40'),
+(82, 'ORD20250809002', 'USR058', 150000.00, 'delivered', 'credit_card', 'Jl. Pahlawan No. 50, Semarang', '2025-08-09 14:45:40'),
 (83, 'ORD20250810001', 'USR059', 220000.00, 'delivered', 'e_wallet', 'Jl. A. P. Pettarani No. 580, Makassar', '2025-08-10 15:50:50'),
 (84, 'ORD20250810002', 'USR060', 180000.00, 'delivered', 'bank_transfer', 'Jl. R. Sukamto No. 590, Palembang', '2025-08-10 16:55:00'),
 (85, 'ORD20250811001', 'USR061', 299000.00, 'delivered', 'credit_card', 'Jl. Ubud No. 600, Bali', '2025-08-11 17:00:10'),
@@ -447,7 +450,6 @@ INSERT INTO `orders` (`id`, `order_number`, `user_id`, `total_amount`, `status`,
 (123, 'ORD20250830001', 'USR099', 185000.00, 'delivered', 'bank_transfer', 'Jl. Pajajaran No. 980, Bogor', '2025-08-30 15:10:30'),
 (124, 'ORD20250830002', 'USR100', 75000.00, 'delivered', 'credit_card', 'Jl. Gading Serpong No. 990, Tangerang', '2025-08-30 16:15:40'),
 (125, 'ORD20250831001', 'USR001', 445000.00, 'delivered', 'e_wallet', 'Jl. Depok No. 1000, Depok', '2025-08-31 17:20:50');
-
 -- --------------------------------------------------------
 
 --
@@ -466,7 +468,6 @@ CREATE TABLE `order_items` (
 --
 -- Dumping data for table `order_items`
 --
-
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `unit_price`, `total_price`) VALUES
 (1, 1, 'PRD001', 1, 299000.00, 299000.00),
 (2, 1, 'PRD002', 1, 125000.00, 125000.00),
@@ -483,7 +484,7 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `unit_pri
 (13, 4, 'PRD003', 1, 185000.00, 185000.00),
 (14, 5, 'PRD007', 2, 220000.00, 440000.00),
 (15, 6, 'PRD004', 3, 75000.00, 225000.00),
-(16, 6, 'PRD008', 2, 180000.00, 360000.00);
+(16, 6, 'PRD008', 2, 180000.00, 360000.00),
 (17, 7, 'PRD001', 1, 299000.00, 299000.00),
 (18, 7, 'PRD006', 1, 150000.00, 150000.00),
 (19, 8, 'PRD003', 1, 185000.00, 185000.00),
@@ -509,7 +510,7 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `unit_pri
 (39, 22, 'PRD001', 2, 299000.00, 598000.00),
 (40, 23, 'PRD008', 1, 180000.00, 180000.00),
 (41, 24, 'PRD002', 1, 125000.00, 125000.00),
-(42, 24, 'PRD007', 1, 220000.00, 220000.00);
+(42, 24, 'PRD007', 1, 220000.00, 220000.00),
 (43, 25, 'PRD001', 1, 299000.00, 299000.00),
 (44, 26, 'PRD002', 1, 125000.00, 125000.00),
 (45, 27, 'PRD001', 1, 299000.00, 299000.00),
@@ -621,6 +622,7 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `unit_pri
 (151, 124, 'PRD004', 1, 75000.00, 75000.00),
 (152, 125, 'PRD001', 1, 299000.00, 299000.00),
 (153, 125, 'PRD006', 1, 150000.00, 150000.00);
+
 -- --------------------------------------------------------
 
 --
@@ -680,14 +682,14 @@ INSERT INTO `product_reviews` (`id`, `user_id`, `product_id`, `order_id`, `ratin
 (3, 'USR002', 'PRD004', 2, 4.2, 'Multivitamin lengkap, cocok untuk daily supplement', '2025-06-24 17:18:32'),
 (4, 'USR002', 'PRD005', 2, 4.0, 'Teh detox yang menyegarkan', '2025-06-24 17:18:32'),
 (5, 'USR001', 'PRD003', 3, 4.7, 'Omega-3 berkualitas tinggi', '2025-06-24 17:18:32'),
-(6, 'USR005', 'PRD001', 5, 4.9, 'Hasil terbaik untuk muscle building', '2025-06-24 17:18:32');
+(6, 'USR005', 'PRD001', 5, 4.9, 'Hasil terbaik untuk muscle building', '2025-06-24 17:18:32'),
 (7, 'USR010', 'PRD001', 7, 5.0, 'Produk original, pengiriman cepat. Sangat memuaskan!', '2025-06-28 10:00:00'),
 (8, 'USR010', 'PRD006', 7, 4.5, 'Creatine-nya terasa efeknya, angkatan jadi lebih kuat.', '2025-06-28 10:05:00'),
 (9, 'USR035', 'PRD007', 10, 4.8, 'Collagennya bagus untuk kulit, terasa lebih kenyal.', '2025-07-01 11:00:00'),
 (10, 'USR063', 'PRD001', 13, 4.9, 'Selalu repeat order whey protein di sini. Terbaik!', '2025-07-04 09:00:00'),
 (11, 'USR003', 'PRD004', 17, 4.0, 'Multivitaminnya oke, harganya terjangkau.', '2025-07-08 13:00:00'),
 (12, 'USR011', 'PRD006', 18, 4.2, 'Barang sesuai pesanan, packing aman.', '2025-07-09 14:00:00'),
-(13, 'USR069', 'PRD001', 22, 5.0, 'Dua kali beli dan selalu puas. Seller responsif.', '2025-07-12 11:00:00');
+(13, 'USR069', 'PRD001', 22, 5.0, 'Dua kali beli dan selalu puas. Seller responsif.', '2025-07-12 11:00:00'),
 (14, 'USR001', 'PRD001', 25, 4.8, 'Kualitasnya mantap! Pasti akan beli lagi di sini.', '2025-07-15 10:00:00'),
 (15, 'USR002', 'PRD002', 26, 4.9, 'Sangat direkomendasikan. Efeknya terasa setelah beberapa kali pemakaian.', '2025-07-15 11:00:00'),
 (16, 'USR003', 'PRD001', 27, 4.7, 'Packing aman dan rapi. Terima kasih seller.', '2025-07-16 12:00:00'),
@@ -782,6 +784,19 @@ INSERT INTO `product_reviews` (`id`, `user_id`, `product_id`, `order_id`, `ratin
 --
 -- Table structure for table `sales`
 --
+CREATE TABLE `sales` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` varchar(10) DEFAULT NULL,
+  `quantity` int(11) NOT NULL,
+  `total_price` decimal(12,2) NOT NULL,
+  `sale_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sales`
+--
+
 DELETE FROM `sales`;
 
 -- Memasukkan data baru yang konsisten
@@ -797,6 +812,7 @@ JOIN `orders` o ON oi.order_id = o.id
 WHERE o.status != 'cancelled'
 GROUP BY sale_date, oi.product_id
 ORDER BY sale_date, oi.product_id;
+
 -- --------------------------------------------------------
 
 --
@@ -832,7 +848,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password_hash`, `phone`, `gender`, 
 ('USR005', 'Rudi Hermawan', 'rudi@email.com', '', '081234567805', 'male', 32, 75.00, 178.00, 'Premium', 'active', 'active', '2025-06-24 17:18:32', '2025-07-04 13:01:57'),
 ('USR006', 'Lila Sari', 'lila@email.com', '', '081234567806', 'female', 27, 52.00, 158.00, 'Premium', 'active', 'inactive', '2025-06-24 17:18:32', '2025-07-04 13:01:57'),
 ('USR007', 'Ahmad Fauzi', 'ahmad@email.com', '', '081234567807', 'male', 29, 68.00, 172.00, 'Premium', 'active', 'pending', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('USR008', 'Rina Wati', 'rina@email.com', '', '081234567808', 'female', 26, 58.00, 162.00, 'Premium', 'pending', 'pending', '2025-06-24 17:18:32', '2025-06-24 17:18:32');
+('USR008', 'Rina Wati', 'rina@email.com', '', '081234567808', 'female', 26, 58.00, 162.00, 'Premium', 'pending', 'pending', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
 ('USR009', 'Eka Putra', 'eka@email.com', '', '081234567809', 'male', 40, 85.20, 168.00, 'Reguler', 'active', 'pending', '2025-06-25 17:18:32', '2025-06-25 17:18:32'),
 ('USR010', 'Fitriani', 'fitri@email.com', '', '081234567810', 'female', 22, 50.50, 155.00, 'Premium', 'active', 'active', '2025-06-26 17:18:32', '2025-07-05 13:01:57'),
 ('USR011', 'Guntur Wibowo', 'guntur@email.com', '', '081234567811', 'male', 33, 78.00, 180.00, 'Reguler', 'inactive', 'inactive', '2025-06-27 17:18:32', '2025-07-06 13:01:57'),
@@ -952,7 +968,7 @@ INSERT INTO `user_complaints` (`id`, `user_id`, `complaint_type`, `description`,
 (4, 'USR004', 'digestion', 'Masalah pencernaan setelah makan', 'pending', '2025-06-24 17:18:32'),
 (5, 'USR004', 'sleep', 'Susah tidur malam hari', 'open', '2025-06-24 17:18:32'),
 (6, 'USR004', 'energy', 'Energi drop di sore hari', 'resolved', '2025-06-24 17:18:32'),
-(7, 'USR005', 'weight', 'Ingin menambah massa otot', 'open', '2025-06-24 17:18:32');
+(7, 'USR005', 'weight', 'Ingin menambah massa otot', 'open', '2025-06-24 17:18:32'),
 (8, 'USR006', 'sleep', 'Sering terbangun di tengah malam.', 'open', '2025-06-25 08:30:15'),
 (9, 'USR007', 'other', 'Nyeri sendi setelah latihan angkat beban.', 'pending', '2025-06-25 11:20:05'),
 (10, 'USR009', 'weight', 'Berat badan tidak kunjung naik meskipun sudah makan banyak.', 'open', '2025-06-26 09:00:00'),
@@ -1076,12 +1092,6 @@ ALTER TABLE `product_reviews`
   ADD KEY `idx_reviews_product` (`product_id`);
 
 --
--- Indexes for table `sales`
---
-ALTER TABLE `sales`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1136,12 +1146,6 @@ ALTER TABLE `order_items`
 --
 ALTER TABLE `product_reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `sales`
---
-ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `user_complaints`
