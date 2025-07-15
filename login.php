@@ -93,6 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <input type="checkbox" name="remember" /> Ingat saya
         </label>
 
+        <p>Email: goyoonjung@nutrivit.com</p>
+        <p>Password: admin123</p>
+        
         <button type="submit">Masuk</button>
       </form>
     </div>
