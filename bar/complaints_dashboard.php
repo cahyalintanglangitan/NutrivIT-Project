@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../database/koneksi.php';
+require_once '../koneksi.php';
 
 $query = "SELECT uc.*, u.name, u.email 
           FROM user_complaints uc 
