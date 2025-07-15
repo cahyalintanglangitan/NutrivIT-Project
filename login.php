@@ -3,10 +3,10 @@
 session_start();
 
 // Jika sudah login, redirect ke dashboard
-//if (isset($_SESSION['manager_id'])) {
-  //  header('Location: dashboard.php');
-  //  exit;
-//}
+if (isset($_SESSION['manager_id'])) {
+    header('Location: dashboard.php');
+    exit;
+}
 
 // Sertakan file koneksi database
 require 'koneksi.php';
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $manager = $result->fetch_assoc();
 
             // Verifikasi password yang diinput dengan hash di database
-            if (password_verify($password, $manager['password'])) {
+            if ($password === $manager['password']) {
                 // Password benar, simpan data ke session
                 $_SESSION['manager_id'] = $manager['id_manager'];
                 $_SESSION['manager_name'] = $manager['nama_manager'];
