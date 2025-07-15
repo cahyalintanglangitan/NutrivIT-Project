@@ -4,6 +4,8 @@ NutrivIT-Project/
 ├── api_chat.php
 ├── api_key.txt
 ├── assets/
+│   ├── components/
+│   │   └── ui.js
 │   ├── css/
 │   │   ├── ai-analysis.css
 │   │   ├── complaints_review.css

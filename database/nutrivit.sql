@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jul 08, 2025 at 11:47 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Jul 15, 2025 at 11:00 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -143,6 +143,30 @@ INSERT INTO `ai_consultations` (`id`, `user_id`, `consultation_type`, `question`
 (98, 'USR095', 'nutrition', 'Apakah diet bebas gluten itu lebih sehat?', 'Hanya jika Anda menderita penyakit celiac atau sensitivitas gluten non-celiac. Bagi orang lain, tidak ada manfaat kesehatan yang melekat, dan banyak produk bebas gluten justru lebih tinggi gula dan kalori.', 104, 4.2, '2025-12-01 10:00:00'),
 (99, 'USR096', 'fitness', 'Bagaimana cara agar tidak bosan dengan latihan kardio?', 'Variasikan jenisnya: coba lari, bersepeda, berenang, atau kelas menari. Dengarkan podcast atau audiobook saat berolahraga untuk mengalihkan perhatian.', 90, 4.7, '2025-12-02 11:00:00'),
 (100, 'USR099', 'general', 'Saya ingin memulai gaya hidup sehat, harus mulai dari mana?', 'Mulai dari satu atau dua perubahan kecil. Misalnya, targetkan minum 8 gelas air sehari dan berjalan kaki 20 menit setiap hari. Setelah itu menjadi kebiasaan, tambahkan perubahan baru secara bertahap.', 120, 5.0, '2025-12-03 12:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `manager`
+--
+
+CREATE TABLE `manager` (
+  `id_manager` int(11) NOT NULL,
+  `nama_manager` varchar(255) NOT NULL,
+  `email_manager` varchar(255) NOT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `id_karyawan` varchar(50) NOT NULL,
+  `date_joined` date NOT NULL,
+  `photo_url` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `manager`
+--
+
+INSERT INTO `manager` (`id_manager`, `nama_manager`, `email_manager`, `no_telp`, `password`, `id_karyawan`, `date_joined`, `photo_url`) VALUES
+(1, 'Go Yoon Jung', 'goyoonjung@nutrivit.com', '081421743218', 'admin123', 'NV-GYJ-001', '2020-04-22', 'manager.jpg');
 
 -- --------------------------------------------------------
 
@@ -321,9 +345,6 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
--- Dumping data for table `orders`
---
-
 INSERT INTO `orders` (`id`, `order_number`, `user_id`, `total_amount`, `status`, `payment_method`, `shipping_address`, `created_at`) VALUES
 (1, 'ORD20240624001', 'USR001', 424000.00, 'delivered', 'credit_card', NULL, '2025-06-24 17:18:32'),
 (2, 'ORD20240624002', 'USR002', 250000.00, 'delivered', 'bank_transfer', NULL, '2025-06-24 17:18:32'),
@@ -450,6 +471,7 @@ INSERT INTO `orders` (`id`, `order_number`, `user_id`, `total_amount`, `status`,
 (123, 'ORD20250830001', 'USR099', 185000.00, 'delivered', 'bank_transfer', 'Jl. Pajajaran No. 980, Bogor', '2025-08-30 15:10:30'),
 (124, 'ORD20250830002', 'USR100', 75000.00, 'delivered', 'credit_card', 'Jl. Gading Serpong No. 990, Tangerang', '2025-08-30 16:15:40'),
 (125, 'ORD20250831001', 'USR001', 445000.00, 'delivered', 'e_wallet', 'Jl. Depok No. 1000, Depok', '2025-08-31 17:20:50');
+
 -- --------------------------------------------------------
 
 --
@@ -468,6 +490,7 @@ CREATE TABLE `order_items` (
 --
 -- Dumping data for table `order_items`
 --
+
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `unit_price`, `total_price`) VALUES
 (1, 1, 'PRD001', 1, 299000.00, 299000.00),
 (2, 1, 'PRD002', 1, 125000.00, 125000.00),
@@ -647,9 +670,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `category`, `description`, `price`, `stock`, `image_url`, `product_status`, `created_at`, `updated_at`) VALUES
-('PRD001', 'Whey Protein Premium', 'protein', 'High-quality whey protein for muscle building', 299000.00, 45, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
-('PRD002', 'Vitamin C 1000mg', 'vitamin', 'Immune system booster vitamin C tablets', 125000.00, 18, NULL, 'Active', '2025-06-24 17:18:32', '2025-07-03 19:18:09'),
-('PRD003', 'Omega-3 Fish Oil', 'supplement', 'Pure fish oil for heart and brain health', 185000.00, 32, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
+('PRD001', 'NuVit Whey Protein Premium', 'protein', 'High-quality whey protein for muscle building', 299000.00, 45, 'nuvit-whey.jpg', 'Active', '2025-06-24 17:18:32', '2025-07-15 08:59:37'),
+('PRD002', 'NuVit-C Boost', 'vitamin', 'Immune system booster vitamin C tablets', 125000.00, 18, 'nuvit-cboost.jpg', 'Active', '2025-06-24 17:18:32', '2025-07-15 08:59:37'),
+('PRD003', 'NuVit-Omega Brain', 'supplement', 'Pure fish oil for heart and brain health', 185000.00, 32, 'nuvit-omega.jpg', 'Active', '2025-06-24 17:18:32', '2025-07-15 08:59:37'),
 ('PRD004', 'Multivitamin Complex', 'vitamin', 'Complete daily vitamin and mineral supplement', 75000.00, 67, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
 ('PRD005', 'Herbal Detox Tea', 'herbal', 'Natural detox tea blend for cleansing', 95000.00, 89, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
 ('PRD006', 'Creatine Monohydrate', 'supplement', 'Pure creatine for strength and power', 150000.00, 56, NULL, 'Active', '2025-06-24 17:18:32', '2025-06-24 17:18:32'),
@@ -784,34 +807,160 @@ INSERT INTO `product_reviews` (`id`, `user_id`, `product_id`, `order_id`, `ratin
 --
 -- Table structure for table `sales`
 --
+
 CREATE TABLE `sales` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `product_id` varchar(10) DEFAULT NULL,
   `quantity` int(11) NOT NULL,
   `total_price` decimal(12,2) NOT NULL,
-  `sale_date` date NOT NULL,
-  PRIMARY KEY (`id`)
+  `sale_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `sales`
 --
 
-DELETE FROM `sales`;
-
--- Memasukkan data baru yang konsisten
-INSERT INTO `sales` (`id`, `product_id`, `quantity`, `total_price`, `sale_date`)
-SELECT
-    NULL, -- id akan auto-increment
-    oi.product_id,
-    SUM(oi.quantity) AS quantity,
-    SUM(oi.total_price) AS total_price,
-    DATE(o.created_at) AS sale_date
-FROM `order_items` oi
-JOIN `orders` o ON oi.order_id = o.id
-WHERE o.status != 'cancelled'
-GROUP BY sale_date, oi.product_id
-ORDER BY sale_date, oi.product_id;
+INSERT INTO `sales` (`id`, `product_id`, `quantity`, `total_price`, `sale_date`) VALUES
+(1, 'PRD001', 3, 897000.00, '2025-06-24'),
+(2, 'PRD002', 4, 500000.00, '2025-06-24'),
+(3, 'PRD003', 2, 370000.00, '2025-06-24'),
+(4, 'PRD004', 5, 375000.00, '2025-06-24'),
+(5, 'PRD005', 2, 190000.00, '2025-06-24'),
+(6, 'PRD006', 2, 300000.00, '2025-06-24'),
+(7, 'PRD007', 2, 440000.00, '2025-06-24'),
+(8, 'PRD008', 2, 360000.00, '2025-06-24'),
+(9, 'PRD001', 1, 299000.00, '2025-06-25'),
+(10, 'PRD006', 1, 150000.00, '2025-06-25'),
+(11, 'PRD003', 1, 185000.00, '2025-06-26'),
+(12, 'PRD004', 1, 75000.00, '2025-06-27'),
+(13, 'PRD001', 1, 299000.00, '2025-06-28'),
+(14, 'PRD007', 1, 220000.00, '2025-06-28'),
+(15, 'PRD002', 1, 125000.00, '2025-06-30'),
+(16, 'PRD003', 1, 185000.00, '2025-06-30'),
+(17, 'PRD001', 1, 299000.00, '2025-07-01'),
+(18, 'PRD005', 1, 95000.00, '2025-07-01'),
+(19, 'PRD007', 1, 220000.00, '2025-07-01'),
+(20, 'PRD008', 1, 180000.00, '2025-07-02'),
+(21, 'PRD007', 1, 220000.00, '2025-07-03'),
+(22, 'PRD001', 1, 299000.00, '2025-07-04'),
+(23, 'PRD002', 1, 125000.00, '2025-07-04'),
+(24, 'PRD004', 5, 375000.00, '2025-07-05'),
+(25, 'PRD006', 1, 150000.00, '2025-07-06'),
+(26, 'PRD003', 1, 185000.00, '2025-07-07'),
+(27, 'PRD007', 1, 220000.00, '2025-07-07'),
+(28, 'PRD001', 1, 299000.00, '2025-07-08'),
+(29, 'PRD001', 2, 598000.00, '2025-07-10'),
+(30, 'PRD008', 1, 180000.00, '2025-07-11'),
+(31, 'PRD001', 1, 299000.00, '2025-07-12'),
+(32, 'PRD002', 2, 250000.00, '2025-07-12'),
+(33, 'PRD007', 1, 220000.00, '2025-07-12'),
+(34, 'PRD001', 1, 299000.00, '2025-07-13'),
+(35, 'PRD003', 1, 185000.00, '2025-07-13'),
+(36, 'PRD006', 1, 150000.00, '2025-07-13'),
+(37, 'PRD001', 1, 299000.00, '2025-07-14'),
+(38, 'PRD004', 1, 75000.00, '2025-07-14'),
+(39, 'PRD007', 1, 220000.00, '2025-07-14'),
+(40, 'PRD002', 1, 125000.00, '2025-07-15'),
+(41, 'PRD003', 1, 185000.00, '2025-07-15'),
+(42, 'PRD007', 1, 220000.00, '2025-07-15'),
+(43, 'PRD001', 1, 299000.00, '2025-07-16'),
+(44, 'PRD005', 1, 95000.00, '2025-07-16'),
+(45, 'PRD007', 1, 220000.00, '2025-07-16'),
+(46, 'PRD008', 1, 180000.00, '2025-07-16'),
+(47, 'PRD001', 1, 299000.00, '2025-07-17'),
+(48, 'PRD002', 1, 125000.00, '2025-07-17'),
+(49, 'PRD007', 1, 220000.00, '2025-07-17'),
+(50, 'PRD004', 5, 375000.00, '2025-07-18'),
+(51, 'PRD006', 1, 150000.00, '2025-07-18'),
+(52, 'PRD001', 1, 299000.00, '2025-07-19'),
+(53, 'PRD003', 1, 185000.00, '2025-07-19'),
+(54, 'PRD007', 1, 220000.00, '2025-07-19'),
+(55, 'PRD001', 2, 598000.00, '2025-07-20'),
+(56, 'PRD005', 1, 95000.00, '2025-07-20'),
+(57, 'PRD002', 1, 125000.00, '2025-07-21'),
+(58, 'PRD007', 1, 220000.00, '2025-07-21'),
+(59, 'PRD008', 1, 180000.00, '2025-07-21'),
+(60, 'PRD002', 1, 125000.00, '2025-07-22'),
+(61, 'PRD003', 1, 185000.00, '2025-07-22'),
+(62, 'PRD001', 1, 299000.00, '2025-07-23'),
+(63, 'PRD004', 1, 75000.00, '2025-07-23'),
+(64, 'PRD006', 1, 150000.00, '2025-07-24'),
+(65, 'PRD007', 1, 220000.00, '2025-07-24'),
+(66, 'PRD001', 1, 299000.00, '2025-07-25'),
+(67, 'PRD001', 1, 299000.00, '2025-07-26'),
+(68, 'PRD002', 2, 250000.00, '2025-07-26'),
+(69, 'PRD003', 1, 185000.00, '2025-07-27'),
+(70, 'PRD004', 1, 75000.00, '2025-07-27'),
+(71, 'PRD001', 1, 299000.00, '2025-07-28'),
+(72, 'PRD006', 1, 150000.00, '2025-07-28'),
+(73, 'PRD007', 1, 220000.00, '2025-07-29'),
+(74, 'PRD008', 1, 180000.00, '2025-07-29'),
+(75, 'PRD001', 1, 299000.00, '2025-07-30'),
+(76, 'PRD002', 1, 125000.00, '2025-07-30'),
+(77, 'PRD003', 1, 185000.00, '2025-07-31'),
+(78, 'PRD004', 1, 75000.00, '2025-07-31'),
+(79, 'PRD001', 1, 299000.00, '2025-08-01'),
+(80, 'PRD006', 1, 150000.00, '2025-08-01'),
+(81, 'PRD007', 1, 220000.00, '2025-08-02'),
+(82, 'PRD008', 1, 180000.00, '2025-08-02'),
+(83, 'PRD001', 1, 299000.00, '2025-08-03'),
+(84, 'PRD002', 1, 125000.00, '2025-08-03'),
+(85, 'PRD003', 1, 185000.00, '2025-08-04'),
+(86, 'PRD004', 1, 75000.00, '2025-08-04'),
+(87, 'PRD001', 1, 299000.00, '2025-08-05'),
+(88, 'PRD006', 1, 150000.00, '2025-08-05'),
+(89, 'PRD007', 1, 220000.00, '2025-08-06'),
+(90, 'PRD008', 1, 180000.00, '2025-08-06'),
+(91, 'PRD001', 1, 299000.00, '2025-08-07'),
+(92, 'PRD002', 1, 125000.00, '2025-08-07'),
+(93, 'PRD003', 1, 185000.00, '2025-08-08'),
+(94, 'PRD004', 1, 75000.00, '2025-08-08'),
+(95, 'PRD001', 1, 299000.00, '2025-08-09'),
+(96, 'PRD006', 1, 150000.00, '2025-08-09'),
+(97, 'PRD007', 1, 220000.00, '2025-08-10'),
+(98, 'PRD008', 1, 180000.00, '2025-08-10'),
+(99, 'PRD001', 1, 299000.00, '2025-08-11'),
+(100, 'PRD002', 1, 125000.00, '2025-08-11'),
+(101, 'PRD003', 1, 185000.00, '2025-08-12'),
+(102, 'PRD004', 1, 75000.00, '2025-08-12'),
+(103, 'PRD001', 1, 299000.00, '2025-08-13'),
+(104, 'PRD006', 1, 150000.00, '2025-08-13'),
+(105, 'PRD007', 1, 220000.00, '2025-08-14'),
+(106, 'PRD008', 1, 180000.00, '2025-08-14'),
+(107, 'PRD001', 1, 299000.00, '2025-08-15'),
+(108, 'PRD002', 1, 125000.00, '2025-08-15'),
+(109, 'PRD003', 1, 185000.00, '2025-08-16'),
+(110, 'PRD004', 1, 75000.00, '2025-08-16'),
+(111, 'PRD001', 1, 299000.00, '2025-08-17'),
+(112, 'PRD006', 1, 150000.00, '2025-08-17'),
+(113, 'PRD007', 1, 220000.00, '2025-08-18'),
+(114, 'PRD008', 1, 180000.00, '2025-08-18'),
+(115, 'PRD001', 1, 299000.00, '2025-08-19'),
+(116, 'PRD002', 1, 125000.00, '2025-08-19'),
+(117, 'PRD003', 1, 185000.00, '2025-08-20'),
+(118, 'PRD004', 1, 75000.00, '2025-08-20'),
+(119, 'PRD001', 1, 299000.00, '2025-08-21'),
+(120, 'PRD006', 1, 150000.00, '2025-08-21'),
+(121, 'PRD007', 1, 220000.00, '2025-08-22'),
+(122, 'PRD008', 1, 180000.00, '2025-08-22'),
+(123, 'PRD001', 1, 299000.00, '2025-08-23'),
+(124, 'PRD002', 1, 125000.00, '2025-08-23'),
+(125, 'PRD003', 1, 185000.00, '2025-08-24'),
+(126, 'PRD004', 1, 75000.00, '2025-08-24'),
+(127, 'PRD001', 1, 299000.00, '2025-08-25'),
+(128, 'PRD006', 1, 150000.00, '2025-08-25'),
+(129, 'PRD007', 1, 220000.00, '2025-08-26'),
+(130, 'PRD008', 1, 180000.00, '2025-08-26'),
+(131, 'PRD001', 1, 299000.00, '2025-08-27'),
+(132, 'PRD002', 1, 125000.00, '2025-08-27'),
+(133, 'PRD003', 1, 185000.00, '2025-08-28'),
+(134, 'PRD004', 1, 75000.00, '2025-08-28'),
+(135, 'PRD001', 1, 299000.00, '2025-08-29'),
+(136, 'PRD002', 1, 125000.00, '2025-08-29'),
+(137, 'PRD003', 1, 185000.00, '2025-08-30'),
+(138, 'PRD004', 1, 75000.00, '2025-08-30'),
+(139, 'PRD001', 1, 299000.00, '2025-08-31'),
+(140, 'PRD006', 1, 150000.00, '2025-08-31');
 
 -- --------------------------------------------------------
 
@@ -1045,6 +1194,12 @@ ALTER TABLE `ai_consultations`
   ADD KEY `idx_consultations_user` (`user_id`);
 
 --
+-- Indexes for table `manager`
+--
+ALTER TABLE `manager`
+  ADD PRIMARY KEY (`id_manager`);
+
+--
 -- Indexes for table `nutrition_achievements`
 --
 ALTER TABLE `nutrition_achievements`
@@ -1092,6 +1247,12 @@ ALTER TABLE `product_reviews`
   ADD KEY `idx_reviews_product` (`product_id`);
 
 --
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1115,13 +1276,19 @@ ALTER TABLE `user_complaints`
 -- AUTO_INCREMENT for table `ai_consultations`
 --
 ALTER TABLE `ai_consultations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT for table `manager`
+--
+ALTER TABLE `manager`
+  MODIFY `id_manager` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `nutrition_achievements`
 --
 ALTER TABLE `nutrition_achievements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `nutrition_needs`
@@ -1133,25 +1300,31 @@ ALTER TABLE `nutrition_needs`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
 -- AUTO_INCREMENT for table `product_reviews`
 --
 ALTER TABLE `product_reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `user_complaints`
 --
 ALTER TABLE `user_complaints`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Constraints for dumped tables

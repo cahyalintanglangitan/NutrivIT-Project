@@ -887,3 +887,44 @@ input:checked + .toggle-slider:before {
     font-size: 40px;
   }
 }
+
+/* Tambahkan atau modifikasi kode ini di dalam assets/css/profile.css */
+
+.profile-avatar-large {
+  position: relative;
+  width: 100px;  /* Sesuaikan ukurannya jika perlu */
+  height: 100px; /* Sesuaikan ukurannya jika perlu */
+  border-radius: 50%; /* Membuat container menjadi lingkaran */
+  border: 4px solid #fff;
+  background-color: #e0e0e0; /* Warna latar jika gambar tidak ada */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.profile-avatar-large img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Ini kunci utama membuat gambar jadi lingkaran */
+  object-fit: cover;  /* Memastikan gambar mengisi lingkaran tanpa distorsi */
+}
+
+.profile-avatar-large .avatar-upload {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  background-color: #1abc9c; /* Warna hijau khas NutrivIT */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: background-color 0.3s;
+}
+
+.profile-avatar-large .avatar-upload:hover {
+  background-color: #16a085;
+}
