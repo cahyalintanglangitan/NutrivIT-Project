@@ -164,10 +164,6 @@ $conn->close();
           <p class="page-subtitle">Kelola pengguna sistem dan analisis data kesehatan mereka</p>
         </div>
         <div class="header-actions">
-          <div class="notification-bell">
-            <i class="fas fa-bell"></i>
-            <span class="notification-badge">3</span>
-          </div>
             <span class="date"></span>
             <i class="fas fa-calendar-alt"></i>
             <span id="current-date"></span>
@@ -460,7 +456,6 @@ $conn->close();
             </div>
           </div>
         </div>
-        <!-- End User Modal -->
       </div>
     </div>
   </div>

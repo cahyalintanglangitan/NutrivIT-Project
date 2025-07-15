@@ -4,15 +4,14 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentFilter = 'all';
   const tbody = document.getElementById("users-tbody");
 
-  function updateCurrentDate() {
-    const dateElement = document.getElementById("current-date");
-    if (dateElement) {
-      const now = new Date();
-      const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-      dateElement.textContent = now.toLocaleDateString("id-ID", options);
-    }
-  }
-  updateCurrentDate();
+// Set current date
+document.getElementById("current-date").textContent =
+  new Date().toLocaleDateString("id-ID", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   function getStatusText(status) {
     if (status === "active") return "Aktif";
@@ -28,6 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
   `;
 }
+
+
 
 
   function renderUsersTable(data) {

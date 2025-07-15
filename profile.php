@@ -12,7 +12,7 @@
 <body>
   <div class="dashboard-container">
     <!-- Sidebar -->
-    <?php include 'bar/navbar.php'; ?>  
+    <?php include 'bar/navbar.php'; ?>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -22,10 +22,6 @@
           <p class="page-subtitle">Kelola profil dan pengaturan sistem NutrivIT</p>
         </div>
         <div class="header-actions">
-          <div class="notification-bell">
-            <i class="fas fa-bell"></i>
-            <span class="notification-badge">3</span>
-          </div>
           <span class="date">
             <i class="fas fa-calendar-alt"></i>
             <span id="current-date"></span>
@@ -65,9 +61,6 @@
             </button>
             <button class="tab-btn" data-tab="system">
               <i class="fas fa-cogs"></i> Pengaturan Sistem
-            </button>
-            <button class="tab-btn" data-tab="notifications">
-              <i class="fas fa-bell"></i> Notifikasi
             </button>
           </div>
 
@@ -238,44 +231,6 @@
                     </div>
                   </div>
                 </div>
-
-                <div class="settings-card">
-                  <div class="settings-header">
-                    <h4><i class="fas fa-history"></i> Aktivitas Login</h4>
-                  </div>
-                  <div class="activity-list">
-                    <div class="activity-item">
-                      <div class="activity-icon success">
-                        <i class="fas fa-check"></i>
-                      </div>
-                      <div class="activity-details">
-                        <h5>Login Berhasil</h5>
-                        <p>Chrome on Windows • Jakarta, Indonesia</p>
-                        <span class="activity-time">2 jam yang lalu</span>
-                      </div>
-                    </div>
-                    <div class="activity-item">
-                      <div class="activity-icon success">
-                        <i class="fas fa-check"></i>
-                      </div>
-                      <div class="activity-details">
-                        <h5>Login Berhasil</h5>
-                        <p>Mobile App • Jakarta, Indonesia</p>
-                        <span class="activity-time">1 hari yang lalu</span>
-                      </div>
-                    </div>
-                    <div class="activity-item">
-                      <div class="activity-icon warning">
-                        <i class="fas fa-exclamation"></i>
-                      </div>
-                      <div class="activity-details">
-                        <h5>Login Gagal</h5>
-                        <p>Chrome on Windows • Jakarta, Indonesia</p>
-                        <span class="activity-time">3 hari yang lalu</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -346,128 +301,11 @@
                 </div>
               </div>
             </div>
-
-            <!-- Notifications Tab -->
-            <div class="tab-pane" id="notifications">
-              <div class="settings-grid">
-                <div class="settings-card">
-                  <div class="settings-header">
-                    <h4><i class="fas fa-bell"></i> Preferensi Notifikasi</h4>
-                  </div>
-                  <div class="settings-form">
-                    <div class="notification-category">
-                      <h5><i class="fas fa-box"></i> Product Management</h5>
-                      <div class="notification-options">
-                        <div class="notification-option">
-                          <span>Stok produk menipis</span>
-                          <div class="notification-toggles">
-                            <label class="toggle-switch small">
-                              <input type="checkbox" checked>
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-label">Email</span>
-                            <label class="toggle-switch small">
-                              <input type="checkbox" checked>
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-label">Push</span>
-                          </div>
-                        </div>
-                        <div class="notification-option">
-                          <span>Produk baru ditambahkan</span>
-                          <div class="notification-toggles">
-                            <label class="toggle-switch small">
-                              <input type="checkbox">
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-label">Email</span>
-                            <label class="toggle-switch small">
-                              <input type="checkbox" checked>
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-label">Push</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="notification-category">
-                      <h5><i class="fas fa-exclamation-triangle"></i> System Alerts</h5>
-                      <div class="notification-options">
-                        <div class="notification-option">
-                          <span>Error sistem</span>
-                          <div class="notification-toggles">
-                            <label class="toggle-switch small">
-                              <input type="checkbox" checked>
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-label">Email</span>
-                            <label class="toggle-switch small">
-                              <input type="checkbox" checked>
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-label">Push</span>
-                          </div>
-                        </div>
-                        <div class="notification-option">
-                          <span>Backup berhasil</span>
-                          <div class="notification-toggles">
-                            <label class="toggle-switch small">
-                              <input type="checkbox">
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-label">Email</span>
-                            <label class="toggle-switch small">
-                              <input type="checkbox">
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-label">Push</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="settings-card">
-                  <div class="settings-header">
-                    <h4><i class="fas fa-clock"></i> Jadwal Notifikasi</h4>
-                  </div>
-                  <div class="settings-form">
-                    <div class="form-row">
-                      <div class="form-group">
-                        <label for="quietStart">
-                          <i class="fas fa-moon"></i> Mulai Quiet Hours
-                        </label>
-                        <input type="time" id="quietStart" value="22:00" />
-                      </div>
-                      <div class="form-group">
-                        <label for="quietEnd">
-                          <i class="fas fa-sun"></i> Akhir Quiet Hours
-                        </label>
-                        <input type="time" id="quietEnd" value="07:00" />
-                      </div>
-                    </div>
-                    <div class="system-option">
-                      <div class="option-info">
-                        <h5><i class="fas fa-calendar-week"></i> Weekend Notifications</h5>
-                        <p>Terima notifikasi di akhir pekan</p>
-                      </div>
-                      <label class="toggle-switch">
-                        <input type="checkbox">
-                        <span class="toggle-slider"></span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <script>
     // Profile functionality
     function handleProfile() {
@@ -489,12 +327,12 @@
     });
 
     // Tab functionality
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
       const tabBtns = document.querySelectorAll('.tab-btn');
       const tabPanes = document.querySelectorAll('.tab-pane');
 
       tabBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
+        btn.addEventListener('click', function() {
           const targetTab = this.getAttribute('data-tab');
 
           // Remove active class from all tabs and panes
@@ -512,7 +350,7 @@
       forms.forEach(form => {
         const saveBtn = form.querySelector('.btn-primary');
         if (saveBtn) {
-          saveBtn.addEventListener('click', function (e) {
+          saveBtn.addEventListener('click', function(e) {
             e.preventDefault();
             // Show success message
             showNotification('Pengaturan berhasil disimpan!', 'success');
@@ -545,15 +383,15 @@
     }
 
     // Avatar upload functionality
-    document.querySelector('.avatar-upload').addEventListener('click', function () {
+    document.querySelector('.avatar-upload').addEventListener('click', function() {
       const input = document.createElement('input');
       input.type = 'file';
       input.accept = 'image/*';
-      input.onchange = function (e) {
+      input.onchange = function(e) {
         const file = e.target.files[0];
         if (file) {
           const reader = new FileReader();
-          reader.onload = function (e) {
+          reader.onload = function(e) {
             // Here you would typically upload the image to server
             showNotification('Foto profil berhasil diupdate!', 'success');
           };

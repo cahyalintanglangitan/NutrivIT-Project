@@ -307,3 +307,12 @@ function searchReviews() {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => loadReviews(), 500);
 }
+
+// Set current date
+document.getElementById("current-date").textContent =
+  new Date().toLocaleDateString("id-ID", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });

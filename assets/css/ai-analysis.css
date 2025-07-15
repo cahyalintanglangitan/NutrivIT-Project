@@ -32,6 +32,14 @@
   animation: pulse 2s infinite;
 }
 
+.date {
+  color: #666;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 @keyframes pulse {
   0%,
   100% {
