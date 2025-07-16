@@ -211,8 +211,19 @@ function getAnalytics($conn) {
     ");
     $analytics['rating_distribution'] = $result->fetch_all(MYSQLI_ASSOC);
 
+    $result = $conn->query("
+        SELECT p.name AS product_name, SUM(s.quantity) AS total_sold
+        FROM sales s
+        LEFT JOIN products p ON s.product_id = p.id
+        GROUP BY s.product_id
+        ORDER BY total_sold DESC
+        LIMIT 5
+    ");
+    $analytics['top_selling_products'] = $result->fetch_all(MYSQLI_ASSOC);
+
     return $analytics;
 }
+
 
 // ==============================
 // Function: Get Products (for filter dropdown)
@@ -497,13 +508,15 @@ $analytics = getAnalytics($conn);
                         </div>
 
                         <div class="analytics-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-trophy"></i> Top Reviewed Products</h3>
-                            </div>
-                            <div class="chart-container">
-                                <canvas id="topReviewedProductsChart"></canvas>
-                            </div>
-                        </div>
+    <div class="card-header">
+        <h3><i class="fas fa-chart-line"></i> Top Selling Products</h3>
+    </div>
+    <div class="chart-container">
+        <canvas id="topSellingProductsChart"></canvas>
+    </div>
+</div>
+
+
                     </div>
 
                     <!-- Insights Section -->

@@ -229,6 +229,32 @@ function renderCharts() {
         }
     });
 }
+// Top Selling Products Chart
+new Chart(document.getElementById('topSellingProductsChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: analyticsData.top_selling_products.map(p => p.product_name),
+        datasets: [{
+            label: 'Quantity Sold',
+            data: analyticsData.top_selling_products.map(p => p.total_sold),
+            backgroundColor: '#2ecc71'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: { display: true, text: 'Top Selling Products (Quantity)' }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: { precision: 0 }
+            }
+        }
+    }
+});
+
 
 // === MODAL ===
 function closeModal(id) {
