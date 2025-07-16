@@ -9,7 +9,7 @@ $result = $conn->query($sql);
 $totalProducts = $conn->query("SELECT COUNT(*) AS total FROM products")->fetch_assoc()['total'];
 $lowStock = $conn->query("SELECT COUNT(*) AS total FROM products WHERE stock < 100")->fetch_assoc()['total'];
 $bestSeller = $conn->query("SELECT name FROM products ORDER BY stock DESC LIMIT 1")->fetch_assoc()['name'] ?? '-';
-$totalRevenue = $conn->query("SELECT SUM(price * stock) AS total FROM products")->fetch_assoc()['total'] ?? 0;
+$totalRevenue = $conn->query("SELECT SUM(total_price) AS total FROM sales")->fetch_assoc()['total'] ?? 0;
 
 // Penjualan per bulan (6 bulan terakhir)
 $salesQuery = $conn->query("
