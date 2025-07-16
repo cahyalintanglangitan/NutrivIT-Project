@@ -238,8 +238,6 @@ $products = getProducts($conn);
 $analytics = getAnalytics($conn);
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -259,311 +257,314 @@ $analytics = getAnalytics($conn);
         <?php include 'bar/navbar.php'; ?>
 
         <main class="main-content">
+            <!-- Enhanced Header -->
             <header class="main-header">
-                <div class="header-left">
-                    <h2><i class="fas fa-comments"></i> Complaints & Review</h2>
-                    <p class="page-subtitle">Sampaikan keluhan dan ulasan Anda demi layanan yang lebih baik.</p>
-                </div>
-                <div class="header-actions">
-                    <span class="date">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span id="current-date"></span>
-                    </span>
+                <div class="header-content">
+                    <div class="header-title">
+                        <h1><i class="fas fa-comments"></i> Complaints & Reviews</h1>
+                        <p class="subtitle">Kelola keluhan dan ulasan pelanggan untuk meningkatkan layanan</p>
+                    </div>
+                    <div class="header-actions">
+                        <div class="date-display">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span id="current-date"></span>
+                        </div>
+                    </div>
                 </div>
             </header>
 
             <div class="content-area">
-                <!-- Overview Cards -->
-                <div class="overview-cards">
-                    <div class="overview-card">
-                        <div class="card-icon complaints">
+                <!-- Enhanced Overview Cards -->
+                <section class="stats-overview">
+                    <div class="stats-grid">
+                        <div class="stat-card complaints">
+                            <div class="stat-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3>Total Complaints</h3>
+                                <div class="stat-value"><?php echo $analytics['total_complaints']; ?></div>
+                                <div class="stat-trend negative">
+                                    <i class="fas fa-arrow-down"></i>
+                                    <span>12% dari bulan lalu</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card reviews">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3>Total Reviews</h3>
+                                <div class="stat-value"><?php echo $analytics['total_reviews']; ?></div>
+                                <div class="stat-trend positive">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>8% dari bulan lalu</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card rating">
+                            <div class="stat-icon">
+                                <i class="fas fa-thumbs-up"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3>Average Rating</h3>
+                                <div class="stat-value"><?php echo $analytics['avg_rating']; ?></div>
+                                <div class="stat-trend positive">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>0.2 dari bulan lalu</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card pending">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3>Pending Issues</h3>
+                                <div class="stat-value"><?php echo $analytics['pending_complaints']; ?></div>
+                                <div class="stat-trend warning">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>3 baru hari ini</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Enhanced Tab Navigation -->
+                <section class="tabs-container">
+                    <div class="tabs-wrapper">
+                        <button class="tab-button active" data-tab="complaints" onclick="switchTab('complaints')">
                             <i class="fas fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Total Complaints</h3>
-                            <div class="card-number" data-target="<?php echo $analytics['total_complaints']; ?>"><?php echo $analytics['total_complaints']; ?></div>
-                            <div class="card-trend negative">
-                                <i class="fas fa-arrow-down"></i> 12% from last month
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="overview-card">
-                        <div class="card-icon reviews">
+                            <span>Complaints Management</span>
+                        </button>
+                        <button class="tab-button" data-tab="reviews" onclick="switchTab('reviews')">
                             <i class="fas fa-star"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Total Reviews</h3>
-                            <div class="card-number" data-target="<?php echo $analytics['total_reviews']; ?>"><?php echo $analytics['total_reviews']; ?></div>
-                            <div class="card-trend positive">
-                                <i class="fas fa-arrow-up"></i> 8% from last month
-                            </div>
-                        </div>
+                            <span>Product Reviews</span>
+                        </button>
+                        <button class="tab-button" data-tab="analytics" onclick="switchTab('analytics')">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics</span>
+                        </button>
                     </div>
-
-                    <div class="overview-card">
-                        <div class="card-icon rating">
-                            <i class="fas fa-thumbs-up"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Average Rating</h3>
-                            <div class="card-number"><?php echo $analytics['avg_rating']; ?></div>
-                            <div class="card-trend positive">
-                                <i class="fas fa-arrow-up"></i> 0.2 from last month
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="overview-card">
-                        <div class="card-icon pending">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Pending Issues</h3>
-                            <div class="card-number" data-target="<?php echo $analytics['pending_complaints']; ?>"><?php echo $analytics['pending_complaints']; ?></div>
-                            <div class="card-trend negative">
-                                <i class="fas fa-arrow-up"></i> 3 new today
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab Navigation -->
-                <div class="tab-navigation">
-                    <button class="tab-btn active" onclick="switchTab('complaints')">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        Complaints Management
-                    </button>
-                    <button class="tab-btn" onclick="switchTab('reviews')">
-                        <i class="fas fa-star"></i>
-                        Product Reviews
-                    </button>
-                    <button class="tab-btn" onclick="switchTab('analytics')">
-                        <i class="fas fa-chart-bar"></i>
-                        Analytics & Insights
-                    </button>
-                </div>
+                </section>
 
                 <!-- Complaints Tab -->
                 <div id="complaints-tab" class="tab-content active">
-                    <!-- Filters -->
-                    <div class="filters-section">
-                        <div class="filter-group">
-                            <label>Status</label>
-                            <select id="complaint-status-filter" onchange="filterComplaints()">
-                                <option value="all">All Status</option>
-                                <option value="open">Open</option>
-                                <option value="pending">Pending</option>
-                                <option value="resolved">Resolved</option>
-                            </select>
+                    <div class="panel">
+                        <!-- Enhanced Filters -->
+                        <div class="filter-panel">
+                            <div class="filter-header">
+                                <h3><i class="fas fa-filter"></i> Filter Complaints</h3>
+                                <button class="btn-reset" onclick="resetFilters('complaints')">
+                                    <i class="fas fa-undo"></i> Reset
+                                </button>
+                            </div>
+                            <div class="filter-body">
+                                <div class="filter-row">
+                                    <div class="filter-group">
+                                        <label for="complaint-status-filter">Status</label>
+                                        <select id="complaint-status-filter" onchange="filterComplaints()">
+                                            <option value="all">All Status</option>
+                                            <option value="open">Open</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="resolved">Resolved</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="complaint-type-filter">Type</label>
+                                        <select id="complaint-type-filter" onchange="filterComplaints()">
+                                            <option value="all">All Types</option>
+                                            <option value="energy">Energy</option>
+                                            <option value="weight">Weight</option>
+                                            <option value="digestion">Digestion</option>
+                                            <option value="immunity">Immunity</option>
+                                            <option value="sleep">Sleep</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="complaint-period-filter">Period</label>
+                                        <select id="complaint-period-filter" onchange="filterComplaints()">
+                                            <option value="all">All Time</option>
+                                            <option value="today">Today</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="search-group">
+                                        <label for="complaint-search">Search</label>
+                                        <div class="search-input-wrapper">
+                                            <i class="fas fa-search"></i>
+                                            <input type="text" id="complaint-search" placeholder="Search complaints..." onkeyup="searchComplaints()">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="filter-group">
-                            <label>Type</label>
-                            <select id="complaint-type-filter" onchange="filterComplaints()">
-                                <option value="all">All Types</option>
-                                <option value="energy">Energy</option>
-                                <option value="weight">Weight</option>
-                                <option value="digestion">Digestion</option>
-                                <option value="immunity">Immunity</option>
-                                <option value="sleep">Sleep</option>
-                                <option value="other">Other</option>
-                            </select>
+                        <!-- Content Header -->
+                        <div class="content-header">
+                            <div class="header-left">
+                                <h3><i class="fas fa-list"></i> Complaints List</h3>
+                                <span class="results-count" id="complaints-count">Loading...</span>
+                            </div>
                         </div>
 
-                        <div class="filter-group">
-                            <label>Period</label>
-                            <select id="complaint-period-filter" onchange="filterComplaints()">
-                                <option value="all">All Time</option>
-                                <option value="today">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month">This Month</option>
-                            </select>
-                        </div>
-
-                        <div class="search-group">
-                            <input type="text" id="complaint-search" placeholder="Search complaints..." onkeyup="searchComplaints()">
-                            <i class="fas fa-search"></i>
-                        </div>
-                    </div>
-
-                    <!-- Section Header -->
-                    <div class="section-header">
-                        <h3><i class="fas fa-list"></i> Complaints List</h3>
-                        <div class="header-actions">
-                            <button class="btn-secondary" onclick="exportComplaints()">
-                                <i class="fas fa-download"></i> Export
-                            </button>
-                            <button class="btn-primary" onclick="showBulkActions()">
-                                <i class="fas fa-tasks"></i> Bulk Actions
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Complaints List -->
-                    <div class="complaints-container">
-                        <div id="complaints-list" class="complaints-list">
-                            <!-- Complaints will be loaded here via JavaScript -->
+                        <!-- Complaints List -->
+                        <div class="data-container">
+                            <div id="complaints-list" class="data-list">
+                                <div class="loading-indicator">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Loading complaints data...</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Reviews Tab -->
                 <div id="reviews-tab" class="tab-content">
-                    <!-- Filters -->
-                    <div class="filters-section">
-                        <div class="filter-group">
-                            <label>Rating</label>
-                            <select id="review-rating-filter" onchange="filterReviews()">
-                                <option value="all">All Ratings</option>
-                                <option value="5">5 Stars</option>
-                                <option value="4">4 Stars</option>
-                                <option value="3">3 Stars</option>
-                                <option value="2">2 Stars</option>
-                                <option value="1">1 Star</option>
-                            </select>
+                    <div class="panel">
+                        <!-- Enhanced Filters -->
+                        <div class="filter-panel">
+                            <div class="filter-header">
+                                <h3><i class="fas fa-filter"></i> Filter Reviews</h3>
+                                <button class="btn-reset" onclick="resetFilters('reviews')">
+                                    <i class="fas fa-undo"></i> Reset
+                                </button>
+                            </div>
+                            <div class="filter-body">
+                                <div class="filter-row">
+                                    <div class="filter-group">
+                                        <label for="review-rating-filter">Rating</label>
+                                        <select id="review-rating-filter" onchange="filterReviews()">
+                                            <option value="all">All Ratings</option>
+                                            <option value="5">5 Stars</option>
+                                            <option value="4">4 Stars</option>
+                                            <option value="3">3 Stars</option>
+                                            <option value="2">2 Stars</option>
+                                            <option value="1">1 Star</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="review-product-filter">Product</label>
+                                        <select id="review-product-filter" onchange="filterReviews()">
+                                            <option value="all">All Products</option>
+                                            <?php foreach ($products as $product): ?>
+                                                <option value="<?php echo $product['id']; ?>"><?php echo htmlspecialchars($product['product_name']); ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-group">
+                                        <label for="review-period-filter">Period</label>
+                                        <select id="review-period-filter" onchange="filterReviews()">
+                                            <option value="all">All Time</option>
+                                            <option value="today">Today</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="search-group">
+                                        <label for="review-search">Search</label>
+                                        <div class="search-input-wrapper">
+                                            <i class="fas fa-search"></i>
+                                            <input type="text" id="review-search" placeholder="Search reviews..." onkeyup="searchReviews()">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="filter-group">
-                            <label>Product</label>
-                            <select id="review-product-filter" onchange="filterReviews()">
-                                <option value="all">All Products</option>
-                                <?php foreach ($products as $product): ?>
-                                    <option value="<?php echo $product['id']; ?>"><?php echo htmlspecialchars($product['product_name']); ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                        <!-- Content Header -->
+                        <div class="content-header">
+                            <div class="header-left">
+                                <h3><i class="fas fa-star"></i> Product Reviews</h3>
+                                <span class="results-count" id="reviews-count">Loading...</span>
+                            </div>
+                            <div class="header-actions">
+                                <button class="btn-secondary" onclick="exportReviews()">
+                                    <i class="fas fa-download"></i> Export
+                                </button>
+                                <button class="btn-primary" onclick="showReviewAnalytics()">
+                                    <i class="fas fa-chart-line"></i> Analytics
+                                </button>
+                            </div>
                         </div>
 
-                        <div class="filter-group">
-                            <label>Period</label>
-                            <select id="review-period-filter" onchange="filterReviews()">
-                                <option value="all">All Time</option>
-                                <option value="today">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month">This Month</option>
-                            </select>
-                        </div>
-
-                        <div class="search-group">
-                            <input type="text" id="review-search" placeholder="Search reviews..." onkeyup="searchReviews()">
-                            <i class="fas fa-search"></i>
-                        </div>
-                    </div>
-
-                    <!-- Section Header -->
-                    <div class="section-header">
-                        <h3><i class="fas fa-star"></i> Product Reviews</h3>
-                        <div class="header-actions">
-                            <button class="btn-secondary" onclick="exportReviews()">
-                                <i class="fas fa-download"></i> Export
-                            </button>
-                            <button class="btn-primary" onclick="showReviewAnalytics()">
-                                <i class="fas fa-chart-line"></i> Analytics
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Reviews List -->
-                    <div class="reviews-container">
-                        <div id="reviews-list" class="reviews-list">
-                            <!-- Reviews will be loaded here via JavaScript -->
+                        <!-- Reviews List -->
+                        <div class="data-container">
+                            <div id="reviews-list" class="data-list">
+                                <div class="loading-indicator">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Loading reviews data...</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Analytics Tab -->
                 <div id="analytics-tab" class="tab-content">
-                    <!-- Analytics Grid -->
-                    <div class="analytics-grid">
-                        <div class="analytics-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-chart-line"></i> Complaint Trends</h3>
-                                <select id="complaint-trend-period" onchange="updateComplaintTrends()">
-                                    <option value="6months">Last 6 Months</option>
-                                    <option value="year">This Year</option>
+                    <!-- Charts Section -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-chart-line"></i> Performance Analytics</h3>
+                            <div class="panel-actions">
+                                <select id="analytics-period" onchange="updateAnalytics()">
+                                    <option value="month">Last Month</option>
+                                    <option value="quarter">Last Quarter</option>
+                                    <option value="year" selected>Last Year</option>
                                     <option value="all">All Time</option>
                                 </select>
                             </div>
-                            <div class="chart-container">
-                                <canvas id="complaintTrendsChart"></canvas>
-                            </div>
                         </div>
-
-                        <div class="analytics-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-chart-pie"></i> Complaint Types</h3>
-                            </div>
-                            <div class="chart-container">
-                                <canvas id="complaintTypesChart"></canvas>
-                            </div>
-                        </div>
-
-                        <div class="analytics-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-star"></i> Rating Distribution</h3>
-                            </div>
-                            <div class="chart-container">
-                                <canvas id="ratingDistributionChart"></canvas>
-                            </div>
-                        </div>
-
-                        <div class="analytics-card">
-    <div class="card-header">
-        <h3><i class="fas fa-chart-line"></i> Top Selling Products</h3>
-    </div>
-    <div class="chart-container">
-        <canvas id="topSellingProductsChart"></canvas>
-    </div>
-</div>
-
-
-                    </div>
-
-                    <!-- Insights Section -->
-                    <div class="insights-section">
-                        <h3><i class="fas fa-lightbulb"></i> Key Insights & Recommendations</h3>
-                        <div class="insights-grid">
-                            <div class="insight-card positive">
-                                <div class="insight-icon">
-                                    <i class="fas fa-thumbs-up"></i>
+                        <div class="panel-body">
+                            <div class="charts-grid">
+                                <div class="chart-card">
+                                    <div class="chart-header">
+                                        <h4><i class="fas fa-chart-line"></i> Complaint Trends</h4>
+                                    </div>
+                                    <div class="chart-body">
+                                        <canvas id="complaintTrendsChart"></canvas>
+                                    </div>
                                 </div>
-                                <div class="insight-content">
-                                    <h4>Customer Satisfaction Improving</h4>
-                                    <p>Average rating increased by 0.2 points this month, indicating better product quality and customer service.</p>
-                                    <span class="insight-action">View detailed analysis</span>
-                                </div>
-                            </div>
 
-                            <div class="insight-card warning">
-                                <div class="insight-icon">
-                                    <i class="fas fa-exclamation-triangle"></i>
+                                <div class="chart-card">
+                                    <div class="chart-header">
+                                        <h4><i class="fas fa-chart-pie"></i> Complaint Types</h4>
+                                    </div>
+                                    <div class="chart-body">
+                                        <canvas id="complaintTypesChart"></canvas>
+                                    </div>
                                 </div>
-                                <div class="insight-content">
-                                    <h4>Energy-Related Complaints Rising</h4>
-                                    <p>35% of complaints are energy-related. Consider reviewing Multi Core formula or dosage recommendations.</p>
-                                    <span class="insight-action">Review product details</span>
-                                </div>
-                            </div>
 
-                            <div class="insight-card info">
-                                <div class="insight-icon">
-                                    <i class="fas fa-chart-bar"></i>
+                                <div class="chart-card">
+                                    <div class="chart-header">
+                                        <h4><i class="fas fa-star"></i> Rating Distribution</h4>
+                                    </div>
+                                    <div class="chart-body">
+                                        <canvas id="ratingDistributionChart"></canvas>
+                                    </div>
                                 </div>
-                                <div class="insight-content">
-                                    <h4>Review Response Rate Low</h4>
-                                    <p>Only 23% of reviews have responses. Increasing engagement could improve customer relationships.</p>
-                                    <span class="insight-action">Set response targets</span>
-                                </div>
-                            </div>
 
-                            <div class="insight-card negative">
-                                <div class="insight-icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div class="insight-content">
-                                    <h4>Complaint Resolution Time</h4>
-                                    <p>Average resolution time is 4.2 days. Consider streamlining the complaint handling process.</p>
-                                    <span class="insight-action">Optimize workflow</span>
+                                <div class="chart-card">
+                                    <div class="chart-header">
+                                        <h4><i class="fas fa-trophy"></i> Top Selling Products</h4>
+                                    </div>
+                                    <div class="chart-body">
+                                        <canvas id="topSellingProductsChart"></canvas>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -573,9 +574,10 @@ $analytics = getAnalytics($conn);
         </main>
     </div>
 
-    <!-- Modals -->
+    <!-- Enhanced Modals -->
     <div id="complaintModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-overlay" onclick="closeModal('complaintModal')"></div>
+        <div class="modal-container">
             <div class="modal-header">
                 <h3><i class="fas fa-exclamation-triangle"></i> Complaint Details</h3>
                 <button class="close-modal" onclick="closeModal('complaintModal')">
@@ -584,12 +586,17 @@ $analytics = getAnalytics($conn);
             </div>
             <div class="modal-body" id="complaintModalBody">
                 <!-- Content will be loaded dynamically -->
+                <div class="loading-indicator">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading complaint details...</p>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="reviewModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-overlay" onclick="closeModal('reviewModal')"></div>
+        <div class="modal-container">
             <div class="modal-header">
                 <h3><i class="fas fa-star"></i> Review Details</h3>
                 <button class="close-modal" onclick="closeModal('reviewModal')">
@@ -598,9 +605,16 @@ $analytics = getAnalytics($conn);
             </div>
             <div class="modal-body" id="reviewModalBody">
                 <!-- Content will be loaded dynamically -->
+                <div class="loading-indicator">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading review details...</p>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Notification System -->
+    <div id="notification-container"></div>
 
     <script>
         const analyticsData = <?php echo json_encode($analytics); ?>;
