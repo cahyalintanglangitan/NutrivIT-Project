@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NutrivIT - Platform Gizi & Kesehatan Terlengkap</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="/assets/css/landing-page.css" />
+  <link rel="stylesheet" href="./assets/css/landing-page.css" />
 </head>
 
 <body>
@@ -25,7 +25,7 @@
         <li><a href="#contact" class="nav-link">Kontak</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="login.html" class="btn-app">
+        <a href="login.php" class="btn-app">
           <i class="fas fa-user"></i> Log In
         </a>
       </div>

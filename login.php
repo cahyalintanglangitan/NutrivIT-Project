@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $manager = $result->fetch_assoc();
 
             // Verifikasi password yang diinput dengan hash di database
-            if ($password === $manager['password']) {
+            if (password_verify($password, $manager['password'])) {
                 // Password benar, simpan data ke session
                 $_SESSION['manager_id'] = $manager['id_manager'];
                 $_SESSION['manager_name'] = $manager['nama_manager'];
