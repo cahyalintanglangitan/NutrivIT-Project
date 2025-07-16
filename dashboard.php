@@ -251,43 +251,57 @@ $topProductsJson = json_encode($topProducts);
 <div class="charts-row">
 
   <!-- Top Keluhan Gizi -->
-  <div class="chart-card large">
-    <div class="chart-header">
-      <h4><i class="fas fa-stethoscope"></i> Top Keluhan Gizi</h4>
-      <div class="chart-actions">
-        <div class="month-selector">
-          <label for="monthSelect">Bulan:</label>
-          <select id="monthSelect" class="month-dropdown" onchange="updateComplaintsData()">
-            <option value="januari">Januari 2025</option>
-            <option value="februari">Februari 2025</option>
-            <option value="maret">Maret 2025</option>
-            <option value="april">April 2025</option>
-            <option value="mei">Mei 2025</option>
-            <option value="juni">Juni 2025</option>
-          </select>
-        </div>
-        <button class="chart-btn"><i class="fas fa-expand"></i></button>
-        <button class="chart-btn"><i class="fas fa-download"></i></button>
+<div class="chart-card large">
+  <div class="chart-header">
+    <h4><i class="fas fa-stethoscope"></i> Top Keluhan Gizi</h4>
+    <div class="chart-actions">
+      <div class="month-selector">
+        <label for="monthSelect">Bulan:</label>
+        <select id="monthSelect" class="month-dropdown">
+  <option value="januari">Januari 2025</option>
+  <option value="februari">Februari 2025</option>
+  <option value="maret">Maret 2025</option>
+  <option value="april">April 2025</option>
+  <option value="mei">Mei 2025</option>
+  <option value="juni">Juni 2025</option>
+  <option value="juli">Juli 2025</option>
+  <option value="agustus">Agustus 2025</option>
+  <option value="september">September 2025</option>
+  <option value="oktober">Oktober 2025</option>
+  <option value="november">November 2025</option>
+  <option value="desember">Desember 2025</option>
+</select>
+
       </div>
-    </div>
-    <div class="chart-container">
-      <canvas id="complaintsChart"></canvas>
-    </div>
-    <div class="chart-insights">
-      <div class="insight-item">
-        <span class="insight-label">Total keluhan bulan ini:</span>
-        <span class="insight-value" id="totalComplaints">1,248 keluhan</span>
-      </div>
-      <div class="insight-item">
-        <span class="insight-label">Keluhan tertinggi:</span>
-        <span class="insight-value" id="topComplaint">Mudah Lelah (23.9%)</span>
-      </div>
-      <div class="insight-item">
-        <span class="insight-label">Trend vs bulan lalu:</span>
-        <span class="insight-value positive" id="trendValue">Menurun 8%</span>
-      </div>
+      <button class="chart-btn" title="Perbesar Grafik">
+        <i class="fas fa-expand"></i>
+      </button>
+      <button class="chart-btn" title="Unduh Data">
+        <i class="fas fa-download"></i>
+      </button>
     </div>
   </div>
+
+  <div class="chart-container" style="position: relative; height: 400px;">
+    <canvas id="complaintsChart"></canvas>
+  </div>
+
+  <div class="chart-insights">
+    <div class="insight-item">
+      <span class="insight-label">Total keluhan bulan ini:</span>
+      <span class="insight-value" id="totalComplaints">-</span>
+    </div>
+    <div class="insight-item">
+      <span class="insight-label">Keluhan tertinggi:</span>
+      <span class="insight-value" id="topComplaint">-</span>
+    </div>
+    <div class="insight-item">
+      <span class="insight-label">Tren vs bulan lalu:</span>
+      <span class="insight-value" id="trendValue">-</span>
+    </div>
+  </div>
+</div>
+
 
   <!-- Kategori Produk -->
   <div class="chart-card medium">

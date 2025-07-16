@@ -39,199 +39,109 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeCharts();
 });
 
-const complaintsData = {
-  januari: {
-    labels: [
-      "Kelelahan Kronis",
-      "Gangguan Pencernaan",
-      "Tulang & Gigi Lemah",
-      "Obesitas",
-      "Imunitas Rendah",
-    ],
-    data: [342, 287, 245, 198, 176],
-    percentages: [23.9, 20.0, 17.1, 13.8, 12.3],
-    trends: [5.2, -2.1, 8.7, 3.4, -1.8],
-    total: 1248,
-    topComplaint: "Kelelahan Kronis (23.9%)",
-    overallTrend: "Menurun 8%",
-  },
-  februari: {
-    labels: [
-      "Gangguan Pencernaan",
-      "Kelelahan Kronis",
-      "Obesitas",
-      "Tulang & Gigi Lemah",
-      "Stress & Insomnia",
-    ],
-    data: [298, 276, 234, 189, 167],
-    percentages: [24.1, 22.3, 18.9, 15.3, 13.5],
-    trends: [12.3, -3.2, 15.8, -2.1, 8.9],
-    total: 1164,
-    topComplaint: "Gangguan Pencernaan (24.1%)",
-    overallTrend: "Turun 6.7%",
-  },
-  maret: {
-    labels: [
-      "Obesitas",
-      "Kelelahan Kronis",
-      "Imunitas Rendah",
-      "Gangguan Pencernaan",
-      "Tulang & Gigi Lemah",
-    ],
-    data: [312, 289, 267, 198, 145],
-    percentages: [25.8, 23.9, 22.1, 16.4, 12.0],
-    trends: [33.2, 4.7, 51.7, -33.6, -23.3],
-    total: 1211,
-    topComplaint: "Obesitas (25.8%)",
-    overallTrend: "Naik 4.0%",
-  },
-  april: {
-    labels: [
-      "Kelelahan Kronis",
-      "Imunitas Rendah",
-      "Obesitas",
-      "Gangguan Pencernaan",
-      "Tulang & Gigi Lemah",
-    ],
-    data: [285, 256, 223, 189, 156],
-    percentages: [25.4, 22.8, 19.9, 16.8, 13.9],
-    trends: [-1.3, -14.7, -28.5, -4.5, 7.6],
-    total: 1109,
-    topComplaint: "Kelelahan Kronis (25.4%)",
-    overallTrend: "Turun 8.4%",
-  },
-  mei: {
-    labels: [
-      "Imunitas Rendah",
-      "Kelelahan Kronis",
-      "Gangguan Pencernaan",
-      "Obesitas",
-      "Stress & Insomnia",
-    ],
-    data: [267, 234, 198, 178, 145],
-    percentages: [26.1, 22.9, 19.4, 17.4, 14.2],
-    trends: [4.3, -17.9, 4.8, -20.2, -7.1],
-    total: 1022,
-    topComplaint: "Imunitas Rendah (26.1%)",
-    overallTrend: "Turun 7.8%",
-  },
-  juni: {
-    labels: [
-      "Kelelahan Kronis",
-      "Imunitas Rendah",
-      "Stress & Insomnia",
-      "Obesitas",
-      "Gangguan Pencernaan",
-    ],
-    data: [298, 245, 189, 167, 145],
-    percentages: [28.7, 23.6, 18.2, 16.1, 14.0],
-    trends: [27.4, -8.2, 30.3, -6.2, -26.8],
-    total: 1044,
-    topComplaint: "Kelelahan Kronis (28.7%)",
-    overallTrend: "Naik 2.2%",
-  },
-};
-
-// Global variable untuk chart instance
+// Global variable for chart instance
 let complaintsChartInstance = null;
 
-// Function untuk update data keluhan
-function updateComplaintsData() {
+async function updateComplaintsData() {
   const selectedMonth = document.getElementById("monthSelect").value;
-  const data = complaintsData[selectedMonth];
 
-  if (!data) return;
+  try {
+    const response = await fetch(`get_complaints.php?month=${selectedMonth}`);
+    const data = await response.json();
 
-  // Update insights
-  document.getElementById(
-    "totalComplaints"
-  ).textContent = `${data.total.toLocaleString()} keluhan`;
-  document.getElementById("topComplaint").textContent = data.topComplaint;
+    // Update total keluhan
+    document.getElementById("totalComplaints").textContent =
+      `${data.total.toLocaleString()} keluhan`;
 
-  const trendElement = document.getElementById("trendValue");
-  trendElement.textContent = data.overallTrend;
-  trendElement.className = data.overallTrend.includes("Naik")
-    ? "insight-value negative"
-    : "insight-value positive";
+    // Update keluhan terbanyak
+    document.getElementById("topComplaint").textContent = data.topComplaint;
 
-  // Update chart
-  updateComplaintsChart(data);
+    // Update nilai tren jika tersedia
+    const trendElement = document.getElementById("trendValue");
+    trendElement.textContent = data.trend || "-";
+    trendElement.className = "insight-value";
+
+    // Tampilkan chart
+    updateComplaintsChart(data);
+  } catch (error) {
+    console.error("Gagal memuat data:", error);
+    alert("Gagal mengambil data keluhan. Silakan cek koneksi atau server.");
+  }
 }
 
 function updateComplaintsChart(data) {
   const ctx = document.getElementById("complaintsChart");
+
+  // Hancurkan chart lama jika ada
   if (complaintsChartInstance) {
     complaintsChartInstance.destroy();
   }
 
+  // Buat chart baru
   complaintsChartInstance = new Chart(ctx, {
     type: "bar",
     data: {
-      labels: data.labels,
-      datasets: [
-        {
-          label: "Jumlah Keluhan",
-          data: data.data,
-          backgroundColor: [
-            "#667eea",
-            "#764ba2",
-            "#f093fb",
-            "#f5576c",
-            "#4facfe",
-          ],
-          borderColor: ["#5a67d8", "#6b46c1", "#e879f9", "#ef4444", "#3b82f6"],
-          borderWidth: 2,
-          borderRadius: 8,
-          borderSkipped: false,
-        },
-      ],
+      labels: data.labels, // label: ["Kelelahan Kronis", ...]
+      datasets: [{
+        label: "Jumlah Keluhan",
+        data: data.data,     // data: [2, 1, 0, ...]
+        backgroundColor: [
+          "#667eea", "#764ba2", "#f093fb", "#f5576c", "#4facfe", "#34d399"
+        ],
+        borderColor: [
+          "#5a67d8", "#6b46c1", "#e879f9", "#ef4444", "#3b82f6", "#059669"
+        ],
+        borderWidth: 2,
+        borderRadius: 8,
+        borderSkipped: false,
+      }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: {
-          display: false,
-        },
+        legend: { display: false },
         tooltip: {
           callbacks: {
             label: function (context) {
               const index = context.dataIndex;
-              const percentage = data.percentages[index];
-              const trend = data.trends[index];
-              const trendIcon = trend > 0 ? "↑" : "↓";
+              const percentage = data.percentages[index] ?? 0;
               return [
                 `Jumlah: ${context.parsed.y} keluhan`,
-                `Persentase: ${percentage}%`,
-                `Trend: ${trendIcon} ${Math.abs(trend)}%`,
+                `Persentase: ${percentage}%`
               ];
-            },
-          },
-        },
+            }
+          }
+        }
       },
       scales: {
         y: {
           beginAtZero: true,
-          grid: {
-            color: "rgba(0,0,0,0.1)",
-          },
-          ticks: {
-            color: "#718096",
-          },
+          ticks: { color: "#718096" },
+          grid: { color: "rgba(0,0,0,0.1)" }
         },
         x: {
-          grid: {
-            display: false,
-          },
-          ticks: {
-            color: "#718096",
-            maxRotation: 45,
-          },
-        },
-      },
-    },
+          ticks: { color: "#718096", maxRotation: 45 },
+          grid: { display: false }
+        }
+      }
+    }
   });
 }
+
+// Jalankan saat halaman selesai dimuat
+document.addEventListener("DOMContentLoaded", function () {
+  const monthSelect = document.getElementById("monthSelect");
+  if (monthSelect) {
+    // Trigger update saat halaman pertama dibuka
+    updateComplaintsData();
+
+    // Trigger saat bulan diganti
+    monthSelect.addEventListener("change", updateComplaintsData);
+  }
+});
+
+
 
 // Notification Panel Functions
 function toggleNotificationPanel() {
