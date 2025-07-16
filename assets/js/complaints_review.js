@@ -24,7 +24,7 @@ function loadComplaints(filters = {}) {
             const container = document.getElementById('complaints-list');
             container.innerHTML = '';
 
-            if (data.length === 0) {
+            if (!data || data.length === 0) {
                 container.innerHTML = '<p class="empty-msg">No complaints found.</p>';
                 return;
             }
@@ -33,18 +33,20 @@ function loadComplaints(filters = {}) {
                 const complaintHTML = `
                     <div class="complaint-item">
                         <div class="complaint-header">
-                            <strong>${item.name || 'Anonim'}</strong> (${item.email})
+                            <strong>${item.name || 'Anonim'}</strong> (${item.email || '-'})
                             <span class="status ${item.status}">${item.status}</span>
                         </div>
                         <div class="complaint-body">
                             <p><strong>Type:</strong> ${item.complaint_type}</p>
                             <p>${item.description}</p>
-                            <button class="btn-small" onclick="showComplaintModal(${item.id}, '${item.status}')">Detail</button>
+                            <button class="btn-small" onclick='showComplaintModal(${JSON.stringify(item)})'>Detail</button>
                         </div>
                     </div>
                 `;
                 container.innerHTML += complaintHTML;
             });
+        }).catch(err => {
+            console.error('Error loading complaints:', err);
         });
 }
 
@@ -61,35 +63,25 @@ function searchComplaints() {
     filterComplaints();
 }
 
-function showComplaintModal(id, currentStatus) {
-    // Open modal
+function showComplaintModal(complaint) {
     document.getElementById('complaintModal').style.display = 'flex';
 
     const modalBody = document.getElementById('complaintModalBody');
-    modalBody.innerHTML = `<p>Loading...</p>`;
-
-    fetch(`complaints_review.php?action=get_complaints`)
-        .then(res => res.json())
-        .then(data => {
-            const complaint = data.find(c => c.id == id);
-            if (!complaint) return;
-
-            modalBody.innerHTML = `
-                <p><strong>Name:</strong> ${complaint.name}</p>
-                <p><strong>Email:</strong> ${complaint.email}</p>
-                <p><strong>Type:</strong> ${complaint.complaint_type}</p>
-                <p><strong>Description:</strong></p>
-                <p>${complaint.description}</p>
-                <p><strong>Status:</strong></p>
-                <select id="update-status">
-                    <option value="open" ${complaint.status === 'open' ? 'selected' : ''}>Open</option>
-                    <option value="pending" ${complaint.status === 'pending' ? 'selected' : ''}>Pending</option>
-                    <option value="resolved" ${complaint.status === 'resolved' ? 'selected' : ''}>Resolved</option>
-                </select>
-                <br><br>
-                <button class="btn-primary" onclick="updateComplaintStatus(${id})">Update Status</button>
-            `;
-        });
+    modalBody.innerHTML = `
+        <p><strong>Name:</strong> ${complaint.name}</p>
+        <p><strong>Email:</strong> ${complaint.email}</p>
+        <p><strong>Type:</strong> ${complaint.complaint_type}</p>
+        <p><strong>Description:</strong></p>
+        <p>${complaint.description}</p>
+        <p><strong>Status:</strong></p>
+        <select id="update-status">
+            <option value="open" ${complaint.status === 'open' ? 'selected' : ''}>Open</option>
+            <option value="pending" ${complaint.status === 'pending' ? 'selected' : ''}>Pending</option>
+            <option value="resolved" ${complaint.status === 'resolved' ? 'selected' : ''}>Resolved</option>
+        </select>
+        <br><br>
+        <button class="btn-primary" onclick="updateComplaintStatus(${complaint.id})">Update Status</button>
+    `;
 }
 
 function updateComplaintStatus(id) {
@@ -107,39 +99,61 @@ function updateComplaintStatus(id) {
           alert(response.message);
           closeModal('complaintModal');
           filterComplaints();
+      }).catch(err => {
+          console.error('Update failed:', err);
       });
 }
 
 // === REVIEWS ===
 function loadReviews(filters = {}) {
+    // Sanitize filters: buang key yang nilainya undefined/null
+    const cleanFilters = {};
+    for (const key in filters) {
+        if (filters[key] !== undefined && filters[key] !== null) {
+            cleanFilters[key] = filters[key];
+        }
+    }
+
+    const queryString = new URLSearchParams(cleanFilters).toString();
+
     fetch(`complaints_review.php?action=get_reviews&${new URLSearchParams(filters)}`)
-        .then(res => res.json())
-        .then(data => {
-            const container = document.getElementById('reviews-list');
-            container.innerHTML = '';
+    .then(res => res.text()) // ubah dulu ke text untuk debugging
+    .then(text => {
+        console.log('Raw Response:', text); // tampilkan isi respons
 
-            if (data.length === 0) {
-                container.innerHTML = '<p class="empty-msg">No reviews found.</p>';
-                return;
-            }
+        // coba parse sebagai JSON
+        const data = JSON.parse(text);
 
-            data.forEach(item => {
-                const reviewHTML = `
-                    <div class="review-item">
-                        <div class="review-header">
-                            <strong>${item.username || 'Anonim'}</strong> reviewed <em>${item.product_name}</em>
-                            <span class="rating">${'★'.repeat(Math.round(item.rating))}</span>
-                        </div>
-                        <div class="review-body">
-                            <p>${item.review_text}</p>
-                            <button class="btn-small" onclick="showReviewModal(${item.id})">Detail</button>
-                        </div>
+        const container = document.getElementById('reviews-list');
+        container.innerHTML = '';
+
+        if (data.length === 0) {
+            container.innerHTML = '<p class="empty-msg">No reviews found.</p>';
+            return;
+        }
+
+        data.forEach(item => {
+            const reviewHTML = `
+                <div class="review-item">
+                    <div class="review-header">
+<strong>${item.name || 'Anonim'}</strong> reviewed <em>${item.product_name}</em>
+                        <span class="rating">${'★'.repeat(Math.round(item.rating))}</span>
                     </div>
-                `;
-                container.innerHTML += reviewHTML;
-            });
+                    <div class="review-body">
+                        <p>${item.review_text}</p>
+                        <button class="btn-small" onclick="showReviewModal(${item.id})">Detail</button>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += reviewHTML;
         });
+    })
+    .catch(error => {
+        console.error('Error loading reviews:', error);
+    });
+
 }
+
 
 function filterReviews() {
     const rating = document.getElementById('review-rating-filter').value;
@@ -154,27 +168,18 @@ function searchReviews() {
     filterReviews();
 }
 
-function showReviewModal(id) {
+function showReviewModal(review) {
     document.getElementById('reviewModal').style.display = 'flex';
 
     const modalBody = document.getElementById('reviewModalBody');
-    modalBody.innerHTML = `<p>Loading...</p>`;
-
-    fetch(`complaints_review.php?action=get_reviews`)
-        .then(res => res.json())
-        .then(data => {
-            const review = data.find(r => r.id == id);
-            if (!review) return;
-
-            modalBody.innerHTML = `
-                <p><strong>User:</strong> ${review.username}</p>
-                <p><strong>Email:</strong> ${review.email}</p>
-                <p><strong>Product:</strong> ${review.product_name}</p>
-                <p><strong>Rating:</strong> ${review.rating}</p>
-                <p><strong>Review:</strong></p>
-                <p>${review.review_text}</p>
-            `;
-        });
+    modalBody.innerHTML = `
+<p><strong>User:</strong> ${review.name || 'Anonim'}</p>
+        <p><strong>Email:</strong> ${review.email || '-'}</p>
+        <p><strong>Product:</strong> ${review.product_name}</p>
+        <p><strong>Rating:</strong> ${review.rating}</p>
+        <p><strong>Review:</strong></p>
+        <p>${review.review_text}</p>
+    `;
 }
 
 // === CHARTS & ANALYTICS ===

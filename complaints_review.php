@@ -1,8 +1,9 @@
 <?php
-// Include database connection
 require_once 'koneksi.php';
 
+// ==============================
 // Handle AJAX requests
+// ==============================
 if (isset($_GET['action'])) {
     header('Content-Type: application/json');
 
@@ -25,10 +26,10 @@ if (isset($_GET['action'])) {
     exit();
 }
 
-// Functions for data retrieval
-function getComplaints($conn, $filters = [])
-{
-    // Mengambil kolom 'name' bukan 'username'
+// ==============================
+// Function: Get Complaints
+// ==============================
+function getComplaints($conn, $filters = []) {
     $sql = "SELECT uc.*, u.name, u.email 
             FROM user_complaints uc 
             LEFT JOIN users u ON uc.user_id = u.id 
@@ -37,7 +38,6 @@ function getComplaints($conn, $filters = [])
     $params = [];
     $types = "";
 
-    // Apply filters
     if (!empty($filters['status']) && $filters['status'] !== 'all') {
         $sql .= " AND uc.status = ?";
         $params[] = $filters['status'];
@@ -65,12 +65,9 @@ function getComplaints($conn, $filters = [])
     }
 
     if (!empty($filters['search'])) {
-        // Menggunakan kolom 'u.name' untuk pencarian
         $sql .= " AND (uc.description LIKE ? OR u.name LIKE ? OR u.email LIKE ?)";
         $searchTerm = '%' . $filters['search'] . '%';
-        $params[] = $searchTerm;
-        $params[] = $searchTerm;
-        $params[] = $searchTerm;
+        array_push($params, $searchTerm, $searchTerm, $searchTerm);
         $types .= "sss";
     }
 
@@ -92,29 +89,30 @@ function getComplaints($conn, $filters = [])
     return $complaints;
 }
 
-function getReviews($conn, $filters = [])
-{
-    $sql = "SELECT pr.*, u.username, u.email, p.name AS product_name
+// ==============================
+// Function: Get Reviews
+// ==============================
+function getReviews($conn, $filters = []) {
+    $sql = "SELECT pr.*, u.name AS name, u.email, p.name AS product_name
         FROM product_reviews pr 
         LEFT JOIN users u ON pr.user_id = u.id 
-        LEFT JOIN products p ON pr.product_id = p.id
+        LEFT JOIN products p ON pr.product_id = p.id 
         WHERE 1=1";
+
 
     $params = [];
     $types = "";
 
-    // Apply filters
     if (!empty($filters['rating']) && $filters['rating'] !== 'all') {
-        $rating = intval($filters['rating']);
         $sql .= " AND FLOOR(pr.rating) = ?";
-        $params[] = $rating;
+        $params[] = intval($filters['rating']);
         $types .= "i";
     }
 
     if (!empty($filters['product']) && $filters['product'] !== 'all') {
         $sql .= " AND pr.product_id = ?";
         $params[] = $filters['product'];
-        $types .= "i";
+        $types .= "s";
     }
 
     if (!empty($filters['period']) && $filters['period'] !== 'all') {
@@ -132,11 +130,9 @@ function getReviews($conn, $filters = [])
     }
 
     if (!empty($filters['search'])) {
-        $sql .= " AND (pr.review_text LIKE ? OR u.username LIKE ? OR p.name LIKE ?)";
+        $sql .= " AND (pr.review_text LIKE ? OR u.name LIKE ? OR p.name LIKE ?)";
         $searchTerm = '%' . $filters['search'] . '%';
-        $params[] = $searchTerm;
-        $params[] = $searchTerm;
-        $params[] = $searchTerm;
+        array_push($params, $searchTerm, $searchTerm, $searchTerm);
         $types .= "sss";
     }
 
@@ -158,8 +154,10 @@ function getReviews($conn, $filters = [])
     return $reviews;
 }
 
-function updateComplaintStatus($conn, $data)
-{
+// ==============================
+// Function: Update Complaint Status
+// ==============================
+function updateComplaintStatus($conn, $data) {
     $sql = "UPDATE user_complaints SET status = ?, updated_at = NOW() WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("si", $data['status'], $data['complaint_id']);
@@ -171,89 +169,65 @@ function updateComplaintStatus($conn, $data)
     }
 }
 
-function getAnalytics($conn)
-{
+// ==============================
+// Function: Get Analytics
+// ==============================
+function getAnalytics($conn) {
     $analytics = [];
 
-    // Total complaints
     $result = $conn->query("SELECT COUNT(*) as total FROM user_complaints");
     $analytics['total_complaints'] = $result->fetch_assoc()['total'];
 
-    // Total reviews
     $result = $conn->query("SELECT COUNT(*) as total FROM product_reviews");
     $analytics['total_reviews'] = $result->fetch_assoc()['total'];
 
-    // Average rating
     $result = $conn->query("SELECT AVG(rating) as avg_rating FROM product_reviews");
     $analytics['avg_rating'] = round($result->fetch_assoc()['avg_rating'], 1);
 
-    // Pending complaints
     $result = $conn->query("SELECT COUNT(*) as total FROM user_complaints WHERE status = 'pending'");
     $analytics['pending_complaints'] = $result->fetch_assoc()['total'];
 
-    // Complaint trends (last 6 months)
     $result = $conn->query("
-        SELECT 
-            DATE_FORMAT(created_at, '%Y-%m') as month,
-            COUNT(*) as count
+        SELECT DATE_FORMAT(created_at, '%Y-%m') as month, COUNT(*) as count
         FROM user_complaints 
         WHERE created_at >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
-        GROUP BY DATE_FORMAT(created_at, '%Y-%m')
+        GROUP BY month
         ORDER BY month
     ");
+    $analytics['complaint_trends'] = $result->fetch_all(MYSQLI_ASSOC);
 
-    $trends = [];
-    while ($row = $result->fetch_assoc()) {
-        $trends[] = $row;
-    }
-    $analytics['complaint_trends'] = $trends;
-
-    // Complaint types distribution
     $result = $conn->query("
         SELECT complaint_type, COUNT(*) as count 
         FROM user_complaints 
         GROUP BY complaint_type
     ");
+    $analytics['complaint_types'] = $result->fetch_all(MYSQLI_ASSOC);
 
-    $types = [];
-    while ($row = $result->fetch_assoc()) {
-        $types[] = $row;
-    }
-    $analytics['complaint_types'] = $types;
-
-    // Rating distribution
     $result = $conn->query("
-        SELECT 
-            FLOOR(rating) as rating_floor,
-            COUNT(*) as count 
+        SELECT FLOOR(rating) as rating_floor, COUNT(*) as count 
         FROM product_reviews 
-        GROUP BY FLOOR(rating)
+        GROUP BY rating_floor
         ORDER BY rating_floor
     ");
-
-    $ratings = [];
-    while ($row = $result->fetch_assoc()) {
-        $ratings[] = $row;
-    }
-    $analytics['rating_distribution'] = $ratings;
+    $analytics['rating_distribution'] = $result->fetch_all(MYSQLI_ASSOC);
 
     return $analytics;
 }
 
-// Get products for filter dropdown
-function getProducts($conn)
-{
+// ==============================
+// Function: Get Products (for filter dropdown)
+// ==============================
+function getProducts($conn) {
     $result = $conn->query("SELECT id, name AS product_name FROM products ORDER BY name");
-    $products = [];
-    while ($row = $result->fetch_assoc()) {
-        $products[] = $row;
-    }
-    return $products;
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
+// Load product list and analytics globally
 $products = getProducts($conn);
 $analytics = getAnalytics($conn);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="id">
