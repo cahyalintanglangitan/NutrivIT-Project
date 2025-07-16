@@ -7,7 +7,7 @@ $result = $conn->query($sql);
 
 // Statistik
 $totalProducts = $conn->query("SELECT COUNT(*) AS total FROM products")->fetch_assoc()['total'];
-$lowStock = $conn->query("SELECT COUNT(*) AS total FROM products WHERE stock < 100")->fetch_assoc()['total'];
+$lowStock = $conn->query("SELECT COUNT(*) AS total FROM products WHERE stock < 20")->fetch_assoc()['total'];
 $bestSeller = $conn->query("SELECT name FROM products ORDER BY stock DESC LIMIT 1")->fetch_assoc()['name'] ?? '-';
 $totalRevenue = $conn->query("SELECT SUM(total_price) AS total FROM sales")->fetch_assoc()['total'] ?? 0;
 

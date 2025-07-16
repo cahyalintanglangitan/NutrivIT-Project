@@ -256,22 +256,19 @@ $analytics = getAnalytics($conn);
         <!-- Sidebar -->
         <?php include 'bar/navbar.php'; ?>
 
-        <main class="main-content">
-            <!-- Enhanced Header -->
-            <header class="main-header">
-                <div class="header-content">
-                    <div class="header-title">
-                        <h1><i class="fas fa-comments"></i> Complaints & Reviews</h1>
-                        <p class="subtitle">Kelola keluhan dan ulasan pelanggan untuk meningkatkan layanan</p>
-                    </div>
-                    <div class="header-actions">
-                        <div class="date-display">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span id="current-date"></span>
-                        </div>
+        <div class="main-content">
+            <div class="main-header">
+                <div class="header-left">
+                    <h2><i class="fas fa-comments"></i> Complaints & Review</h2>
+                    <p class="page-subtitle">Kelola keluhan dan ulasan pelanggan untuk meningkatkan layanan</p>
+                </div>
+                <div class="header-actions">
+                    <div class="date">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span id="current-date"></span>
                     </div>
                 </div>
-            </header>
+            </div>
 
             <div class="content-area">
                 <!-- Enhanced Overview Cards -->
