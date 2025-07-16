@@ -66,8 +66,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <i class="fas fa-user"></i>
       </div>
       <div class="user-details">
-        <p class="user-name">Manager</p>
-        <p class="user-email">manager@email.com</p>
+        <p class="user-name">Go Yoon Jung</p>
+        <p class="user-email">goyoonjung@nutrivit.com</p>
       </div>
     </div>
   </div>
