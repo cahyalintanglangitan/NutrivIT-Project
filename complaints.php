@@ -79,7 +79,7 @@ $complaints = getComplaints();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complaints & Review - NutrivIT</title>
+    <title>Complaint Management - NutrivIT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/complaints.css">
     <link rel="stylesheet" href="./assets/css/dashboard.css">
@@ -93,13 +93,13 @@ $complaints = getComplaints();
         <div class="main-content">
             <div class="main-header">
                 <div class="header-left">
-                    <h2><i class="fas fa-comments"></i> Complaints & Review</h2>
+                    <h2><i class="fas fa-solid fa-list-check"></i> Complaint Management</h2>
                     <p class="page-subtitle">Kelola keluhan dan ulasan pelanggan untuk meningkatkan layanan</p>
                 </div>
                 <div class="header-actions">
                     <div class="date">
                         <i class="fas fa-calendar-alt"></i>
-                        <span id="current-date">Loading...</span>
+                        <span id="current-date"></span>
                     </div>
                 </div>
             </div>

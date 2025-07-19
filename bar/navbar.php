@@ -52,11 +52,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </a>
     <a href="./ai-analysis.php" class="nav-item<?php if ($current_page == 'ai-analysis.php') echo ' active'; ?>">
       <i class="fas fa-robot nav-icon"></i>
-      Manajerial AI
+      AI Business Analyst
     </a>
     <a href="./complaints.php" class="nav-item<?php if ($current_page == 'complaints.php') echo ' active'; ?>">
-      <i class="fas fa-comments nav-icon"></i>
-      Complaints & Review
+      <i class="fas fa-solid fa-list-check nav-icon"></i>
+      Complaint Management
     </a>
   </nav>
 
