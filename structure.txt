@@ -8,7 +8,7 @@ NutrivIT-Project/
 │   │   └── ui.js
 │   ├── css/
 │   │   ├── ai-analysis.css
-│   │   ├── complaints_review.css
+│   │   ├── complaints.css
 │   │   ├── dashboard.css
 │   │   ├── landing-page.css
 │   │   ├── login.css
@@ -19,7 +19,7 @@ NutrivIT-Project/
 │   ├── images/
 │   ├── js/
 │   │   ├── ai-analysis.js
-│   │   ├── complaints_review.js
+│   │   ├── complaints.js
 │   │   ├── dashboard.js
 │   │   ├── product-management.js
 │   │   └── user-management.js
@@ -31,7 +31,7 @@ NutrivIT-Project/
 │   ├── complaints_dashboard.php
 │   ├── complaints_review.php
 │   └── navbar.php
-├── complaints_review.php
+├── complaints.php
 ├── dashboard.php
 ├── database/
 │   ├── koneksi.php
