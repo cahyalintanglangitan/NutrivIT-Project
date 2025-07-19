@@ -1,4 +1,3 @@
-
 // Check authentication
 if (!localStorage.getItem("auth")) {
   window.location.href = "login.php";
@@ -141,8 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
-
 // Notification Panel Functions
 function toggleNotificationPanel() {
   const panel = document.getElementById('notificationPanel');
@@ -259,209 +256,144 @@ function initializeCharts() {
   if (complaintsCtx) {
     updateComplaintsData();
   }
+
   // Product Category Chart
-const productCategoryCtx = document.getElementById("productCategoryChart");
-if (productCategoryCtx && typeof productCategoryDataFromPHP !== "undefined") {
-  new Chart(productCategoryCtx, {
-    type: "doughnut",
-    data: {
-      labels: productCategoryDataFromPHP.labels,
-      datasets: [
-        {
-          data: productCategoryDataFromPHP.data,
-          backgroundColor: ["#08A55A", "#3FCAEA", "#667eea", "#FFCE56", "#A259FF"],
-          borderWidth: 0,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        },
-      },
-    },
-  });
-}
-
-
-
-const nutritionAchievementCtx = document.getElementById("nutritionAchievementChart");
-
-if (nutritionAchievementCtx && typeof nutritionDataFromPHP !== "undefined") {
-  new Chart(nutritionAchievementCtx, {
-    type: "bar",
-    data: {
-      labels: nutritionDataFromPHP.months,
-      datasets: [
-        {
-          label: "Protein",
-          data: nutritionDataFromPHP.protein,
-          backgroundColor: "#08A55A",
-          borderRadius: 4,
-        },
-        {
-          label: "Karbohidrat",
-          data: nutritionDataFromPHP.carbs,
-          backgroundColor: "#3FCAEA",
-          borderRadius: 4,
-        },
-        {
-          label: "Lemak",
-          data: nutritionDataFromPHP.fat,
-          backgroundColor: "#667eea",
-          borderRadius: 4,
-        },
-        {
-          label: "Vitamin",
-          data: nutritionDataFromPHP.vitamin,
-          backgroundColor: "#f093fb",
-          borderRadius: 4,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: "top" },
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          ticks: {
-            callback: function (value) {
-              return value + "%";
-            },
+  const productCategoryCtx = document.getElementById("productCategoryChart");
+  if (productCategoryCtx && typeof productCategoryDataFromPHP !== "undefined") {
+    new Chart(productCategoryCtx, {
+      type: "doughnut",
+      data: {
+        labels: productCategoryDataFromPHP.labels,
+        datasets: [
+          {
+            data: productCategoryDataFromPHP.data,
+            backgroundColor: ["#08A55A", "#3FCAEA", "#667eea", "#FFCE56", "#A259FF"],
+            borderWidth: 0,
           },
-          grid: {
-            color: "rgba(0,0,0,0.1)",
-          },
-        },
-        x: {
-          grid: { display: false },
-        },
+        ],
       },
-    },
-  });
-}
-
-
- const nutritionNeedsCtx = document.getElementById("nutritionNeedsChart");
-if (nutritionNeedsCtx && nutritionNeedsData) {
-  new Chart(nutritionNeedsCtx, {
-    type: "line",
-    data: {
-      labels: nutritionNeedsData.months,
-      datasets: [
-        {
-          label: "Protein (kg)",
-          data: nutritionNeedsData.protein,
-          borderColor: "#08A55A",
-          backgroundColor: "rgba(8, 165, 90, 0.1)",
-          tension: 0.4,
-          fill: true,
-        },
-        {
-          label: "Karbohidrat (kg)",
-          data: nutritionNeedsData.carbs,
-          borderColor: "#3FCAEA",
-          backgroundColor: "rgba(63, 202, 234, 0.1)",
-          tension: 0.4,
-          fill: true,
-        },
-        {
-          label: "Lemak (kg)",
-          data: nutritionNeedsData.fat,
-          borderColor: "#667eea",
-          backgroundColor: "rgba(102, 126, 234, 0.1)",
-          tension: 0.4,
-          fill: true,
-        },
-        {
-          label: "Vitamin (ribu IU)",
-          data: nutritionNeedsData.vitamin,
-          borderColor: "#f093fb",
-          backgroundColor: "rgba(240, 147, 251, 0.1)",
-          tension: 0.4,
-          fill: true,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: "top" },
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: { color: "rgba(0,0,0,0.1)" },
-        },
-        x: {
-          grid: { display: false },
-        },
-      },
-    },
-  });
-}
-
-
-const bestSellingCtx = document.getElementById("bestSellingChart");
-
-if (bestSellingCtx && bestSellingDataFromPHP) {
-  new Chart(bestSellingCtx, {
-    type: "bar",
-    data: {
-      labels: bestSellingDataFromPHP.labels,
-      datasets: [
-        {
-          label: "Penjualan 6 Bulan",
-          data: bestSellingDataFromPHP.data,
-          backgroundColor: [
-            "#08A55A",
-            "#3FCAEA",
-            "#667eea",
-            "#f093fb",
-            "#4facfe",
-            "#43e97b",
-            "#ffc107",
-            "#fd7e14",
-          ],
-          borderRadius: 6,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      indexAxis: "y",
-      plugins: {
-        legend: {
-          display: false,
-        },
-      },
-      scales: {
-        x: {
-          beginAtZero: true,
-          grid: {
-            color: "rgba(0,0,0,0.1)",
-          },
-        },
-        y: {
-          grid: {
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
             display: false,
           },
         },
       },
-    },
-  });
-}
+    });
+  }
 
+  const nutritionNeedsCtx = document.getElementById("nutritionNeedsChart");
+  if (nutritionNeedsCtx && nutritionNeedsData) {
+    new Chart(nutritionNeedsCtx, {
+      type: "line",
+      data: {
+        labels: nutritionNeedsData.months,
+        datasets: [
+          {
+            label: "Protein (kg)",
+            data: nutritionNeedsData.protein,
+            borderColor: "#08A55A",
+            backgroundColor: "rgba(8, 165, 90, 0.1)",
+            tension: 0.4,
+            fill: true,
+          },
+          {
+            label: "Karbohidrat (kg)",
+            data: nutritionNeedsData.carbs,
+            borderColor: "#3FCAEA",
+            backgroundColor: "rgba(63, 202, 234, 0.1)",
+            tension: 0.4,
+            fill: true,
+          },
+          {
+            label: "Lemak (kg)",
+            data: nutritionNeedsData.fat,
+            borderColor: "#667eea",
+            backgroundColor: "rgba(102, 126, 234, 0.1)",
+            tension: 0.4,
+            fill: true,
+          },
+          {
+            label: "Vitamin (ribu IU)",
+            data: nutritionNeedsData.vitamin,
+            borderColor: "#f093fb",
+            backgroundColor: "rgba(240, 147, 251, 0.1)",
+            tension: 0.4,
+            fill: true,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: "top" },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: { color: "rgba(0,0,0,0.1)" },
+          },
+          x: {
+            grid: { display: false },
+          },
+        },
+      },
+    });
+  }
+
+  const bestSellingCtx = document.getElementById("bestSellingChart");
+  if (bestSellingCtx && bestSellingDataFromPHP) {
+    new Chart(bestSellingCtx, {
+      type: "bar",
+      data: {
+        labels: bestSellingDataFromPHP.labels,
+        datasets: [
+          {
+            label: "Penjualan 6 Bulan",
+            data: bestSellingDataFromPHP.data,
+            backgroundColor: [
+              "#08A55A",
+              "#3FCAEA",
+              "#667eea",
+              "#f093fb",
+              "#4facfe",
+              "#43e97b",
+              "#ffc107",
+              "#fd7e14",
+            ],
+            borderRadius: 6,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: "y",
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            grid: {
+              color: "rgba(0,0,0,0.1)",
+            },
+          },
+          y: {
+            grid: {
+              display: false,
+            },
+          },
+        },
+      },
+    });
+  }
+}
 
 // Handle escape key to close modals
 document.addEventListener('keydown', function(event) {
@@ -482,4 +414,4 @@ document.querySelectorAll(".filter-btn").forEach((btn) => {
       .forEach((b) => b.classList.remove("active"));
     this.classList.add("active");
   });
-})}
+});
