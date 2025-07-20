@@ -58,7 +58,6 @@ async function viewProductDetail(productId) {
     showNotification('Gagal memuat detail produk.', 'error');
   }
 }
-
 function loadProductReviews(productId) {
   const reviewContainer = document.getElementById("productReviewList");
   if (!reviewContainer) return;
@@ -73,30 +72,35 @@ function loadProductReviews(productId) {
       return response.json();
     })
     .then(result => {
-      if (!result.reviews || result.reviews.length === 0) {
+      const reviews = result.reviews;
+      if (!reviews || reviews.length === 0) {
         reviewContainer.innerHTML = "<p>Belum ada ulasan untuk produk ini.</p>";
         return;
       }
 
-      reviewContainer.innerHTML = "";
-      result.reviews.forEach(r => {
-        const reviewItem = document.createElement("div");
-        reviewItem.className = "review-item";
-        reviewItem.innerHTML = `
-          <div class="review-header">
-            <strong>${r.user_name}</strong> <span class="review-date">(${r.created_at})</span>
+      reviewContainer.innerHTML = ""; // Kosongkan dulu
+      reviews.forEach(review => {
+        const item = document.createElement("div");
+        item.className = "review-item split-layout";
+        item.innerHTML = `
+          <div class="review-left">
+            <div class="review-date">${review.created_at}</div>
+            <div class="review-rating">Rating: ${review.rating} ★</div>
           </div>
-          <div class="review-rating">Rating: ⭐ ${r.rating}</div>
-          <div class="review-text">${r.review_text}</div>
+          <div class="review-right">
+            <strong>${review.user_name}</strong>
+            <p class="review-text">${review.review_text}</p>
+          </div>
         `;
-        reviewContainer.appendChild(reviewItem);
+        reviewContainer.appendChild(item);
       });
     })
     .catch(err => {
-      reviewContainer.innerHTML = "<p class='error'>Gagal memuat ulasan produk.</p>";
-      console.error(err);
+      console.error("Gagal memuat ulasan:", err);
+      reviewContainer.innerHTML = "<p>Gagal memuat ulasan.</p>";
     });
 }
+
 
 function populateProductModal(product) {
   // Set text content
@@ -155,12 +159,17 @@ function populateProductModal(product) {
 // ==============================
 // MODAL MANAGEMENT
 // ==============================
+let currentModalId = null;
+
 function showModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
     modal.classList.add("active");
+    currentModalId = modalId;
+
+    // Tambahkan listener hanya sekali
     setTimeout(() => {
-      document.addEventListener('click', closeModalOnOutsideClick);
+      document.addEventListener("mousedown", closeModalOnOutsideClick);
     }, 100);
   }
 }
@@ -169,17 +178,22 @@ function closeModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
     modal.classList.remove("active");
-    document.removeEventListener('click', closeModalOnOutsideClick);
+    currentModalId = null;
+    document.removeEventListener("mousedown", closeModalOnOutsideClick);
   }
 }
 
 function closeModalOnOutsideClick(e) {
-  const modal = document.getElementById("productDetailModal");
-  if (modal?.classList.contains("active") && 
-      !modal.querySelector(".modal-content")?.contains(e.target)) {
-    closeModal("productDetailModal");
+  if (!currentModalId) return;
+
+  const modal = document.getElementById(currentModalId);
+  const content = modal?.querySelector(".modal-content");
+
+  if (modal.classList.contains("active") && !content.contains(e.target)) {
+    closeModal(currentModalId);
   }
 }
+
 
 // ==============================
 // PRODUCT EDIT FUNCTIONS

@@ -1143,6 +1143,57 @@ body {
   box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
 }
 
+.review-item.split-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+  gap: 20px;
+}
+
+.review-left {
+  flex: 0 0 120px;
+  font-size: 14px;
+  color: #555;
+}
+
+.review-left .review-date {
+  margin-bottom: 6px;
+}
+
+.review-left .review-rating {
+  font-weight: bold;
+  color: #f39c12;
+}
+
+.review-right {
+  flex: 1;
+}
+
+.review-right strong {
+  display: block;
+  font-size: 15px;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.review-text {
+  font-size: 14px;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .review-item.split-layout {
+    flex-direction: column;
+  }
+
+  .review-left {
+    margin-bottom: 8px;
+  }
+}
+
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .charts-grid {

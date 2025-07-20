@@ -149,16 +149,15 @@ while ($row = $categoryQuery->fetch_assoc()) {
         </div>
     </div>
     <!-- Product Detail Modal -->
-    <div class="modal-overlay" id="productDetailModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><i class="fas fa-eye"></i> Detail Produk</h3>
-                <button class="modal-close" onclick="closeProductDetailModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <div class="modal-body">
+    <div id="productDetailModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3><i class="fas fa-eye"></i> Detail Produk</h3>
+      <button class="modal-close" onclick="closeModal('productDetailModal')">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+<div class="modal-body">
                 <div class="product-detail-container">
                     <!-- HEADER: Nama, Gambar, SKU -->
                     <div class="product-detail-header">
@@ -211,11 +210,16 @@ while ($row = $categoryQuery->fetch_assoc()) {
                         <textarea id="editProductDescription" class="detail-edit" style="display: none;"></textarea>
                     </div>
                     <!-- ULASAN PRODUK -->
-                    <div class="product-detail-description">
-                        <h4><i class="fas fa-comments"></i> Ulasan Produk</h4>
-                        <p id="productDetailReviews" class="detail-view" style="color: black;">-</p>
-                        <textarea id="editProductDescription" class="detail-edit" style="display: none;"></textarea>
-                    </div>
+<div class="product-detail-description">
+  <h4><i class="fas fa-comments"></i> Ulasan Produk</h4>
+  <div id="productReviewList" class="detail-view" style="color: black;"></div>
+  <textarea id="editProductDescription" class="detail-edit" style="display: none;"></textarea>
+</div>  </div>
+</div>
+
+
+            
+
 </div>
             </div>
 
