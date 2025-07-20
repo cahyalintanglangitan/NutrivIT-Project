@@ -1,8 +1,8 @@
 <?php
-require_once 'koneksi.php';
+require_once('../../koneksi.php');
 header('Content-Type: application/json');
 
-// Validasi parameter
+// Validate parameter
 if (!isset($_GET['id'])) {
     http_response_code(400);
     echo json_encode(['error' => 'ID produk diperlukan']);
@@ -10,8 +10,41 @@ if (!isset($_GET['id'])) {
 }
 
 $id = $_GET['id'];
+$reviewOnly = isset($_GET['review_only']);
 
-// Query detail produk
+// Query review terlebih dahulu (LIMIT 5)
+$reviewQuery = "
+    SELECT 
+        pr.rating, pr.review_text, pr.created_at,
+        u.name AS user_name
+    FROM product_reviews pr
+    LEFT JOIN users u ON pr.user_id = u.id
+    WHERE pr.product_id = ?
+    ORDER BY pr.created_at DESC
+    LIMIT 5
+";
+
+$reviewStmt = $conn->prepare($reviewQuery);
+$reviewStmt->bind_param("s", $id);
+$reviewStmt->execute();
+$reviewResult = $reviewStmt->get_result();
+
+$reviews = [];
+while ($row = $reviewResult->fetch_assoc()) {
+    $reviews[] = [
+        'user_name'   => $row['user_name'] ?? 'Anonim',
+        'rating'      => (float)$row['rating'],
+        'review_text' => $row['review_text'] ?? '',
+        'created_at'  => date("d M Y", strtotime($row['created_at']))
+    ];
+}
+
+if ($reviewOnly) {
+    echo json_encode(['reviews' => $reviews]);
+    exit;
+}
+
+// Query product details
 $query = "
     SELECT 
         p.id,
@@ -49,10 +82,10 @@ if ($product = $result->fetch_assoc()) {
         'image_url'      => $product['image_url'] ?? '',
         'product_status' => $product['product_status'],
         'total_sold'     => (int)$product['total_sold'],
-        'rating'         => $product['avg_rating'] !== null ? (float)$product['avg_rating'] : '-'
+        'rating'         => $product['avg_rating'] !== null ? (float)$product['avg_rating'] : '-',
+        'reviews'        => $reviews
     ]);
 } else {
     http_response_code(404);
     echo json_encode(['error' => 'Produk tidak ditemukan']);
 }
-?>

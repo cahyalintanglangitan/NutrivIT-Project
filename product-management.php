@@ -210,6 +210,16 @@ while ($row = $categoryQuery->fetch_assoc()) {
                         <p id="productDetailDescription" class="detail-view">-</p>
                         <textarea id="editProductDescription" class="detail-edit" style="display: none;"></textarea>
                     </div>
+                    <!-- ULASAN PRODUK -->
+                    <div class="product-detail-description">
+                        <h4><i class="fas fa-comments"></i> Ulasan Produk</h4>
+                        <p id="productDetailReviews" class="detail-view" style="color: black;">-</p>
+                        <textarea id="editProductDescription" class="detail-edit" style="display: none;"></textarea>
+                    </div>
+</div>
+            </div>
+
+
 
                 </div>
             </div>
