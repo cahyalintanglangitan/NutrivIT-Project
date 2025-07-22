@@ -1,7 +1,6 @@
 <?php
 include 'koneksi.php';
 
-
 $query = "
     SELECT 
         p.id,
@@ -22,7 +21,6 @@ $result = $conn->query($query);
 
 if ($result && $result->num_rows > 0):
     while ($row = $result->fetch_assoc()):
-        // Proses data
         $id = htmlspecialchars($row['id']);
         $name = htmlspecialchars($row['name']);
         $category = htmlspecialchars($row['category']);
@@ -32,7 +30,6 @@ if ($result && $result->num_rows > 0):
         $stockLevel = $stock > 200 ? 'high' : ($stock > 100 ? 'medium' : 'low');
         $status = $row['product_status'] === 'Active' ? 'active' : 'inactive';
         $statusIcon = $status === 'active' ? 'check-circle' : 'times-circle';
-        $description = htmlspecialchars($row['description']);
         $rating = $row['avg_rating'] !== null ? $row['avg_rating'] . ' ★' : '-';
 ?>
 <tr>
@@ -56,15 +53,7 @@ if ($result && $result->num_rows > 0):
     </td>
     <td>
         <div class="action-buttons">
-            <button class="btn-small btn-view" onclick="viewProductDetail(
-                '<?= addslashes($name) ?>',
-                '<?= $id ?>',
-                '<?= $category ?>',
-                'Rp <?= $price ?>',
-                '<?= $stock ?>',
-                '<?= $rating ?>',
-                '<?= ucfirst($status) ?>',
-                '<?= addslashes($description) ?>')">
+            <button class="btn-small btn-view" onclick="viewProductDetail('<?= $id ?>')">
                 <i class="fas fa-eye"></i> Lihat Detail
             </button>
         </div>
