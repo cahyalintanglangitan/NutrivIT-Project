@@ -3,10 +3,10 @@
 session_start();
 
 // Jika sudah login, redirect ke dashboard
-if (isset($_SESSION['manager_id'])) {
-    header('Location: dashboard.php');
-    exit;
-}
+// if (isset($_SESSION['manager_id'])) {
+//     header('Location: dashboard.php');
+//     exit;
+// }
 
 // Sertakan file koneksi database
 require 'koneksi.php';

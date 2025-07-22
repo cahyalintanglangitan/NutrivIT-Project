@@ -21,7 +21,7 @@
         <li><a href="#home" class="nav-link">Beranda</a></li>
         <li><a href="#features" class="nav-link">Fitur</a></li>
         <li><a href="#products" class="nav-link">Produk</a></li>
-        <li><a href="#about" class="nav-link">Tentang</a></li>
+        <li><a href="#how-it-works" class="nav-link">Tentang</a></li>
         <li><a href="#contact" class="nav-link">Kontak</a></li>
       </ul>
       <div class="nav-actions">
@@ -287,17 +287,6 @@
           </div>
           <h3>Herbal & Natural</h3>
           <p>Produk herbal alami untuk kesehatan tubuh secara menyeluruh</p>
-          <div class="category-products">
-            <div class="product-item">
-              <span class="product-name" style="color: #333;">NuVit-Curcuma Gold</span>
-            </div>
-            <div class="product-item">
-              <span class="product-name">NuVit-Honey Natural </span>
-            </div>
-            <div class="product-item">
-              <span class="product-name">NuVit-Green Detox</span>
-            </div>
-          </div>
         </div>
 
         <div class="category-card">
@@ -306,12 +295,6 @@
           </div>
           <h3>Fitness & Protein</h3>
           <p>Produk untuk mendukung aktivitas olahraga dan pembentukan otot</p>
-          <div class="category-products">
-            <div class="product-item" style="background: linear-gradient(135deg, #08A55A, #3FCAEA);
-  color: white; padding: 10px; border-radius: 8px;">
-              <span class="product-name">NuVit-Whey Muscle</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
